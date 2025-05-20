@@ -1,28 +1,28 @@
 
 import React from 'react';
-import { CheckCircle, Globe, Lock, Zap } from 'lucide-react';
+import { Home, Compass, Briefcase, Globe } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const features = [
   {
+    icon: <Home className="h-10 w-10 text-primary" />,
+    title: "Immobilien",
+    description: "Umfassender Leitfaden zum Immobilienkauf in Cupramontana - von rechtlichen Aspekten über Finanzierungsmöglichkeiten bis hin zu Steuervorteilen für Prima und Seconda Casa."
+  },
+  {
+    icon: <Compass className="h-10 w-10 text-primary" />,
+    title: "Tourismus",
+    description: "Entdecken Sie die Schönheit der Marken - von der Conero Riviera bis zu den malerischen Hügeln. Inklusive Restaurant-Empfehlungen, Sehenswürdigkeiten und aktuellem Eventkalender."
+  },
+  {
+    icon: <Briefcase className="h-10 w-10 text-primary" />,
+    title: "Arbeit",
+    description: "Aktuelle Stellenangebote in der Region, Informationen zu Ausbildungsprogrammen und staatlichen Fördermöglichkeiten für Arbeitssuchende und Unternehmensgründer."
+  },
+  {
     icon: <Globe className="h-10 w-10 text-primary" />,
-    title: "Responsive Design",
-    description: "Ihre Website wird auf allen Geräten perfekt angezeigt, vom Desktop bis zum Smartphone."
-  },
-  {
-    icon: <Zap className="h-10 w-10 text-primary" />,
-    title: "Schnelle Ladezeiten",
-    description: "Optimierte Performance für ein besseres Nutzererlebnis und höhere Conversion-Raten."
-  },
-  {
-    icon: <Lock className="h-10 w-10 text-primary" />,
-    title: "Sicherheit an erster Stelle",
-    description: "Modernste Sicherheitsmaßnahmen zum Schutz Ihrer Daten und der Ihrer Kunden."
-  },
-  {
-    icon: <CheckCircle className="h-10 w-10 text-primary" />,
-    title: "SEO-optimiert",
-    description: "Bessere Platzierung in Suchmaschinen durch professionelle Suchmaschinenoptimierung."
+    title: "Mehrsprachig",
+    description: "Alle Informationen verfügbar in Italienisch, Englisch und Niederländisch - für Einheimische und internationale Interessenten gleichermaßen zugänglich."
   }
 ];
 
@@ -31,9 +31,9 @@ const Features = () => {
     <section id="features" className="section bg-muted/50">
       <div className="container">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Unsere Features</h2>
+          <h2 className="text-3xl font-bold mb-4">Unsere Rubriken</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Wir bieten moderne und effektive Lösungen für Ihre Online-Präsenz
+            Cupramontana.homes bietet Ihnen umfassende Informationen zu allen wichtigen Themen rund um Cupramontana
           </p>
         </div>
         
