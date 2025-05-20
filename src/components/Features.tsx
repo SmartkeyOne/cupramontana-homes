@@ -2,32 +2,31 @@
 import React from 'react';
 import { Home, Compass, Briefcase, Globe } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { useNavigate } from 'react-router-dom';
 
 const features = [
   {
-    icon: <Home className="h-10 w-10 text-primary" />,
+    icon: <Home className="h-8 w-8 text-primary" />,
     title: "Immobilien",
-    description: "Umfassender Leitfaden zum Immobilienkauf in Cupramontana - von rechtlichen Aspekten über Finanzierungsmöglichkeiten bis hin zu Steuervorteilen für Prima und Seconda Casa.",
+    description: "Umfassender Leitfaden zum Immobilienkauf in Cupramontana.",
     route: "/real-estate"
   },
   {
-    icon: <Compass className="h-10 w-10 text-primary" />,
+    icon: <Compass className="h-8 w-8 text-primary" />,
     title: "Tourismus",
-    description: "Entdecken Sie die Schönheit der Marken - von der Conero Riviera bis zu den malerischen Hügeln. Inklusive Restaurant-Empfehlungen, Sehenswürdigkeiten und aktuellem Eventkalender.",
+    description: "Entdecken Sie die Schönheit der Marken.",
     route: "/tourism"
   },
   {
-    icon: <Briefcase className="h-10 w-10 text-primary" />,
+    icon: <Briefcase className="h-8 w-8 text-primary" />,
     title: "Arbeit",
-    description: "Aktuelle Stellenangebote in der Region, Informationen zu Ausbildungsprogrammen und staatlichen Fördermöglichkeiten für Arbeitssuchende und Unternehmensgründer.",
+    description: "Aktuelle Stellenangebote in der Region.",
     route: "/jobs"
   },
   {
-    icon: <Globe className="h-10 w-10 text-primary" />,
+    icon: <Globe className="h-8 w-8 text-primary" />,
     title: "Mehrsprachig",
-    description: "Alle Informationen verfügbar in Italienisch, Englisch und Niederländisch - für Einheimische und internationale Interessenten gleichermaßen zugänglich.",
+    description: "Alle Informationen in mehreren Sprachen verfügbar.",
     route: "/"
   }
 ];
@@ -40,36 +39,30 @@ const Features = () => {
   };
 
   return (
-    <section id="features" className="section bg-muted/50">
-      <div className="container">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Unsere Rubriken</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Cupramontana.homes bietet Ihnen umfassende Informationen zu allen wichtigen Themen rund um Cupramontana
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => (
-            <Card 
-              key={index} 
-              className="border border-border bg-card transition-all duration-200 hover:shadow-lg hover:scale-105 hover:border-primary/50 cursor-pointer"
-              onClick={() => handleCardClick(feature.route)}
-            >
-              <CardHeader>
-                <div className="mb-2">{feature.icon}</div>
-                <CardTitle className="group-hover:text-primary transition-colors">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-muted-foreground">
-                  {feature.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+    <div className="mt-8">
+      <h2 className="text-2xl font-bold mb-6">Unsere Rubriken</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+        {features.map((feature, index) => (
+          <Card 
+            key={index} 
+            className="border border-border bg-card transition-all duration-200 hover:shadow-lg hover:scale-105 hover:border-primary/50 cursor-pointer"
+            onClick={() => handleCardClick(feature.route)}
+          >
+            <CardHeader className="p-4">
+              <div className="flex items-center gap-3">
+                <div>{feature.icon}</div>
+                <CardTitle className="text-lg">{feature.title}</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-4 pt-0">
+              <CardDescription className="text-muted-foreground">
+                {feature.description}
+              </CardDescription>
+            </CardContent>
+          </Card>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 

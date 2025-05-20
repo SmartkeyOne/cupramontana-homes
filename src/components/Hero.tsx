@@ -1,6 +1,6 @@
+
 import React from 'react';
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import Features from './Features';
 
 const Hero = () => {
   return (
@@ -13,16 +13,8 @@ const Hero = () => {
           <p className="text-xl text-muted-foreground mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
             Ihr umfassender Ratgeber für Immobilienkauf, Tourismus und Leben in der malerischen Region Marken.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            <Link to="/real-estate">
-              <Button variant="default" size="lg" className="w-full">Immobilien</Button>
-            </Link>
-            <Link to="/tourism">
-              <Button variant="outline" size="lg" className="w-full">Tourismus</Button>
-            </Link>
-            <Link to="/jobs">
-              <Button variant="outline" size="lg" className="w-full">Arbeitsmarkt</Button>
-            </Link>
+          <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <Features />
           </div>
         </div>
       </div>
