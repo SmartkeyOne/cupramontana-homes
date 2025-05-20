@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -8,14 +9,21 @@ const Hero = () => {
       <div className="container">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in">
-            Willkommen auf Ihrer neuen Website
+            Entdecken Sie Cupramontana
           </h1>
           <p className="text-xl text-muted-foreground mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Professionelle Webdesign-Lösungen für Ihr Unternehmen. Modern, schnell und benutzerfreundlich.
+            Ihr umfassender Ratgeber für Immobilienkauf, Tourismus und Leben in der malerischen Region Marken.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            <Button size="lg">Jetzt starten</Button>
-            <Button size="lg" variant="outline">Mehr erfahren</Button>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: '0.4s' }}>
+            <Link to="/real-estate">
+              <Button variant="default" size="lg" className="w-full">Immobilien</Button>
+            </Link>
+            <Link to="/tourism">
+              <Button variant="outline" size="lg" className="w-full">Tourismus</Button>
+            </Link>
+            <Link to="/jobs">
+              <Button variant="outline" size="lg" className="w-full">Arbeitsmarkt</Button>
+            </Link>
           </div>
         </div>
       </div>
