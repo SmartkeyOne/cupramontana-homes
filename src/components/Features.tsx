@@ -2,31 +2,43 @@
 import React from 'react';
 import { Home, Compass, Briefcase, Globe } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { useNavigate } from 'react-router-dom';
 
 const features = [
   {
     icon: <Home className="h-10 w-10 text-primary" />,
     title: "Immobilien",
-    description: "Umfassender Leitfaden zum Immobilienkauf in Cupramontana - von rechtlichen Aspekten über Finanzierungsmöglichkeiten bis hin zu Steuervorteilen für Prima und Seconda Casa."
+    description: "Umfassender Leitfaden zum Immobilienkauf in Cupramontana - von rechtlichen Aspekten über Finanzierungsmöglichkeiten bis hin zu Steuervorteilen für Prima und Seconda Casa.",
+    route: "/real-estate"
   },
   {
     icon: <Compass className="h-10 w-10 text-primary" />,
     title: "Tourismus",
-    description: "Entdecken Sie die Schönheit der Marken - von der Conero Riviera bis zu den malerischen Hügeln. Inklusive Restaurant-Empfehlungen, Sehenswürdigkeiten und aktuellem Eventkalender."
+    description: "Entdecken Sie die Schönheit der Marken - von der Conero Riviera bis zu den malerischen Hügeln. Inklusive Restaurant-Empfehlungen, Sehenswürdigkeiten und aktuellem Eventkalender.",
+    route: "/tourism"
   },
   {
     icon: <Briefcase className="h-10 w-10 text-primary" />,
     title: "Arbeit",
-    description: "Aktuelle Stellenangebote in der Region, Informationen zu Ausbildungsprogrammen und staatlichen Fördermöglichkeiten für Arbeitssuchende und Unternehmensgründer."
+    description: "Aktuelle Stellenangebote in der Region, Informationen zu Ausbildungsprogrammen und staatlichen Fördermöglichkeiten für Arbeitssuchende und Unternehmensgründer.",
+    route: "/jobs"
   },
   {
     icon: <Globe className="h-10 w-10 text-primary" />,
     title: "Mehrsprachig",
-    description: "Alle Informationen verfügbar in Italienisch, Englisch und Niederländisch - für Einheimische und internationale Interessenten gleichermaßen zugänglich."
+    description: "Alle Informationen verfügbar in Italienisch, Englisch und Niederländisch - für Einheimische und internationale Interessenten gleichermaßen zugänglich.",
+    route: "/"
   }
 ];
 
 const Features = () => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (route: string) => {
+    navigate(route);
+  };
+
   return (
     <section id="features" className="section bg-muted/50">
       <div className="container">
@@ -39,10 +51,14 @@ const Features = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
-            <Card key={index} className="border border-border bg-card transition-all duration-200 hover:shadow-md">
+            <Card 
+              key={index} 
+              className="border border-border bg-card transition-all duration-200 hover:shadow-lg hover:scale-105 hover:border-primary/50 cursor-pointer"
+              onClick={() => handleCardClick(feature.route)}
+            >
               <CardHeader>
                 <div className="mb-2">{feature.icon}</div>
-                <CardTitle>{feature.title}</CardTitle>
+                <CardTitle className="group-hover:text-primary transition-colors">{feature.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-muted-foreground">
