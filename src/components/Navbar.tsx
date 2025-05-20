@@ -10,7 +10,7 @@ const Navbar = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur">
       <nav className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
-          <a href="/" className="font-heading text-xl font-bold text-primary">WebDesign</a>
+          <a href="/" className="font-heading text-xl font-bold text-primary">Cupramontana.homes</a>
         </div>
         
         {/* Desktop Navigation */}

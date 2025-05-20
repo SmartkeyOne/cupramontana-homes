@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-xl font-bold mb-4">WebDesign</h3>
+            <h3 className="text-xl font-bold mb-4">Cupramontana.homes</h3>
             <p className="text-muted-foreground mb-4 max-w-md">
               Wir entwickeln moderne Websites, die nicht nur gut aussehen, sondern auch Ergebnisse liefern.
             </p>
@@ -27,7 +27,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Kontakt</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li>info@webdesign.de</li>
+              <li>info@cupramontana.homes</li>
               <li>+49 123 456789</li>
               <li>Berlin, Deutschland</li>
             </ul>
@@ -35,7 +35,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear} WebDesign. Alle Rechte vorbehalten.</p>
+          <p>&copy; {currentYear} Cupramontana.homes. Alle Rechte vorbehalten.</p>
         </div>
       </div>
     </footer>
