@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -23,6 +23,15 @@ const Navbar = () => {
     { label: "Tourismus", href: "/tourism" },
     { label: "Arbeitsmarkt", href: "/jobs" }
   ];
+
+  // Set initial language based on browser language
+  useEffect(() => {
+    const browserLang = navigator.language.split('-')[0];
+    const supportedLang = languages.find(lang => lang.code === browserLang);
+    if (supportedLang) {
+      setLanguage(supportedLang.code);
+    }
+  }, []);
 
   const changeLanguage = (langCode: string) => {
     setLanguage(langCode);

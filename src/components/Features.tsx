@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Home, Compass, Briefcase, Globe } from 'lucide-react';
+import { Home, Compass, Briefcase } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from 'react-router-dom';
 
@@ -22,12 +22,6 @@ const features = [
     title: "Arbeit",
     description: "Aktuelle Stellenangebote in der Region.",
     route: "/jobs"
-  },
-  {
-    icon: <Globe className="h-8 w-8 text-primary" />,
-    title: "Mehrsprachig",
-    description: "Alle Informationen in mehreren Sprachen verfügbar.",
-    route: "/"
   }
 ];
 
@@ -40,8 +34,7 @@ const Features = () => {
 
   return (
     <div className="mt-8">
-      <h2 className="text-2xl font-bold mb-6">Unsere Rubriken</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
         {features.map((feature, index) => (
           <Card 
             key={index} 
