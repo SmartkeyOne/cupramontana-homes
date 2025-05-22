@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import SectorCard from './SectorCard';
 import { Briefcase, User, UserPlus } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
@@ -101,16 +101,28 @@ const SectorOverview = () => {
                   <span className="font-medium">2.000,00 €</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Einkommensteuer (~20%):</span>
+                  <span>Einkommensteuer (20%):</span>
                   <span className="text-red-500">- 400,00 €</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Sozialversicherung (~10%):</span>
+                  <span>Sozialversicherung (10%):</span>
                   <span className="text-red-500">- 200,00 €</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Regionalsteuer (1,5%):</span>
+                  <span className="text-red-500">- 30,00 €</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Gemeindesteuer (0,8%):</span>
+                  <span className="text-red-500">- 16,00 €</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Rentenbeitrag (1%):</span>
+                  <span className="text-red-500">- 20,00 €</span>
                 </div>
                 <div className="border-t border-border pt-2 font-semibold flex justify-between">
                   <span>Nettogehalt:</span>
-                  <span>1.400,00 €</span>
+                  <span>1.334,00 €</span>
                 </div>
               </div>
               <p className="text-xs text-muted-foreground mt-2">
