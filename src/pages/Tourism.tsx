@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -5,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import SEOHelmet from '../components/SEOHelmet';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Bus, Train, Clock, MapPin } from 'lucide-react';
+import { Bus, Train, Clock, MapPin, ExternalLink, Smartphone } from 'lucide-react';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
@@ -122,6 +123,42 @@ const Tourism = () => {
       }
     ]
   };
+
+  // Neue Daten für Transportapps
+  const transportApps = [
+    {
+      name: "Moovit",
+      description: "Umfassende App mit Verbindungen für öffentliche Verkehrsmittel in ganz Italien, inkl. Echtzeit-Updates und detaillierter Navigation.",
+      platforms: "iOS, Android",
+      features: ["Echtzeit-Fahrplanauskunft", "Routenplanung", "Offline-Karten", "Mehrsprachig", "Haltestellen in der Nähe anzeigen"],
+      url: "https://moovitapp.com/",
+      regions: "Landesweit"
+    },
+    {
+      name: "Muoversi in Marche",
+      description: "Offizielle App für öffentlichen Nahverkehr in der Region Marken mit lokalen Busverbindungen und regionalem Zugverkehr.",
+      platforms: "iOS, Android",
+      features: ["Regionale Fahrpläne", "Live-Updates", "Ticketkauf möglich"],
+      url: "http://www.muoversinmarche.it/",
+      regions: "Region Marken"
+    },
+    {
+      name: "Trenitalia",
+      description: "Offizielle App der italienischen Staatsbahnen für Zugverbindungen mit Ticketkauf und Kundenservice.",
+      platforms: "iOS, Android",
+      features: ["Zugfahrpläne", "Ticketkauf", "Sitzplatzreservierung", "Verspätungsbenachrichtigungen"],
+      url: "https://www.trenitalia.com/",
+      regions: "Landesweit (nur Züge)"
+    },
+    {
+      name: "Google Maps",
+      description: "Bekannte Navigations-App mit guter Integration von ÖPNV-Daten in größeren Städten Italiens.",
+      platforms: "iOS, Android, Web",
+      features: ["Umfassende Navigation", "ÖPNV-Integration", "Offline-Nutzung möglich", "In vielen Sprachen verfügbar"],
+      url: "https://maps.google.com/",
+      regions: "Landesweit (besser in größeren Städten)"
+    }
+  ];
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -319,7 +356,74 @@ const Tourism = () => {
               <TabsContent value="transport" className="space-y-6">
                 <h3 className="text-xl font-semibold mb-4">Öffentlicher Verkehr in der Region</h3>
                 
-                {/* Neu: Haltestellen in Cupramontana */}
+                {/* Neue Sektion: Apps für öffentlichen Verkehr */}
+                <Card className="mb-8">
+                  <CardHeader>
+                    <div className="flex items-center gap-2">
+                      <Smartphone className="h-5 w-5 text-primary" />
+                      <CardTitle className="text-lg">Empfohlene Apps für öffentlichen Verkehr</CardTitle>
+                    </div>
+                    <CardDescription>
+                      Diese Apps helfen Ihnen bei der Planung und Nutzung des öffentlichen Verkehrs in Italien
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {transportApps.map((app, index) => (
+                        <Card key={index} className="border bg-muted/5">
+                          <CardHeader className="pb-2">
+                            <div className="flex items-center justify-between">
+                              <CardTitle className="text-base">{app.name}</CardTitle>
+                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                                {app.platforms}
+                              </span>
+                            </div>
+                            <CardDescription className="line-clamp-2">{app.description}</CardDescription>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="space-y-3">
+                              <div>
+                                <h4 className="text-sm font-medium mb-1">Funktionen:</h4>
+                                <ul className="list-disc pl-5 text-xs space-y-1 text-muted-foreground">
+                                  {app.features.map((feature, idx) => (
+                                    <li key={idx}>{feature}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                              <div>
+                                <h4 className="text-sm font-medium">Abdeckung:</h4>
+                                <p className="text-xs text-muted-foreground">{app.regions}</p>
+                              </div>
+                              <div className="pt-2">
+                                <a 
+                                  href={app.url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer" 
+                                  className="text-primary hover:underline text-sm flex items-center"
+                                >
+                                  Zur Webseite <ExternalLink className="ml-1 h-3 w-3" />
+                                </a>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+
+                    <div className="mt-6 p-4 bg-primary/5 rounded-lg">
+                      <h4 className="text-sm font-semibold mb-2">Tipps für die App-Nutzung in Italien</h4>
+                      <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
+                        <li>Laden Sie die Apps vor Ihrer Reise herunter und machen Sie sich mit ihnen vertraut</li>
+                        <li>Speichern Sie wenn möglich Offline-Karten, da nicht überall eine stabile Internetverbindung verfügbar ist</li>
+                        <li>In ländlichen Gebieten wie Cupramontana sind die Fahrplaninformationen manchmal nicht in Echtzeit verfügbar</li>
+                        <li>Die Kombination mehrerer Apps (z.B. Moovit für den Busverkehr und Trenitalia für Zugfahrten) kann sinnvoll sein</li>
+                        <li>Viele Apps bieten auch Mehrsprachigkeit an, darunter oft auch Deutsch und Englisch</li>
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                {/* Bushaltestellen in Cupramontana */}
                 <Card className="mb-8">
                   <CardHeader>
                     <div className="flex items-center gap-2">
@@ -387,7 +491,7 @@ const Tourism = () => {
                   </CardContent>
                 </Card>
                 
-                {/* Bisherige Informationen zu Busverbindungen */}
+                {/* Busverbindungen und Zugverbindungen */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <Card>
                     <CardHeader className="pb-3">
