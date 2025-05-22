@@ -354,15 +354,14 @@ const Tourism = () => {
                 
                 <div className="w-full mb-8">
                   <div className="relative w-full overflow-hidden" style={{ paddingBottom: "75%" }}>
-                    <iframe 
-                      src="https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d39042.60869132977!2d13.102110892476322!3d43.44984397554427!3m2!1i1024!2i768!4f13.1!2m1!1sRestaurants!5e1!3m2!1sde!2sch!4v1747914901897!5m2!1sde!2sch" 
+                    <iframe
                       width="100%" 
                       height="100%" 
-                      style={{ border: 0, position: "absolute", top: 0, left: 0 }} 
-                      allowFullScreen 
-                      loading="lazy" 
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Restaurants in Cupramontana"
+                      frameBorder="0" 
+                      style={{ border: 0, position: "absolute", top: 0, left: 0 }}
+                      src="https://www.google.com/maps/embed/v1/place?q=Cupramontana&key=AIzaSyDKSW0HMm5afAUOtWSsgX22BPxIn5AOYho" 
+                      allowFullScreen
+                      title="Cupramontana Map"
                       className="rounded-lg shadow-md"
                     />
                   </div>
