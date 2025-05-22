@@ -73,6 +73,71 @@ const RealEstate = () => {
               </Card>
             </div>
             
+            {/* Neue Sektion: Digitale Identität und Kommunikation in Italien */}
+            <div className="mb-16">
+              <h2 className="text-2xl font-bold mb-6">Digitale Identität & Kommunikation mit Behörden</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Zertifizierte E-Mail (PEC)</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="mb-4">
+                      In Italien ist eine zertifizierte E-Mail (Posta Elettronica Certificata - PEC) für die Kommunikation mit Behörden obligatorisch.
+                    </CardDescription>
+                    <div className="space-y-3 text-sm">
+                      <p>
+                        Die PEC funktioniert wie eine normale E-Mail, hat jedoch rechtliche Gültigkeit und dient als elektronisches Einschreiben. 
+                        Sie ist unerlässlich für:
+                      </p>
+                      <ul className="list-disc pl-5 space-y-2">
+                        <li>Offizielle Kommunikation mit Behörden</li>
+                        <li>Einreichung von Dokumenten</li>
+                        <li>Erhalt von amtlichen Mitteilungen</li>
+                        <li>Immobilientransaktionen</li>
+                      </ul>
+                      <p className="mt-4">
+                        Eine PEC-Adresse können Sie bei verschiedenen Anbietern wie Poste Italiane, Aruba oder Infocert beantragen. 
+                        Die Kosten liegen typischerweise bei 5-30€ pro Jahr.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Digitale Identität (SPID)</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="mb-4">
+                      Das SPID (Sistema Pubblico di Identità Digitale) ist das italienische System für digitale Identität und ermöglicht den Zugang zu öffentlichen Online-Diensten.
+                    </CardDescription>
+                    <div className="space-y-3 text-sm">
+                      <p>
+                        Ein SPID-Account ist für Immobilienkäufer sehr nützlich, um auf verschiedene behördliche Dienste zuzugreifen:
+                      </p>
+                      <ul className="list-disc pl-5 space-y-2">
+                        <li>Grundbuchauszüge einsehen</li>
+                        <li>Steuererklärungen einreichen</li>
+                        <li>Kommunale Dienste nutzen</li>
+                        <li>Baugenehmigungen beantragen</li>
+                      </ul>
+                      <p className="mt-4 font-medium">So erhalten Sie einen SPID-Account:</p>
+                      <ol className="list-decimal pl-5 space-y-2">
+                        <li>Registrieren Sie sich bei einem zugelassenen Anbieter (z.B. Poste ID)</li>
+                        <li>Identifizieren Sie sich mit gültigem Ausweis und Steuernummer (Codice Fiscale)</li>
+                        <li>Bestätigen Sie Ihre Identität (persönlich, per Webcam oder mit elektronischer Signatur)</li>
+                        <li>Nach erfolgreicher Verifizierung erhalten Sie Ihre SPID-Zugangsdaten</li>
+                      </ol>
+                      <p className="mt-4">
+                        Ausländische Bürger können ebenfalls einen SPID-Account beantragen, benötigen jedoch eine italienische Steuernummer.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+            
             {/* Hypothekenrechner */}
             <h2 className="text-2xl font-bold mb-6">Hypothekenrechner</h2>
             <Tabs defaultValue="calculator">
