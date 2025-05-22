@@ -349,65 +349,24 @@ const Tourism = () => {
               <TabsContent value="restaurants" className="space-y-6">
                 <div className="mb-6">
                   <h3 className="text-xl font-semibold mb-2">Restaurants in der Region</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Verifizierte Restaurants in Cupramontana, Apiro, Staffolo und Poggio San Vicino</p>
-                  
-                  <a 
-                    href={restaurantMapUrl} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-block mb-6"
-                  >
-                    <Button variant="default" className="flex items-center gap-2">
-                      <MapIcon className="h-5 w-5" />
-                      Alle Restaurants auf Google Maps anzeigen
-                    </Button>
-                  </a>
+                  <p className="text-sm text-muted-foreground mb-4">Restaurants in Cupramontana, Apiro, Staffolo und Poggio San Vicino</p>
                 </div>
                 
-                <Card>
-                  <CardContent className="p-0">
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead>Name</TableHead>
-                          <TableHead>Ort</TableHead>
-                          <TableHead className="hidden md:table-cell">Küche</TableHead>
-                          <TableHead className="text-center">Bewertung</TableHead>
-                          <TableHead className="text-center">Preisklasse</TableHead>
-                          <TableHead className="text-right">Google Maps</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {localRestaurants.map((restaurant) => (
-                          <TableRow key={restaurant.id}>
-                            <TableCell className="font-medium">{restaurant.name}</TableCell>
-                            <TableCell>{restaurant.location}</TableCell>
-                            <TableCell className="hidden md:table-cell">{restaurant.cuisine}</TableCell>
-                            <TableCell className="text-center">
-                              <div className="flex items-center justify-center gap-1">
-                                <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-                                <span>{restaurant.rating}</span>
-                              </div>
-                            </TableCell>
-                            <TableCell className="text-center">{restaurant.priceRange}</TableCell>
-                            <TableCell className="text-right">
-                              <a 
-                                href={restaurant.mapsUrl} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                aria-label={`Google Maps: ${restaurant.name}`}
-                                className="text-primary hover:underline flex items-center justify-end gap-1"
-                              >
-                                <MapPin className="h-4 w-4" />
-                                <span className="sr-only sm:not-sr-only">Karte</span>
-                              </a>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </CardContent>
-                </Card>
+                <div className="w-full mb-8">
+                  <div className="relative w-full overflow-hidden" style={{ paddingBottom: "75%" }}>
+                    <iframe 
+                      src="https://www.google.com/maps/embed?pb=!1m12!1m8!1m3!1d39042.60869132977!2d13.102110892476322!3d43.44984397554427!3m2!1i1024!2i768!4f13.1!2m1!1sRestaurants!5e1!3m2!1sde!2sch!4v1747914901897!5m2!1sde!2sch" 
+                      width="100%" 
+                      height="100%" 
+                      style={{ border: 0, position: "absolute", top: 0, left: 0 }} 
+                      allowFullScreen 
+                      loading="lazy" 
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Restaurants in Cupramontana"
+                      className="rounded-lg shadow-md"
+                    />
+                  </div>
+                </div>
                 
                 <div className="mt-6 p-4 bg-primary/5 rounded-lg">
                   <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
