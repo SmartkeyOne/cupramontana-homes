@@ -13,7 +13,7 @@ interface NetIncomeResultProps {
   netSalary: number | null;
   grossSalary: string;
   deductions: DeductionsType;
-  taxRates: {
+  appliedRates: {
     incomeTax: number;
     socialSecurity: number;
     regional: number;
@@ -27,7 +27,7 @@ const NetIncomeResult = ({
   netSalary, 
   grossSalary, 
   deductions, 
-  taxRates,
+  appliedRates,
   formatCurrency 
 }: NetIncomeResultProps) => {
   if (netSalary === null) return null;
@@ -40,23 +40,23 @@ const NetIncomeResult = ({
           <span className="font-medium">{formatCurrency(parseFloat(grossSalary) || 0)}</span>
         </div>
         <div className="flex justify-between text-red-500">
-          <span>Einkommensteuer ({taxRates.incomeTax}%):</span>
+          <span>Einkommensteuer ({appliedRates.incomeTax}%):</span>
           <span>- {formatCurrency(deductions.incomeTax)}</span>
         </div>
         <div className="flex justify-between text-red-500">
-          <span>Sozialversicherung ({taxRates.socialSecurity}%):</span>
+          <span>Sozialversicherung ({appliedRates.socialSecurity}%):</span>
           <span>- {formatCurrency(deductions.socialSecurity)}</span>
         </div>
         <div className="flex justify-between text-red-500">
-          <span>Regionalsteuer ({taxRates.regional}%):</span>
+          <span>Regionalsteuer ({appliedRates.regional}%):</span>
           <span>- {formatCurrency(deductions.regional)}</span>
         </div>
         <div className="flex justify-between text-red-500">
-          <span>Gemeindesteuer ({taxRates.municipal}%):</span>
+          <span>Gemeindesteuer ({appliedRates.municipal}%):</span>
           <span>- {formatCurrency(deductions.municipal)}</span>
         </div>
         <div className="flex justify-between text-red-500">
-          <span>Rentenbeitrag ({taxRates.pension}%):</span>
+          <span>Rentenbeitrag ({appliedRates.pension}%):</span>
           <span>- {formatCurrency(deductions.pension)}</span>
         </div>
         <div className="border-t border-border mt-3 pt-3 font-semibold flex justify-between">

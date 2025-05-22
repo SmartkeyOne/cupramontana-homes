@@ -14,7 +14,6 @@ import {
 import NetIncomeResult from './NetIncomeResult';
 import { 
   calculateDeductions, 
-  defaultTaxRates,
   formatCurrency,
   DeductionsType,
   TaxRatesType
@@ -30,9 +29,13 @@ const NetIncomeCalculator = () => {
     municipal: 0,
     pension: 0
   });
-  
-  // Tax rates from utility
-  const taxRates: TaxRatesType = defaultTaxRates;
+  const [appliedRates, setAppliedRates] = useState<TaxRatesType>({
+    incomeTax: 0,
+    socialSecurity: 0,
+    regional: 0,
+    municipal: 0,
+    pension: 0
+  });
   
   // Calculate net salary whenever gross salary changes
   useEffect(() => {
@@ -41,10 +44,11 @@ const NetIncomeCalculator = () => {
   
   const calculateNetSalary = () => {
     const gross = parseFloat(grossSalary) || 0;
-    const { deductions: calculatedDeductions, netSalary: calculatedNetSalary } = calculateDeductions(gross, taxRates);
+    const { deductions: calculatedDeductions, netSalary: calculatedNetSalary, appliedRates: calculatedRates } = calculateDeductions(gross);
     
     setDeductions(calculatedDeductions);
     setNetSalary(calculatedNetSalary);
+    setAppliedRates(calculatedRates);
   };
   
   const handleSubmit = (e: React.FormEvent) => {
@@ -84,12 +88,12 @@ const NetIncomeCalculator = () => {
             netSalary={netSalary}
             grossSalary={grossSalary}
             deductions={deductions}
-            taxRates={taxRates}
+            appliedRates={appliedRates}
             formatCurrency={formatCurrency}
           />
         </form>
         <p className="text-xs text-muted-foreground mt-4">
-          Hinweis: Diese Berechnung basiert auf Standardsätzen für obligatorische Abzüge in Italien (Stand 2024). Individuelle Umstände können zu Abweichungen führen.
+          Hinweis: Diese Berechnung basiert auf Standardsätzen für obligatorische Abzüge in Italien (Stand 2024). Die Steuersätze variieren je nach Bruttogehalt. Individuelle Umstände können zu Abweichungen führen.
         </p>
       </CardContent>
     </Card>

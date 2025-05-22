@@ -4,6 +4,7 @@ import SectorCard from './SectorCard';
 import { Briefcase, User, UserPlus } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import NetIncomeCalculator from './NetIncomeCalculator';
+import { incomeRangeExamples, calculateDeductions, formatCurrency } from '@/utils/incomeCalculator';
 
 const SectorOverview = () => {
   const { t } = useLanguage();
@@ -92,41 +93,43 @@ const SectorOverview = () => {
         <h3 className="text-xl font-bold mb-4">Nettogehalt nach Abzügen</h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold mb-3">Beispielrechnung</h4>
+            <h4 className="font-semibold mb-3">Übersicht der Einkommensklassen und Abzüge</h4>
             <div className="bg-card p-4 rounded-md shadow-sm">
-              <p className="mb-3">Für einen Restaurantleiter mit einem Bruttogehalt von 2.000€ monatlich:</p>
-              <div className="space-y-2 mb-4">
-                <div className="flex justify-between">
-                  <span>Bruttogehalt:</span>
-                  <span className="font-medium">2.000,00 €</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Einkommensteuer (20%):</span>
-                  <span className="text-red-500">- 400,00 €</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Sozialversicherung (10%):</span>
-                  <span className="text-red-500">- 200,00 €</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Regionalsteuer (1,5%):</span>
-                  <span className="text-red-500">- 30,00 €</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Gemeindesteuer (0,8%):</span>
-                  <span className="text-red-500">- 16,00 €</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Rentenbeitrag (1%):</span>
-                  <span className="text-red-500">- 20,00 €</span>
-                </div>
-                <div className="border-t border-border pt-2 font-semibold flex justify-between">
-                  <span>Nettogehalt:</span>
-                  <span>1.334,00 €</span>
-                </div>
+              <p className="mb-3">Steuersätze und Abzüge variieren je nach Bruttogehalt:</p>
+              
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead className="bg-muted">
+                    <tr>
+                      <th className="p-2 text-left">Gehaltsklasse</th>
+                      <th className="p-2 text-right">Einkommensteuer</th>
+                      <th className="p-2 text-right">Sozialversicherung</th>
+                      <th className="p-2 text-right">Regionalsteuer</th>
+                      <th className="p-2 text-right">Gemeindesteuer</th>
+                      <th className="p-2 text-right">Rente</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {incomeRangeExamples.map((example, index) => {
+                      const { deductions } = calculateDeductions(example.grossSalary);
+                      return (
+                        <tr key={index} className={index % 2 === 0 ? 'bg-background' : 'bg-muted/30'}>
+                          <td className="p-2 font-medium">{example.range}</td>
+                          <td className="p-2 text-right">{example.incomeTaxRate}%</td>
+                          <td className="p-2 text-right">{example.socialSecurityRate}%</td>
+                          <td className="p-2 text-right">{example.regionalRate}%</td>
+                          <td className="p-2 text-right">{example.municipalRate}%</td>
+                          <td className="p-2 text-right">{example.pensionRate}%</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
-              <p className="text-xs text-muted-foreground mt-2">
-                Hinweis: Dies ist ein vereinfachtes Beispiel. Die tatsächlichen Abzüge können je nach individueller Situation variieren.
+              
+              <p className="text-xs text-muted-foreground mt-4">
+                Die Steuersätze sind Schätzwerte für Italien und können je nach Region und individueller Situation variieren.
+                Für eine genaue Berechnung empfehlen wir die Konsultation eines Steuerberaters.
               </p>
             </div>
           </div>
