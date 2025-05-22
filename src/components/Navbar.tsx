@@ -3,39 +3,31 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage, SupportedLanguage } from '../contexts/LanguageContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [language, setLanguage] = useState("de");
+  const { language, setLanguage, t } = useLanguage();
 
   // Sprachoptionen
   const languages = [
-    { code: "de", label: "Deutsch" },
-    { code: "it", label: "Italiano" },
-    { code: "en", label: "English" },
-    { code: "nl", label: "Nederlands" }
+    { code: "de" as SupportedLanguage, label: t('language.de') },
+    { code: "it" as SupportedLanguage, label: t('language.it') },
+    { code: "en" as SupportedLanguage, label: t('language.en') },
+    { code: "nl" as SupportedLanguage, label: t('language.nl') }
   ];
 
   // Navigationsmenüpunkte
   const navItems = [
-    { label: "Startseite", href: "/" },
-    { label: "Immobilien", href: "/real-estate" },
-    { label: "Tourismus", href: "/tourism" },
-    { label: "Arbeitsmarkt", href: "/jobs" }
+    { label: t('nav.home'), href: "/" },
+    { label: t('nav.realEstate'), href: "/real-estate" },
+    { label: t('nav.tourism'), href: "/tourism" },
+    { label: t('nav.jobs'), href: "/jobs" }
   ];
 
-  // Set initial language based on browser language
-  useEffect(() => {
-    const browserLang = navigator.language.split('-')[0];
-    const supportedLang = languages.find(lang => lang.code === browserLang);
-    if (supportedLang) {
-      setLanguage(supportedLang.code);
-    }
-  }, []);
-
-  const changeLanguage = (langCode: string) => {
+  const changeLanguage = (langCode: SupportedLanguage) => {
     setLanguage(langCode);
-    // Hier könnte später die Sprachänderungslogik implementiert werden
+    setIsOpen(false);
   };
 
   return (
@@ -65,7 +57,7 @@ const Navbar = () => {
                   <button
                     key={lang.code}
                     onClick={() => changeLanguage(lang.code)}
-                    className="block w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-muted"
+                    className={`block w-full text-left px-4 py-2 text-sm ${language === lang.code ? 'text-primary font-medium' : 'text-muted-foreground'} hover:bg-muted`}
                   >
                     {lang.label}
                   </button>
@@ -103,15 +95,12 @@ const Navbar = () => {
               
               {/* Sprachauswahl Mobile */}
               <div className="border-t pt-4">
-                <p className="text-xs text-muted-foreground mb-2">Sprache ändern</p>
+                <p className="text-xs text-muted-foreground mb-2">{t('language.change')}</p>
                 <div className="grid grid-cols-2 gap-2">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
-                      onClick={() => {
-                        changeLanguage(lang.code);
-                        setIsOpen(false);
-                      }}
+                      onClick={() => changeLanguage(lang.code)}
                       className={`text-sm py-1 px-2 rounded-md ${
                         language === lang.code ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
                       }`}

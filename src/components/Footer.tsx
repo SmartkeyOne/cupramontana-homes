@@ -1,9 +1,18 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useLanguage, SupportedLanguage } from '../contexts/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { language, setLanguage, t } = useLanguage();
+  
+  const languages = [
+    { code: "de" as SupportedLanguage, label: t('language.de') },
+    { code: "it" as SupportedLanguage, label: t('language.it') },
+    { code: "en" as SupportedLanguage, label: t('language.en') },
+    { code: "nl" as SupportedLanguage, label: t('language.nl') }
+  ];
   
   return (
     <footer className="bg-muted py-10 border-t">
@@ -12,33 +21,39 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-1">
             <h3 className="text-xl font-bold mb-4">Cupramontana.homes</h3>
             <p className="text-muted-foreground mb-4 max-w-md">
-              Informationsportal für Cupramontana und die Region Marken.
+              {t('footer.info')}
             </p>
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4">Navigation</h4>
+            <h4 className="font-semibold mb-4">{t('nav.home')}</h4>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-muted-foreground hover:text-foreground">Startseite</Link></li>
-              <li><Link to="/real-estate" className="text-muted-foreground hover:text-foreground">Immobilien</Link></li>
-              <li><Link to="/tourism" className="text-muted-foreground hover:text-foreground">Tourismus</Link></li>
-              <li><Link to="/jobs" className="text-muted-foreground hover:text-foreground">Arbeitsmarkt</Link></li>
+              <li><Link to="/" className="text-muted-foreground hover:text-foreground">{t('nav.home')}</Link></li>
+              <li><Link to="/real-estate" className="text-muted-foreground hover:text-foreground">{t('nav.realEstate')}</Link></li>
+              <li><Link to="/tourism" className="text-muted-foreground hover:text-foreground">{t('nav.tourism')}</Link></li>
+              <li><Link to="/jobs" className="text-muted-foreground hover:text-foreground">{t('nav.jobs')}</Link></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4">Sprachen</h4>
+            <h4 className="font-semibold mb-4">{t('language.change')}</h4>
             <ul className="space-y-2">
-              <li><button className="text-muted-foreground hover:text-foreground">Deutsch</button></li>
-              <li><button className="text-muted-foreground hover:text-foreground">Italiano</button></li>
-              <li><button className="text-muted-foreground hover:text-foreground">English</button></li>
-              <li><button className="text-muted-foreground hover:text-foreground">Nederlands</button></li>
+              {languages.map((lang) => (
+                <li key={lang.code}>
+                  <button 
+                    className={`text-muted-foreground hover:text-foreground ${language === lang.code ? 'font-medium text-primary' : ''}`}
+                    onClick={() => setLanguage(lang.code)}
+                  >
+                    {lang.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
         
         <div className="border-t border-border mt-8 pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear} Cupramontana.homes. Alle Rechte vorbehalten. Informatives Non-Profit-Projekt.</p>
+          <p>&copy; {currentYear} Cupramontana.homes. {t('footer.rights')}</p>
         </div>
       </div>
     </footer>

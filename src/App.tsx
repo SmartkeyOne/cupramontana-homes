@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { LanguageProvider } from "./contexts/LanguageContext";
 import Index from "./pages/Index";
 import RealEstate from "./pages/RealEstate";
 import Tourism from "./pages/Tourism";
@@ -17,18 +18,20 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <HelmetProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/real-estate" element={<RealEstate />} />
-            <Route path="/tourism" element={<Tourism />} />
-            <Route path="/jobs" element={<Jobs />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
+        <LanguageProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/real-estate" element={<RealEstate />} />
+              <Route path="/tourism" element={<Tourism />} />
+              <Route path="/jobs" element={<Jobs />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </LanguageProvider>
       </HelmetProvider>
     </TooltipProvider>
   </QueryClientProvider>
