@@ -1,11 +1,15 @@
-
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import SEOHelmet from '../components/SEOHelmet';
+import { useLanguage } from '../contexts/LanguageContext';
+import { Bus, Train, Clock, MapPin } from 'lucide-react';
 
 const Tourism = () => {
+  const { language } = useLanguage();
+  
   // Beispieldaten für Events
   const events = [
     {
@@ -31,8 +35,61 @@ const Tourism = () => {
     }
   ];
 
+  // Transportdaten
+  const transportData = {
+    bus: [
+      {
+        line: "342",
+        route: "Cupramontana - Jesi",
+        schedule: [
+          { departure: "06:30", arrival: "07:10", days: "Mo-Fr" },
+          { departure: "08:15", arrival: "08:55", days: "Mo-Fr" },
+          { departure: "12:30", arrival: "13:10", days: "Mo-Fr" },
+          { departure: "17:45", arrival: "18:25", days: "Mo-Fr" },
+          { departure: "09:30", arrival: "10:10", days: "Sa" }
+        ]
+      },
+      {
+        line: "342",
+        route: "Jesi - Cupramontana",
+        schedule: [
+          { departure: "07:15", arrival: "07:55", days: "Mo-Fr" },
+          { departure: "13:15", arrival: "13:55", days: "Mo-Fr" },
+          { departure: "14:45", arrival: "15:25", days: "Mo-Fr" },
+          { departure: "19:00", arrival: "19:40", days: "Mo-Fr" },
+          { departure: "12:30", arrival: "13:10", days: "Sa" }
+        ]
+      }
+    ],
+    train: [
+      {
+        line: "Ancona-Roma",
+        station: "Jesi",
+        schedule: [
+          { departure: "06:12", destination: "Roma Termini", days: "Mo-Su" },
+          { departure: "08:43", destination: "Roma Termini", days: "Mo-Su" },
+          { departure: "07:22", destination: "Ancona", days: "Mo-Su" },
+          { departure: "15:51", destination: "Ancona", days: "Mo-Su" }
+        ]
+      }
+    ]
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHelmet 
+        title={language === 'de' ? "Tourismus in Cupramontana" : 
+              (language === 'it' ? "Turismo a Cupramontana" : 
+              (language === 'nl' ? "Toerisme in Cupramontana" : "Tourism in Cupramontana"))}
+        description={language === 'de' ? "Entdecken Sie die Schönheit Cupramentanas und der Region Marken - Sehenswürdigkeiten, Restaurants, Strände und öffentliche Verkehrsmittel." : 
+                    (language === 'it' ? "Scopri la bellezza di Cupramontana e della regione Marche - attrazioni, ristoranti, spiagge e trasporto pubblico." : 
+                    (language === 'nl' ? "Ontdek de schoonheid van Cupramontana en de Marche-regio - bezienswaardigheden, restaurants, stranden en openbaar vervoer." : 
+                    "Discover the beauty of Cupramontana and the Marche region - attractions, restaurants, beaches and public transport."))}
+        keywords={language === 'de' ? "Cupramontana, Marken, Tourismus, Sehenswürdigkeiten, Restaurants, Strände, öffentliche Verkehrsmittel" : 
+                (language === 'it' ? "Cupramontana, Marche, turismo, attrazioni, ristoranti, spiagge, trasporto pubblico" : 
+                (language === 'nl' ? "Cupramontana, Marche, toerisme, bezienswaardigheden, restaurants, stranden, openbaar vervoer" : 
+                "Cupramontana, Marche, tourism, attractions, restaurants, beaches, public transport"))}
+      />
       <Navbar />
       <main className="flex-grow">
         <section className="section pt-16 md:pt-24">
@@ -72,6 +129,7 @@ const Tourism = () => {
                 <TabsTrigger value="attractions">Sehenswürdigkeiten</TabsTrigger>
                 <TabsTrigger value="restaurants">Restaurants</TabsTrigger>
                 <TabsTrigger value="beaches">Strände</TabsTrigger>
+                <TabsTrigger value="transport">Öffentlicher Verkehr</TabsTrigger>
               </TabsList>
               
               <TabsContent value="attractions" className="space-y-6">
@@ -205,6 +263,98 @@ const Tourism = () => {
                         <li>Viele Restaurants und Cafés direkt am Strand</li>
                         <li>Ausgezeichnete Wasserqualität (Blaue Flagge)</li>
                       </ul>
+                    </CardContent>
+                  </Card>
+                </div>
+              </TabsContent>
+
+              <TabsContent value="transport" className="space-y-6">
+                <h3 className="text-xl font-semibold mb-4">Öffentlicher Verkehr in der Region</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <Card>
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center gap-2">
+                        <Bus className="h-5 w-5 text-primary" />
+                        <CardTitle className="text-lg">Busverbindungen</CardTitle>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {transportData.bus.map((busRoute, index) => (
+                          <div key={index} className="border-b border-border pb-4 last:border-0">
+                            <div className="flex items-start justify-between mb-2">
+                              <div>
+                                <p className="font-medium">Linie {busRoute.line}</p>
+                                <p className="text-sm text-muted-foreground">{busRoute.route}</p>
+                              </div>
+                            </div>
+                            <div className="space-y-2 mt-3">
+                              {busRoute.schedule.map((time, timeIndex) => (
+                                <div key={timeIndex} className="flex items-center justify-between text-sm">
+                                  <div className="flex items-center gap-1">
+                                    <Clock className="h-3.5 w-3.5 text-muted-foreground" />
+                                    <span>{time.departure} - {time.arrival}</span>
+                                  </div>
+                                  <span className="text-muted-foreground bg-muted px-2 py-0.5 rounded-sm text-xs">{time.days}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-4">
+                        Die Fahrpläne können sich ändern. Bitte überprüfen Sie die aktuellen Zeiten beim lokalen Verkehrsunternehmen.
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card>
+                    <CardHeader className="pb-3">
+                      <div className="flex items-center gap-2">
+                        <Train className="h-5 w-5 text-primary" />
+                        <CardTitle className="text-lg">Zugverbindungen</CardTitle>
+                      </div>
+                      <CardDescription>
+                        Nächstgelegener Bahnhof: Jesi (15 km von Cupramontana)
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {transportData.train.map((trainRoute, index) => (
+                          <div key={index} className="border-b border-border pb-4 last:border-0">
+                            <div className="flex items-start justify-between mb-2">
+                              <div>
+                                <p className="font-medium">{trainRoute.line}</p>
+                                <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                                  <MapPin className="h-3.5 w-3.5" />
+                                  <span>Bahnhof: {trainRoute.station}</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="space-y-2 mt-3">
+                              {trainRoute.schedule.map((time, timeIndex) => (
+                                <div key={timeIndex} className="flex items-center justify-between text-sm">
+                                  <div className="flex items-center gap-1">
+                                    <Clock className="h-3.5 w-3.5 text-muted-foreground" />
+                                    <span>{time.departure}</span>
+                                  </div>
+                                  <div className="flex items-center gap-3">
+                                    <span>{time.destination}</span>
+                                    <span className="text-muted-foreground bg-muted px-2 py-0.5 rounded-sm text-xs">{time.days}</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-4 bg-muted/50 p-3 rounded-md">
+                        <h4 className="text-sm font-medium mb-1">Transporttipp</h4>
+                        <p className="text-xs text-muted-foreground">
+                          Für die Verbindung vom Bahnhof Jesi nach Cupramontana nutzen Sie bitte die Buslinie 342. 
+                          Taxi-Services sind am Bahnhof ebenfalls verfügbar.
+                        </p>
+                      </div>
                     </CardContent>
                   </Card>
                 </div>
