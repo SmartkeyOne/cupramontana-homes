@@ -1,157 +1,100 @@
 
-import React from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import React, { useState } from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+
+type BeachType = 'Kiesel' | 'Sand' | 'Fels' | 'Boot' | 'all';
+
+interface Beach {
+  name: string;
+  type: BeachType;
+  description: string;
+  mapEmbed: string;
+}
 
 const BeachesTab: React.FC = () => {
+  const [filter, setFilter] = useState<BeachType>('all');
+  
+  const beaches: Beach[] = [
+    {
+      name: "Spiaggia delle Due Sorelle",
+      type: "Boot",
+      description: "Ikonischer Kiesstrand mit zwei Felsnadeln. Nur per Boot erreichbar.",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.2366048033713!2d13.6138962!3d43.5107957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132e4d3d9e35049d%3A0xe6763273ff38ddc4!2sSpiaggia%20delle%20Due%20Sorelle!5e0!3m2!1sde!2sch!4v1716385000000!5m2!1sde!2sch"
+    },
+    {
+      name: "Spiaggia di San Michele",
+      type: "Kiesel",
+      description: "Langer Kiesstrand, erreichbar zu Fuß ab Sirolo. Ruhig und naturnah.",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.1480744015696!2d13.609475!3d43.508188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132e4d3d7df3aa6b%3A0x4f71c8d42a6a7fdf!2sSpiaggia%20di%20San%20Michele!5e0!3m2!1sde!2sch!4v1716385010000!5m2!1sde!2sch"
+    },
+    {
+      name: "Spiaggia Urbani",
+      type: "Kiesel",
+      description: "Beliebter Strand direkt unter Sirolo mit Restaurants und Steilküste.",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.102087694746!2d13.610975!3d43.506859!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132e4d3d5a7b8fd9%3A0xc1bfe6f3053f49df!2sSpiaggia%20Urbani!5e0!3m2!1sde!2sch!4v1716385020000!5m2!1sde!2sch"
+    },
+    {
+      name: "Sassi Neri",
+      type: "Fels",
+      description: "Naturbelassene Felsenküste, perfekt für Ruhe und Schnorcheln.",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2887.1805980284284!2d13.6082215!3d43.5090721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132e4d3d8c1728cb%3A0xf1a97d1d326e24de!2sSpiaggia%20Sassi%20Neri!5e0!3m2!1sde!2sch!4v1716385030000!5m2!1sde!2sch"
+    },
+    {
+      name: "Spiaggia di Mezzavalle",
+      type: "Sand",
+      description: "Weitläufiger Naturstrand mit Wanderzugang oder Boot. Keine Infrastruktur.",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.5248482843515!2d13.5856525!3d43.4915366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132e4c4d4d5dc5fd%3A0x3c47aa416e9a9bcb!2sSpiaggia%20di%20Mezzavalle!5e0!3m2!1sde!2sch!4v1716385040000!5m2!1sde!2sch"
+    }
+  ];
+  
+  const filteredBeaches = beaches.filter(beach => 
+    filter === 'all' || beach.type === filter
+  );
+  
   return (
     <div className="space-y-8">
-      <div className="grid grid-cols-1 gap-8">
-        <Card>
-          <CardHeader>
-            <CardTitle>Riviera del Conero</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Carousel className="mb-6">
-              <CarouselContent>
-                <CarouselItem>
-                  <div className="h-56 md:h-72 rounded-md overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1591805859566-88bad48c2c6c?q=80&w=1000" 
-                      alt="Riviera del Conero Beach" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </CarouselItem>
-                <CarouselItem>
-                  <div className="h-56 md:h-72 rounded-md overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1535122511228-d615a49a79e8?q=80&w=1000" 
-                      alt="Due Sorelle Beach" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </CarouselItem>
-                <CarouselItem>
-                  <div className="h-56 md:h-72 rounded-md overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1548077654-d61446faef88?q=80&w=1000" 
-                      alt="Conero Cliffs" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </CarouselItem>
-              </CarouselContent>
-              <CarouselPrevious className="left-2 md:left-4" />
-              <CarouselNext className="right-2 md:right-4" />
-            </Carousel>
-            
-            <CardDescription className="mb-4">
-              Die Conero-Riviera bietet einige der schönsten Strände Mittelitaliens, 
-              umgeben von weißen Klippen und kristallklarem Wasser.
-            </CardDescription>
-            <ul className="list-disc pl-5 space-y-2 text-sm">
-              <li>Spiaggia delle Due Sorelle (nur mit Boot erreichbar)</li>
-              <li>Spiaggia di San Michele (Sirolo)</li>
-              <li>Spiaggia Urbani (Sirolo)</li>
-              <li>Spiaggia di Numana</li>
-            </ul>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader>
-            <CardTitle>Senigallia</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Carousel className="mb-6">
-              <CarouselContent>
-                <CarouselItem>
-                  <div className="h-56 md:h-72 rounded-md overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1000" 
-                      alt="Senigallia Beach" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </CarouselItem>
-                <CarouselItem>
-                  <div className="h-56 md:h-72 rounded-md overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1549861208-9ae633b578b4?q=80&w=1000" 
-                      alt="Velvet Beach" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </CarouselItem>
-                <CarouselItem>
-                  <div className="h-56 md:h-72 rounded-md overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?q=80&w=1000" 
-                      alt="Calm Sea" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </CarouselItem>
-              </CarouselContent>
-              <CarouselPrevious className="left-2 md:left-4" />
-              <CarouselNext className="right-2 md:right-4" />
-            </Carousel>
-            
-            <CardDescription className="mb-4">
-              Bekannt als "Spiaggia di Velluto" (Samtstrände) mit feinstem Sand und 
-              flach abfallendem Wasser - ideal für Familien mit Kindern.
-            </CardDescription>
-            <ul className="list-disc pl-5 space-y-2 text-sm">
-              <li>Langer Sandstrand mit zahlreichen Strandbädern</li>
-              <li>Gut ausgestattete Einrichtungen und Services</li>
-              <li>Viele Restaurants und Cafés direkt am Strand</li>
-              <li>Ausgezeichnete Wasserqualität (Blaue Flagge)</li>
-            </ul>
-          </CardContent>
-        </Card>
-        
-        <Card>
-          <CardHeader>
-            <CardTitle>Porto San Giorgio</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <Carousel className="mb-6">
-              <CarouselContent>
-                <CarouselItem>
-                  <div className="h-56 md:h-72 rounded-md overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1531386450850-d8610d2f8f96?q=80&w=1000" 
-                      alt="Porto San Giorgio Beach" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </CarouselItem>
-                <CarouselItem>
-                  <div className="h-56 md:h-72 rounded-md overflow-hidden">
-                    <img 
-                      src="https://images.unsplash.com/photo-1588085436647-99a7e4f4b829?q=80&w=1000" 
-                      alt="Marina View" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </CarouselItem>
-              </CarouselContent>
-              <CarouselPrevious className="left-2 md:left-4" />
-              <CarouselNext className="right-2 md:right-4" />
-            </Carousel>
-            
-            <CardDescription className="mb-4">
-              Einer der schönsten Strände im südlichen Teil der Marken mit ausgezeichneter Infrastruktur und klarem Wasser.
-            </CardDescription>
-            <ul className="list-disc pl-5 space-y-2 text-sm">
-              <li>Feiner Sandstrand mit flach abfallendem Wasser</li>
-              <li>Malerischer Hafen mit Restaurants und Cafés</li>
-              <li>Familienfreundliche Strandbäder</li>
-              <li>Wassersportmöglichkeiten</li>
-            </ul>
-          </CardContent>
-        </Card>
+      <h1 className="text-3xl font-bold text-center mb-6">Strände im Conero-Gebiet</h1>
+      
+      <div className="flex justify-center mb-8">
+        <div className="inline-flex items-center">
+          <label htmlFor="beach-filter" className="mr-2 text-sm font-medium">Strandtyp:</label>
+          <select
+            id="beach-filter"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value as BeachType)}
+            className="bg-white border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 p-2"
+          >
+            <option value="all">Alle</option>
+            <option value="Kiesel">Kiesel</option>
+            <option value="Sand">Sand</option>
+            <option value="Fels">Fels</option>
+            <option value="Boot">Zugang nur per Boot</option>
+          </select>
+        </div>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {filteredBeaches.map((beach, index) => (
+          <Card key={index} className="overflow-hidden shadow-lg">
+            <CardContent className="p-6">
+              <h2 className="text-2xl font-bold mb-2">{beach.name}</h2>
+              <p className="mb-2"><strong>Typ:</strong> {beach.type}</p>
+              <p className="mb-4">{beach.description}</p>
+              <div className="rounded-md overflow-hidden h-72">
+                <iframe 
+                  src={beach.mapEmbed} 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen={true} 
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`Map of ${beach.name}`}
+                ></iframe>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );
