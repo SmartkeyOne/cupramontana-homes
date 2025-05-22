@@ -1,5 +1,5 @@
 
-import { Translations } from '../contexts/LanguageContext';
+import { Translations } from '../types/languageTypes';
 
 export const realEstateTranslations: Translations = {
   'realestate.seo.title': {

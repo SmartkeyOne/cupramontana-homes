@@ -1,4 +1,5 @@
-import { Translations } from '../contexts/LanguageContext';
+
+import { Translations } from '../types/languageTypes';
 
 export const jobsTranslations: Translations = {
   // Jobs page - SEO
