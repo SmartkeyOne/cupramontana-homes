@@ -6,7 +6,7 @@ const RestaurantsTab: React.FC = () => {
   return (
     <div className="space-y-6">
       <div className="mb-6">
-        <h3 className="text-xl font-semibold mb-2">Übernachten und Essen in Cupramontana</h3>
+        <h3 className="text-xl font-semibold mb-2">Essen und Schlafen</h3>
         <p className="text-sm text-muted-foreground mb-4">Unterkünfte und Restaurants in und um Cupramontana</p>
       </div>
       
