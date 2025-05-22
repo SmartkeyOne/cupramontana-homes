@@ -13,6 +13,7 @@ import RestaurantsTab from '../components/tourism/RestaurantsTab';
 import BeachesTab from '../components/tourism/BeachesTab';
 import TransportTab from '../components/tourism/TransportTab';
 import EventsSection from '../components/tourism/EventsSection';
+import WineTab from '../components/tourism/WineTab';
 
 const Tourism = () => {
   const { language } = useLanguage();
@@ -23,7 +24,7 @@ const Tourism = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const tab = params.get('tab');
-    if (tab && ["attractions", "restaurants", "beaches", "transport"].includes(tab)) {
+    if (tab && ["attractions", "restaurants", "beaches", "transport", "wine"].includes(tab)) {
       setActiveTab(tab);
     }
   }, [location]);
@@ -63,10 +64,10 @@ const Tourism = () => {
                     (language === 'it' ? "Scopri la bellezza di Cupramontana e della regione Marche - attrazioni, ristoranti, spiagge e trasporto pubblico." : 
                     (language === 'nl' ? "Ontdek de schoonheid van Cupramontana en de Marche-regio - bezienswaardigheden, restaurants, stranden en openbaar vervoer." : 
                     "Discover the beauty of Cupramontana and the Marche region - attractions, restaurants, beaches and public transport."))}
-        keywords={language === 'de' ? "Cupramontana, Marken, Tourismus, Sehenswürdigkeiten, Restaurants, Strände, öffentliche Verkehrsmittel" : 
-                (language === 'it' ? "Cupramontana, Marche, turismo, attrazioni, ristoranti, spiagge, trasporto pubblico" : 
-                (language === 'nl' ? "Cupramontana, Marche, toerisme, bezienswaardigheden, restaurants, stranden, openbaar vervoer" : 
-                "Cupramontana, Marche, tourism, attractions, restaurants, beaches, public transport"))}
+        keywords={language === 'de' ? "Cupramontana, Marken, Tourismus, Sehenswürdigkeiten, Restaurants, Strände, öffentliche Verkehrsmittel, Verdicchio Wein" : 
+                (language === 'it' ? "Cupramontana, Marche, turismo, attrazioni, ristoranti, spiagge, trasporto pubblico, vino Verdicchio" : 
+                (language === 'nl' ? "Cupramontana, Marche, toerisme, bezienswaardigheden, restaurants, stranden, openbaar vervoer, Verdicchio wijn" : 
+                "Cupramontana, Marche, tourism, attractions, restaurants, beaches, public transport, Verdicchio wine"))}
       />
       <Navbar />
       <main className="flex-grow">
@@ -75,7 +76,7 @@ const Tourism = () => {
             <h1 className="text-3xl md:text-4xl font-bold mb-6">Tourismus in Cupramontana</h1>
             <p className="text-lg text-muted-foreground mb-12 max-w-3xl">
               Entdecken Sie die Schönheit Cupramentanas und der Region Marken - von historischen Städten 
-              über wunderschöne Strände bis hin zu kulinarischen Erlebnissen.
+              über wunderschöne Strände bis hin zu kulinarischen Erlebnissen und dem weltberühmten Verdicchio Wein.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
@@ -103,6 +104,7 @@ const Tourism = () => {
             <Tabs defaultValue={activeTab} value={activeTab} onValueChange={setActiveTab} className="mb-16">
               <TabsList className="mb-6">
                 <TabsTrigger value="attractions">Sehenswürdigkeiten</TabsTrigger>
+                <TabsTrigger value="wine">Verdicchio Wein</TabsTrigger>
                 <TabsTrigger value="restaurants">Essen und Schlafen</TabsTrigger>
                 <TabsTrigger value="beaches">Strände</TabsTrigger>
                 <TabsTrigger value="transport">Öffentlicher Verkehr</TabsTrigger>
@@ -110,6 +112,10 @@ const Tourism = () => {
               
               <TabsContent value="attractions">
                 <AttractionsTab />
+              </TabsContent>
+              
+              <TabsContent value="wine">
+                <WineTab />
               </TabsContent>
               
               <TabsContent value="restaurants">

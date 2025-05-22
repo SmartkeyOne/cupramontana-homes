@@ -2,7 +2,7 @@
 import React from 'react';
 import Features from './Features';
 import { Button } from './ui/button';
-import { Map } from 'lucide-react';
+import { Map, Wine } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
@@ -24,6 +24,23 @@ const Hero = () => {
       }
     }, 100);
   };
+
+  const handleWineClick = () => {
+    // Navigate to the tourism page with the wine tab parameter
+    navigate('/tourism?tab=wine');
+    // Add a small delay to ensure the page loads before we try to scroll
+    setTimeout(() => {
+      const wineSection = document.querySelector('[value="wine"]');
+      if (wineSection) {
+        wineSection.scrollIntoView({ behavior: 'smooth' });
+        // Trigger a click on the wine tab if it's not already active
+        const tabsTrigger = document.querySelector('[value="wine"]');
+        if (tabsTrigger && !tabsTrigger.classList.contains('data-[state=active]')) {
+          (tabsTrigger as HTMLElement).click();
+        }
+      }
+    }, 100);
+  };
   
   return (
     <section className="section pt-20 md:pt-28">
@@ -32,13 +49,21 @@ const Hero = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in">
             Entdecken Sie Cupramontana
           </h1>
-          <p className="text-xl text-muted-foreground mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Ihr umfassender Ratgeber für Immobilienkauf, Tourismus und Leben in der malerischen Region Marken.
+          <p className="text-xl text-muted-foreground mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            Ihr umfassender Ratgeber für Immobilienkauf, Tourismus und Leben in der malerischen Region Marken, 
+            der Heimat des weltberühmten Verdicchio-Weins.
           </p>
           <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
             <Features />
           </div>
-          <div className="mt-6 animate-fade-in" style={{ animationDelay: '0.6s' }}>
+          <div className="mt-8 animate-fade-in flex flex-wrap justify-center gap-4" style={{ animationDelay: '0.6s' }}>
+            <Button 
+              onClick={handleWineClick} 
+              variant="default" 
+              className="gap-2"
+            >
+              <Wine className="h-5 w-5" /> Verdicchio Weinregion erkunden
+            </Button>
             <Button 
               onClick={handleMapClick} 
               variant="outline" 
