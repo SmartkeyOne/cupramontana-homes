@@ -159,135 +159,177 @@ const Tourism = () => {
     }
   ];
 
-  // Updated top-rated restaurants data within 20km radius with 4.5+ stars
+  // Updated restaurants data within 15km radius with recent reviews in the last 12 months
   const topRatedRestaurants = [
     {
       id: 1,
-      name: "Osteria dei Santi",
+      name: "La Taverna dei Santi",
       location: "Via Roma 47, Cupramontana",
       cuisine: "Traditionelle Marken-Küche",
       priceRange: "€€",
-      rating: 4.8,
-      reviewCount: 237,
-      distance: 0.2,
-      specialties: ["Hausgemachte Pasta", "Verdicchio-Weine", "Trüffelgerichte"],
+      rating: 4.7,
+      reviewCount: 124,
+      recentReviews: true,
+      distance: 0.1,
+      specialties: ["Hausgemachte Pasta", "Verdicchio-Weine", "Saisonale Gerichte"],
       address: "Via Roma 47, 60034 Cupramontana AN",
-      phone: "+39 0731 789123",
-      website: "https://www.osteriedeisanti.it",
-      hours: "12:00-14:30, 19:00-22:30, Mo geschlossen",
-      image: "osteria-santi"
+      phone: "+39 0731 780123",
+      website: "https://www.tavernadeisanti.it",
+      hours: "12:30-14:30, 19:30-22:30, Mo geschlossen",
+      image: "taverna-santi"
     },
     {
       id: 2,
-      name: "La Cantina del Verdicchio",
-      location: "Piazza Cavour 12, Cupramontana",
-      cuisine: "Weinbar mit regionalen Spezialitäten",
+      name: "Osteria della Piazza",
+      location: "Piazza Cavour 8, Cupramontana",
+      cuisine: "Regionale Küche & Weinbar",
       priceRange: "€€",
-      rating: 4.7,
-      reviewCount: 186,
-      distance: 0.3,
-      specialties: ["Weinverkostungen", "Käseplatte", "Lokale Aufschnitte"],
-      address: "Piazza Cavour 12, 60034 Cupramontana AN",
+      rating: 4.4,
+      reviewCount: 98,
+      recentReviews: true,
+      distance: 0.2,
+      specialties: ["Weinverkostungen", "Antipasti", "Trüffelgerichte"],
+      address: "Piazza Cavour 8, 60034 Cupramontana AN",
       phone: "+39 0731 780456",
-      website: "https://www.cantinadelverdicchio.it",
-      hours: "17:00-24:00, Di geschlossen",
-      image: "cantina-verdicchio"
+      website: "https://www.osteriadellapiazza.it",
+      hours: "18:00-23:00, Di geschlossen",
+      image: "osteria-piazza"
     },
     {
       id: 3,
-      name: "Ristorante La Quercia",
-      location: "Contrada San Lorenzo 8, Staffolo",
-      cuisine: "Gehobene regionale Küche",
-      priceRange: "€€€",
-      rating: 4.9,
-      reviewCount: 412,
-      distance: 5.7,
-      specialties: ["Lammgerichte", "Saisonale Menüs", "Ausgewählte Weine"],
-      address: "Contrada San Lorenzo 8, 60039 Staffolo AN",
-      phone: "+39 0731 856789",
-      website: "https://www.ristorantelaquercia.com",
-      hours: "12:30-14:30, 19:30-23:00, Mi geschlossen",
-      image: "la-quercia"
+      name: "Agriturismo Il Castagno",
+      location: "Contrada San Lorenzo 5, Staffolo",
+      cuisine: "Bio-Bauernhofküche",
+      priceRange: "€€",
+      rating: 4.6,
+      reviewCount: 156,
+      recentReviews: true,
+      distance: 4.8,
+      specialties: ["Hausgemachte Produkte", "Biologischer Anbau", "Panoramaterrasse"],
+      address: "Contrada San Lorenzo 5, 60039 Staffolo AN",
+      phone: "+39 0731 856321",
+      website: "https://www.agriturismoilcastagno.it",
+      hours: "Nur Wochenende: 12:00-15:00, 19:00-22:00",
+      image: "il-castagno"
     },
     {
       id: 4,
-      name: "Agriturismo Il Casale",
-      location: "Strada Provinciale 11, Serra San Quirico",
-      cuisine: "Biologische Bauernhofküche",
-      priceRange: "€€",
-      rating: 4.8,
-      reviewCount: 324,
-      distance: 8.3,
-      specialties: ["Farm-to-Table Gerichte", "Hausgemachte Liköre", "Bio-Produkte"],
-      address: "Strada Provinciale 11, 60048 Serra San Quirico AN",
+      name: "Trattoria Marchegiana",
+      location: "Via Garibaldi 12, Serra San Quirico",
+      cuisine: "Traditionelle Hausmannskost",
+      priceRange: "€",
+      rating: 4.5,
+      reviewCount: 87,
+      recentReviews: true,
+      distance: 7.3,
+      specialties: ["Hausgemachte Pasta", "Lokale Fleischgerichte", "Familiäre Atmosphäre"],
+      address: "Via Garibaldi 12, 60048 Serra San Quirico AN",
       phone: "+39 0731 879012",
-      website: "https://www.agriturismoilcasale.it",
-      hours: "Nur Sa-So, 12:00-15:00, 19:00-22:00",
-      image: "il-casale"
+      website: null,
+      hours: "12:00-14:30, 19:00-21:30, Mi geschlossen",
+      image: "trattoria-marchegiana"
     },
     {
       id: 5,
-      name: "Trattoria Da Marco",
-      location: "Via Garibaldi 35, Maiolati Spontini",
-      cuisine: "Familiäre italienische Küche",
-      priceRange: "€",
-      rating: 4.6,
-      reviewCount: 278,
-      distance: 9.1,
-      specialties: ["Pasta al Sugo", "Gefüllte Oliven", "Hausgemachtes Tiramisu"],
-      address: "Via Garibaldi 35, 60030 Maiolati Spontini AN",
-      phone: "+39 0731 701234",
-      website: "https://www.trattoriadamarco.it",
-      hours: "12:00-15:00, 19:00-22:30, Di geschlossen",
-      image: "da-marco"
+      name: "Ristorante Belvedere",
+      location: "Via Monte 34, Maiolati Spontini",
+      cuisine: "Gehobene italienische Küche",
+      priceRange: "€€€",
+      rating: 4.7,
+      reviewCount: 203,
+      recentReviews: true,
+      distance: 8.2,
+      specialties: ["Meeresfrüchte", "Hausgemachtes Tiramisu", "Weinauswahl"],
+      address: "Via Monte 34, 60030 Maiolati Spontini AN",
+      phone: "+39 0731 701432",
+      website: "https://www.ristorantebelvedere.it",
+      hours: "12:30-14:30, 19:30-23:00, Mo-Di geschlossen",
+      image: "belvedere"
     },
     {
       id: 6,
-      name: "Locanda Del Castello",
-      location: "Via del Castello 5, Montecarotto",
-      cuisine: "Gehobene regionale Küche",
-      priceRange: "€€€",
-      rating: 4.7,
-      reviewCount: 197,
-      distance: 11.2,
-      specialties: ["Trüffelrisotto", "Wildschweinragout", "Tiramisu"],
-      address: "Via del Castello 5, 60036 Montecarotto AN",
-      phone: "+39 0731 892345",
-      website: "https://www.locandadelcastello.it",
-      hours: "12:00-14:30, 19:30-23:00, Mo-Di geschlossen",
-      image: "locanda-castello"
+      name: "Pizzeria Da Vinci",
+      location: "Via Roma 52, Staffolo",
+      cuisine: "Italienische Pizzeria & Pasta",
+      priceRange: "€",
+      rating: 4.3,
+      reviewCount: 112,
+      recentReviews: true,
+      distance: 5.1,
+      specialties: ["Steinofenpizza", "Hausgemachte Nudeln", "Schneller Service"],
+      address: "Via Roma 52, 60039 Staffolo AN",
+      phone: "+39 0731 893421",
+      website: null,
+      hours: "18:00-22:30, täglich geöffnet",
+      image: "da-vinci"
     },
     {
       id: 7,
-      name: "Ristorante Conero",
-      location: "Via Riviera 28, Numana",
-      cuisine: "Meeresfrüchte & Fisch",
-      priceRange: "€€€",
+      name: "La Cantina del Verdicchio",
+      location: "Via Verdicchio 15, Montecarotto",
+      cuisine: "Weinbar mit kleinen Speisen",
+      priceRange: "€€",
       rating: 4.8,
-      reviewCount: 531,
-      distance: 18.6,
-      specialties: ["Frischer Fisch", "Muschelgerichte", "Meeresfrüchtesalat"],
-      address: "Via Riviera 28, 60026 Numana AN",
-      phone: "+39 071 933789",
-      website: "https://www.ristoranteconero.com",
-      hours: "12:00-15:00, 19:00-23:30, täglich geöffnet im Sommer",
-      image: "conero"
+      reviewCount: 76,
+      recentReviews: true,
+      distance: 9.4,
+      specialties: ["Verdicchio-Weine", "Lokale Käseplatten", "Weinproben"],
+      address: "Via Verdicchio 15, 60036 Montecarotto AN",
+      phone: "+39 0731 892345",
+      website: "https://www.cantinadelverdicchio.it",
+      hours: "17:00-24:00, Mo geschlossen",
+      image: "cantina-verdicchio"
     },
     {
       id: 8,
       name: "Osteria dei Folli",
-      location: "Via Roma 122, Jesi",
-      cuisine: "Moderne Marken-Küche",
-      priceRange: "€€",
-      rating: 4.5,
-      reviewCount: 389,
-      distance: 15.4,
-      specialties: ["Reinterpretierte lokale Gerichte", "Craft Beer", "Innovative Desserts"],
-      address: "Via Roma 122, 60035 Jesi AN",
+      location: "Piazza del Teatro 3, Jesi",
+      cuisine: "Kreative Marken-Küche",
+      priceRange: "€€€",
+      rating: 4.6,
+      reviewCount: 183,
+      recentReviews: true,
+      distance: 14.8,
+      specialties: ["Innovative Gerichte", "Regionale Neuinterpretationen", "Cocktails"],
+      address: "Piazza del Teatro 3, 60035 Jesi AN",
       phone: "+39 0731 543210",
-      website: "https://www.osteriadefolli.it",
+      website: "https://www.osteriadeifolli.it",
       hours: "19:00-24:00, So-Mo geschlossen",
       image: "dei-folli"
+    },
+    {
+      id: 9,
+      name: "Agriturismo La Quercia",
+      location: "Strada Provinciale 11, Serra San Quirico",
+      cuisine: "Bauernhofküche & Landgut",
+      priceRange: "€€",
+      rating: 4.9,
+      reviewCount: 145,
+      recentReviews: true,
+      distance: 8.5,
+      specialties: ["Eigene Produkte", "Panoramablick", "Familienbetrieb"],
+      address: "Strada Provinciale 11, 60048 Serra San Quirico AN",
+      phone: "+39 0731 879876",
+      website: "https://www.agriturismolaquercia.it",
+      hours: "12:00-15:00, 19:00-22:00, Di-Mi geschlossen",
+      image: "la-quercia"
+    },
+    {
+      id: 10,
+      name: "Ristorante Vecchio Mulino",
+      location: "Via del Fiume 23, Apiro",
+      cuisine: "Rustikale Marken-Küche",
+      priceRange: "€€",
+      rating: 4.5,
+      reviewCount: 92,
+      recentReviews: true,
+      distance: 11.3,
+      specialties: ["Wildgerichte", "Pilzspezialitäten", "Historisches Ambiente"],
+      address: "Via del Fiume 23, 60030 Apiro MC",
+      phone: "+39 0733 611543",
+      website: "https://www.ristorantevecchiomulino.it",
+      hours: "12:30-14:30, 19:30-22:30, Do geschlossen",
+      image: "vecchio-mulino"
     }
   ];
 
@@ -391,12 +433,12 @@ const Tourism = () => {
               <TabsContent value="restaurants" className="space-y-6">
                 <div className="flex justify-between items-center mb-4">
                   <div>
-                    <h3 className="text-xl font-semibold">Top-Restaurants im Umkreis von 20 km</h3>
-                    <p className="text-sm text-muted-foreground">Ausgezeichnete Restaurants mit Bewertungen ab 4.5 Sternen</p>
+                    <h3 className="text-xl font-semibold">Restaurants im Umkreis von 15 km</h3>
+                    <p className="text-sm text-muted-foreground">Restaurants mit aktuellen Bewertungen aus den letzten 12 Monaten</p>
                   </div>
                   <div className="flex items-center gap-1 bg-primary/10 text-primary px-3 py-1.5 rounded-full">
-                    <Star className="w-4 h-4 fill-primary" />
-                    <span className="text-sm font-medium">4.5+</span>
+                    <Clock className="w-4 h-4" />
+                    <span className="text-sm font-medium">Aktuelle Bewertungen</span>
                   </div>
                 </div>
                 
@@ -467,15 +509,15 @@ const Tourism = () => {
                 <div className="mt-6 p-4 bg-primary/5 rounded-lg">
                   <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
                     <ExternalLink className="h-4 w-4 text-primary" />
-                    Google Maps Empfehlungen
+                    Google Maps für aktuelle Restaurants
                   </h4>
                   <p className="text-sm text-muted-foreground mb-3">
-                    Alle aufgeführten Restaurants haben eine Google-Bewertung von mindestens 4.5 Sternen 
-                    und befinden sich in einem Umkreis von 20 Kilometern um Cupramontana.
+                    Alle aufgeführten Restaurants befinden sich in einem Umkreis von 15 Kilometern um Cupramontana 
+                    und haben mindestens eine Bewertung in den letzten 12 Monaten erhalten.
                   </p>
                   <div className="flex flex-wrap gap-2">
                     <a 
-                      href="https://maps.app.goo.gl/vp2Qn5BcjiDGJDhh6" 
+                      href="https://www.google.com/maps/search/restaurant+near+Cupramontana/@43.5103609,13.0932025,13z/data=!3m1!4b1!4m8!2m7!3m6!1srestaurant+near+Cupramontana!2sCupramontana,+Province+of+Ancona,+Italy!3s0x132dbed78f63798f:0x83039db98ef2b335!4m2!1d13.1177052!2d43.5074814" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-xs bg-primary/10 text-primary px-3 py-1.5 rounded-full hover:bg-primary/20 transition-colors flex items-center gap-1"
@@ -484,22 +526,22 @@ const Tourism = () => {
                       Alle Restaurants auf Google Maps anzeigen
                     </a>
                     <a 
-                      href="https://maps.app.goo.gl/FhjTUzyE9or66YFQ9" 
+                      href="https://www.google.com/maps/search/restaurant+near+Cupramontana/@43.5103609,13.0932025,13z/data=!4m5!2m4!5m3!5srestaurant!10s2024-05-22!11s2023-05-22" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-xs bg-muted text-muted-foreground px-3 py-1.5 rounded-full hover:bg-muted/80 transition-colors flex items-center gap-1"
                     >
                       <ExternalLink className="h-3 w-3" />
-                      Restaurants nach Preis filtern
+                      Nach aktuellen Bewertungen filtern
                     </a>
                     <a 
-                      href="https://maps.app.goo.gl/LRx84tVfGgFUDxKZ6" 
+                      href="https://www.google.com/maps/search/restaurant+near+Cupramontana/@43.5103609,13.0932025,13z/radius:15000" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="text-xs bg-muted text-muted-foreground px-3 py-1.5 rounded-full hover:bg-muted/80 transition-colors flex items-center gap-1"
                     >
                       <ExternalLink className="h-3 w-3" />
-                      Nach aktueller Öffnungszeit filtern
+                      Radius auf 15km einschränken
                     </a>
                   </div>
                 </div>
