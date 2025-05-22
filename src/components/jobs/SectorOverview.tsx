@@ -1,10 +1,10 @@
-
 import React from 'react';
 import SectorCard from './SectorCard';
 import { Briefcase, User, UserPlus } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 import NetIncomeCalculator from './NetIncomeCalculator';
 import { incomeRangeExamples, calculateDeductions, formatCurrency } from '@/utils/incomeCalculator';
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const SectorOverview = () => {
   const { t } = useLanguage();
@@ -97,34 +97,38 @@ const SectorOverview = () => {
             <div className="bg-card p-4 rounded-md shadow-sm">
               <p className="mb-3">Steuersätze und Abzüge variieren je nach Bruttogehalt:</p>
               
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead className="bg-muted">
-                    <tr>
-                      <th className="p-2 text-left">Gehaltsklasse</th>
-                      <th className="p-2 text-right">Einkommensteuer</th>
-                      <th className="p-2 text-right">Sozialversicherung</th>
-                      <th className="p-2 text-right">Regionalsteuer</th>
-                      <th className="p-2 text-right">Gemeindesteuer</th>
-                      <th className="p-2 text-right">Rente</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {incomeRangeExamples.map((example, index) => {
-                      const { deductions } = calculateDeductions(example.grossSalary);
-                      return (
-                        <tr key={index} className={index % 2 === 0 ? 'bg-background' : 'bg-muted/30'}>
-                          <td className="p-2 font-medium">{example.range}</td>
-                          <td className="p-2 text-right">{example.incomeTaxRate}%</td>
-                          <td className="p-2 text-right">{example.socialSecurityRate}%</td>
-                          <td className="p-2 text-right">{example.regionalRate}%</td>
-                          <td className="p-2 text-right">{example.municipalRate}%</td>
-                          <td className="p-2 text-right">{example.pensionRate}%</td>
+              <div className="w-full">
+                <ScrollArea className="h-auto max-h-[350px]">
+                  <div className="w-full">
+                    <table className="w-full text-sm">
+                      <thead className="bg-muted">
+                        <tr>
+                          <th className="p-2 text-left">Gehaltsklasse</th>
+                          <th className="p-2 text-right">Einkommensteuer</th>
+                          <th className="p-2 text-right">Sozialvers.</th>
+                          <th className="p-2 text-right">Regionalst.</th>
+                          <th className="p-2 text-right">Gemeindest.</th>
+                          <th className="p-2 text-right">Rente</th>
                         </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                      </thead>
+                      <tbody>
+                        {incomeRangeExamples.map((example, index) => {
+                          const { deductions } = calculateDeductions(example.grossSalary);
+                          return (
+                            <tr key={index} className={index % 2 === 0 ? 'bg-background' : 'bg-muted/30'}>
+                              <td className="p-2 font-medium">{example.range}</td>
+                              <td className="p-2 text-right">{example.incomeTaxRate}%</td>
+                              <td className="p-2 text-right">{example.socialSecurityRate}%</td>
+                              <td className="p-2 text-right">{example.regionalRate}%</td>
+                              <td className="p-2 text-right">{example.municipalRate}%</td>
+                              <td className="p-2 text-right">{example.pensionRate}%</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </ScrollArea>
               </div>
               
               <p className="text-xs text-muted-foreground mt-4">

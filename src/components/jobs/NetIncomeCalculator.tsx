@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Calculator } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -51,11 +49,6 @@ const NetIncomeCalculator = () => {
     setAppliedRates(calculatedRates);
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    calculateNetSalary();
-  };
-  
   return (
     <Card>
       <CardHeader className="pb-3">
@@ -65,7 +58,7 @@ const NetIncomeCalculator = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="space-y-4">
           <div className="grid gap-2">
             <Label htmlFor="grossSalary">Bruttogehalt (€)</Label>
             <Input
@@ -79,11 +72,6 @@ const NetIncomeCalculator = () => {
             />
           </div>
           
-          <Button type="submit" className="w-full">
-            <Calculator className="h-4 w-4 mr-2" />
-            Berechnen
-          </Button>
-          
           <NetIncomeResult
             netSalary={netSalary}
             grossSalary={grossSalary}
@@ -91,7 +79,7 @@ const NetIncomeCalculator = () => {
             appliedRates={appliedRates}
             formatCurrency={formatCurrency}
           />
-        </form>
+        </div>
         <p className="text-xs text-muted-foreground mt-4">
           Hinweis: Diese Berechnung basiert auf Standardsätzen für obligatorische Abzüge in Italien (Stand 2024). Die Steuersätze variieren je nach Bruttogehalt. Individuelle Umstände können zu Abweichungen führen.
         </p>
