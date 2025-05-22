@@ -103,7 +103,7 @@ const Tourism = () => {
             <Tabs defaultValue={activeTab} value={activeTab} onValueChange={setActiveTab} className="mb-16">
               <TabsList className="mb-6">
                 <TabsTrigger value="attractions">Sehenswürdigkeiten</TabsTrigger>
-                <TabsTrigger value="restaurants">Restaurants</TabsTrigger>
+                <TabsTrigger value="restaurants">Essen und Schlafen</TabsTrigger>
                 <TabsTrigger value="beaches">Strände</TabsTrigger>
                 <TabsTrigger value="transport">Öffentlicher Verkehr</TabsTrigger>
               </TabsList>
