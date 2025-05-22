@@ -1,9 +1,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ExternalLink, RefreshCw } from 'lucide-react';
+import { ExternalLink, RefreshCw, AlertTriangle } from 'lucide-react';
 import { Button } from './ui/button';
 import { Skeleton } from './ui/skeleton';
+import { Alert, AlertDescription } from './ui/alert';
 
 interface NewsItem {
   title: string;
@@ -18,33 +19,104 @@ const NewsWidget = () => {
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
-  const fetchNews = async () => {
+  // Function to parse RSS feeds and extract news items
+  const fetchRSSNews = async () => {
     setLoading(true);
     setError(null);
     
     try {
-      // This uses a free public API that searches news - in a production app,
-      // you would want to use a more reliable source or your own backend
-      const response = await fetch(`https://gnews.io/api/v4/search?q=Cupramontana&lang=it,en,de&country=it&max=5&apikey=4565c1676b29e4231afa54a2172a4a2f`);
+      // We'll use a proxy service to fetch and parse RSS feeds to avoid CORS issues
+      const proxyUrl = 'https://api.allorigins.win/raw?url=';
       
-      if (!response.ok) {
-        throw new Error(`Failed to fetch news: ${response.status}`);
+      // List of RSS feeds to try - focusing on Italian news that might mention Cupramontana
+      const rssSources = [
+        // Italian news sources that might cover Cupramontana
+        'https://www.ansa.it/marche/notizie/marche_rss.xml',
+        'https://www.ilrestodelcarlino.it/feed/rss-cronaca-regionale-ancona',
+        'https://www.viverecupramontana.it/rss'
+      ];
+      
+      let allNews: NewsItem[] = [];
+      
+      // Try each feed until we get some news
+      for (const rssUrl of rssSources) {
+        try {
+          const response = await fetch(`${proxyUrl}${encodeURIComponent(rssUrl)}`);
+          
+          if (!response.ok) {
+            console.log(`Failed to fetch ${rssUrl}: ${response.status}`);
+            continue;
+          }
+          
+          const data = await response.text();
+          const parser = new DOMParser();
+          const xml = parser.parseFromString(data, "text/xml");
+          const items = xml.querySelectorAll("item");
+          
+          // Convert RSS items to our NewsItem format
+          const feedItems: NewsItem[] = Array.from(items).slice(0, 10).map((item) => {
+            const title = item.querySelector("title")?.textContent || "";
+            const link = item.querySelector("link")?.textContent || "";
+            const pubDate = item.querySelector("pubDate")?.textContent || "";
+            const sourceName = rssUrl.includes('ansa') ? 'ANSA Marche' : 
+                               rssUrl.includes('carlino') ? 'Il Resto del Carlino' : 
+                               rssUrl.includes('vivere') ? 'Vivere Cupramontana' : 'News';
+            
+            return {
+              title,
+              link,
+              source: sourceName,
+              publishedAt: new Date(pubDate).toLocaleDateString(),
+            };
+          });
+          
+          // Filter for news mentioning Cupramontana
+          const relevantNews = feedItems.filter(item => 
+            item.title.toLowerCase().includes('cupramontana') || 
+            // Include some regional news even if not specifically about Cupramontana
+            (allNews.length < 2 && 
+              (item.title.toLowerCase().includes('verdicchio') || 
+              item.title.toLowerCase().includes('marche')))
+          );
+          
+          allNews = [...allNews, ...relevantNews];
+          
+          // If we have at least 5 news items, we can stop
+          if (allNews.length >= 5) break;
+        } catch (err) {
+          console.error(`Error fetching from ${rssUrl}:`, err);
+          // Continue to the next feed
+        }
       }
       
-      const data = await response.json();
-      
-      if (data.articles) {
-        const formattedNews: NewsItem[] = data.articles.map((article: any) => ({
-          title: article.title,
-          link: article.url,
-          source: article.source?.name || 'Unknown Source',
-          publishedAt: new Date(article.publishedAt).toLocaleDateString(),
-        }));
-        
-        setNews(formattedNews);
+      // If we have news items, update the state
+      if (allNews.length > 0) {
+        setNews(allNews.slice(0, 5)); // Limit to 5 items
         setLastUpdated(new Date());
       } else {
-        setNews([]);
+        // If no RSS feeds had relevant news, create fallback news
+        const fallbackNews: NewsItem[] = [
+          {
+            title: "Explore Cupramontana's latest events",
+            link: "/tourism?tab=events",
+            source: "Cupramontana.homes",
+            publishedAt: new Date().toLocaleDateString(),
+          },
+          {
+            title: "Discover the wine heritage of Verdicchio",
+            link: "/tourism?tab=wine",
+            source: "Cupramontana.homes",
+            publishedAt: new Date().toLocaleDateString(),
+          },
+          {
+            title: "Find real estate opportunities in Cupramontana",
+            link: "/real-estate",
+            source: "Cupramontana.homes",
+            publishedAt: new Date().toLocaleDateString(),
+          }
+        ];
+        setNews(fallbackNews);
+        setLastUpdated(new Date());
       }
     } catch (err) {
       console.error('Error fetching news:', err);
@@ -56,10 +128,9 @@ const NewsWidget = () => {
 
   // Fetch news on component mount
   useEffect(() => {
-    fetchNews();
+    fetchRSSNews();
     
-    // Also set up a check to see if we should fetch fresh news
-    // This will compare the current date with the stored last fetch date
+    // Check if we should fetch fresh news
     const lastFetchDate = localStorage.getItem('cupramontanaNewsLastFetch');
     
     if (lastFetchDate) {
@@ -68,7 +139,7 @@ const NewsWidget = () => {
       
       // If it's a new day, fetch fresh news
       if (currentDate.toDateString() !== lastDate.toDateString()) {
-        fetchNews();
+        fetchRSSNews();
       }
     }
     
@@ -77,7 +148,7 @@ const NewsWidget = () => {
   }, []);
 
   const handleRefresh = () => {
-    fetchNews();
+    fetchRSSNews();
   };
 
   return (
@@ -107,7 +178,10 @@ const NewsWidget = () => {
             ))}
           </div>
         ) : error ? (
-          <p className="text-destructive">{error}</p>
+          <Alert variant="destructive">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
         ) : news.length === 0 ? (
           <p className="text-muted-foreground">No recent news found about Cupramontana.</p>
         ) : (
