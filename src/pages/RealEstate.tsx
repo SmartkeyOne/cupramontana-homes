@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
+import { ExternalLink } from 'lucide-react';
 
 const RealEstate = () => {
   return (
@@ -73,7 +74,7 @@ const RealEstate = () => {
               </Card>
             </div>
             
-            {/* Neue Sektion: Digitale Identität und Kommunikation in Italien */}
+            {/* Sektion: Digitale Identität und Kommunikation in Italien */}
             <div className="mb-16">
               <h2 className="text-2xl font-bold mb-6">Digitale Identität & Kommunikation mit Behörden</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -100,6 +101,24 @@ const RealEstate = () => {
                         Eine PEC-Adresse können Sie bei verschiedenen Anbietern wie Poste Italiane, Aruba oder Infocert beantragen. 
                         Die Kosten liegen typischerweise bei 5-30€ pro Jahr.
                       </p>
+                      <div className="mt-6 space-y-2">
+                        <p className="font-medium">Empfohlene PEC-Anbieter:</p>
+                        <div className="flex items-center gap-2">
+                          <a href="https://www.poste.it/prodotti/posta-elettronica-certificata.html" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center">
+                            Poste Italiane PEC <ExternalLink className="ml-1 h-3 w-3" />
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <a href="https://www.aruba.it/servizi/posta-certificata.aspx" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center">
+                            Aruba PEC <ExternalLink className="ml-1 h-3 w-3" />
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <a href="https://www.infocert.it/prodotti/legalmail-pec/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center">
+                            Infocert Legalmail <ExternalLink className="ml-1 h-3 w-3" />
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -132,6 +151,30 @@ const RealEstate = () => {
                       <p className="mt-4">
                         Ausländische Bürger können ebenfalls einen SPID-Account beantragen, benötigen jedoch eine italienische Steuernummer.
                       </p>
+
+                      <div className="mt-6 space-y-2">
+                        <p className="font-medium">Offizielle SPID-Links:</p>
+                        <div className="flex items-center gap-2">
+                          <a href="https://www.spid.gov.it/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center">
+                            Offizielle SPID-Website <ExternalLink className="ml-1 h-3 w-3" />
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <a href="https://posteid.poste.it/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center">
+                            Poste ID (SPID-Anbieter) <ExternalLink className="ml-1 h-3 w-3" />
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <a href="https://www.agenziaentrate.gov.it/portale/web/guest/schede/istanze/richiesta-ts_cf/come-si-richiede-il-codice-fiscale" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center">
+                            Codice Fiscale beantragen <ExternalLink className="ml-1 h-3 w-3" />
+                          </a>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <a href="https://www.spid.gov.it/en/what-is-spid/how-to-activate-spid/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center">
+                            SPID für Ausländer (Englisch) <ExternalLink className="ml-1 h-3 w-3" />
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
