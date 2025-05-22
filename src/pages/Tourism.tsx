@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import SEOHelmet from '../components/SEOHelmet';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Bus, Train, Clock, MapPin, ExternalLink, Smartphone, Star, Restaurant, Navigation } from 'lucide-react';
+import { Bus, Train, Clock, MapPin, ExternalLink, Smartphone, Star, Utensils, Navigation } from 'lucide-react';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
@@ -413,7 +413,7 @@ const Tourism = () => {
                           <Navigation className="h-3 w-3" />
                           <span>{restaurant.distance} km</span>
                         </div>
-                        <Restaurant className="h-12 w-12 text-primary/40" />
+                        <Utensils className="h-12 w-12 text-primary/40" />
                       </div>
                       <CardHeader className="pb-2">
                         <div className="flex items-start justify-between">
