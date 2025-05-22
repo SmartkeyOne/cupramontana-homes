@@ -44,6 +44,12 @@ const BeachesTab: React.FC = () => {
       type: "Sand",
       description: "Weitläufiger Naturstrand mit Wanderzugang oder Boot. Keine Infrastruktur.",
       mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.5248482843515!2d13.5856525!3d43.4915366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132e4c4d4d5dc5fd%3A0x3c47aa416e9a9bcb!2sSpiaggia%20di%20Mezzavalle!5e0!3m2!1sde!2sch!4v1716385040000!5m2!1sde!2sch"
+    },
+    {
+      name: "Spiaggia Velluta",
+      type: "Sand",
+      description: "Berühmter feinsandiger Strand in Senigallia, mit hervorragender Infrastruktur und dem typischen samtweichen Sand.",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2879.7636707052156!2d13.217841!3d43.7109995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132d1051daaaaaab%3A0xf4c04b198b011b!2sSpiaggia%20di%20Velluto!5e0!3m2!1sde!2sch!4v1716431265894!5m2!1sde!2sch"
     }
   ];
   
