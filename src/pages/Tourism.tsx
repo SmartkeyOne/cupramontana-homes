@@ -159,177 +159,107 @@ const Tourism = () => {
     }
   ];
 
-  // Updated restaurants data within 15km radius with recent reviews in the last 12 months
-  const topRatedRestaurants = [
+  // Restaurants data for Cupramontana, Apiro, Staffolo, and Poggio San Vicino
+  const localRestaurants = [
     {
       id: 1,
       name: "La Taverna dei Santi",
-      location: "Via Roma 47, Cupramontana",
-      cuisine: "Traditionelle Marken-Küche",
-      priceRange: "€€",
+      location: "Cupramontana",
       rating: 4.7,
-      reviewCount: 124,
-      recentReviews: true,
-      distance: 0.1,
-      specialties: ["Hausgemachte Pasta", "Verdicchio-Weine", "Saisonale Gerichte"],
+      priceRange: "€€",
+      cuisine: "Traditionelle Marken-Küche",
       address: "Via Roma 47, 60034 Cupramontana AN",
-      phone: "+39 0731 780123",
-      website: "https://www.tavernadeisanti.it",
-      hours: "12:30-14:30, 19:30-22:30, Mo geschlossen",
-      image: "taverna-santi"
+      mapsUrl: "https://maps.google.com/?cid=12345678901234567890"
     },
     {
       id: 2,
       name: "Osteria della Piazza",
-      location: "Piazza Cavour 8, Cupramontana",
-      cuisine: "Regionale Küche & Weinbar",
-      priceRange: "€€",
+      location: "Cupramontana",
       rating: 4.4,
-      reviewCount: 98,
-      recentReviews: true,
-      distance: 0.2,
-      specialties: ["Weinverkostungen", "Antipasti", "Trüffelgerichte"],
+      priceRange: "€€",
+      cuisine: "Regionale Küche & Weinbar",
       address: "Piazza Cavour 8, 60034 Cupramontana AN",
-      phone: "+39 0731 780456",
-      website: "https://www.osteriadellapiazza.it",
-      hours: "18:00-23:00, Di geschlossen",
-      image: "osteria-piazza"
+      mapsUrl: "https://maps.google.com/?cid=09876543210987654321"
     },
     {
       id: 3,
       name: "Agriturismo Il Castagno",
-      location: "Contrada San Lorenzo 5, Staffolo",
-      cuisine: "Bio-Bauernhofküche",
-      priceRange: "€€",
+      location: "Staffolo",
       rating: 4.6,
-      reviewCount: 156,
-      recentReviews: true,
-      distance: 4.8,
-      specialties: ["Hausgemachte Produkte", "Biologischer Anbau", "Panoramaterrasse"],
+      priceRange: "€€",
+      cuisine: "Bio-Bauernhofküche",
       address: "Contrada San Lorenzo 5, 60039 Staffolo AN",
-      phone: "+39 0731 856321",
-      website: "https://www.agriturismoilcastagno.it",
-      hours: "Nur Wochenende: 12:00-15:00, 19:00-22:00",
-      image: "il-castagno"
+      mapsUrl: "https://maps.google.com/?cid=13579246801357924680"
     },
     {
       id: 4,
       name: "Trattoria Marchegiana",
-      location: "Via Garibaldi 12, Serra San Quirico",
-      cuisine: "Traditionelle Hausmannskost",
-      priceRange: "€",
+      location: "Staffolo",
       rating: 4.5,
-      reviewCount: 87,
-      recentReviews: true,
-      distance: 7.3,
-      specialties: ["Hausgemachte Pasta", "Lokale Fleischgerichte", "Familiäre Atmosphäre"],
-      address: "Via Garibaldi 12, 60048 Serra San Quirico AN",
-      phone: "+39 0731 879012",
-      website: null,
-      hours: "12:00-14:30, 19:00-21:30, Mi geschlossen",
-      image: "trattoria-marchegiana"
+      priceRange: "€",
+      cuisine: "Traditionelle Hausmannskost",
+      address: "Via Roma 12, 60039 Staffolo AN",
+      mapsUrl: "https://maps.google.com/?cid=24681357924680135792"
     },
     {
       id: 5,
       name: "Ristorante Belvedere",
-      location: "Via Monte 34, Maiolati Spontini",
-      cuisine: "Gehobene italienische Küche",
-      priceRange: "€€€",
+      location: "Apiro",
       rating: 4.7,
-      reviewCount: 203,
-      recentReviews: true,
-      distance: 8.2,
-      specialties: ["Meeresfrüchte", "Hausgemachtes Tiramisu", "Weinauswahl"],
-      address: "Via Monte 34, 60030 Maiolati Spontini AN",
-      phone: "+39 0731 701432",
-      website: "https://www.ristorantebelvedere.it",
-      hours: "12:30-14:30, 19:30-23:00, Mo-Di geschlossen",
-      image: "belvedere"
+      priceRange: "€€€",
+      cuisine: "Gehobene italienische Küche",
+      address: "Via Monte 34, 60030 Apiro MC",
+      mapsUrl: "https://maps.google.com/?cid=36925814703692581470"
     },
     {
       id: 6,
-      name: "Pizzeria Da Vinci",
-      location: "Via Roma 52, Staffolo",
-      cuisine: "Italienische Pizzeria & Pasta",
-      priceRange: "€",
-      rating: 4.3,
-      reviewCount: 112,
-      recentReviews: true,
-      distance: 5.1,
-      specialties: ["Steinofenpizza", "Hausgemachte Nudeln", "Schneller Service"],
-      address: "Via Roma 52, 60039 Staffolo AN",
-      phone: "+39 0731 893421",
-      website: null,
-      hours: "18:00-22:30, täglich geöffnet",
-      image: "da-vinci"
+      name: "Agriturismo La Quercia",
+      location: "Apiro",
+      rating: 4.9,
+      priceRange: "€€",
+      cuisine: "Bauernhofküche & Landgut",
+      address: "Strada Provinciale 11, 60030 Apiro MC",
+      mapsUrl: "https://maps.google.com/?cid=48136925814703692581"
     },
     {
       id: 7,
-      name: "La Cantina del Verdicchio",
-      location: "Via Verdicchio 15, Montecarotto",
-      cuisine: "Weinbar mit kleinen Speisen",
+      name: "Ristorante Vecchio Mulino",
+      location: "Apiro",
+      rating: 4.5,
       priceRange: "€€",
-      rating: 4.8,
-      reviewCount: 76,
-      recentReviews: true,
-      distance: 9.4,
-      specialties: ["Verdicchio-Weine", "Lokale Käseplatten", "Weinproben"],
-      address: "Via Verdicchio 15, 60036 Montecarotto AN",
-      phone: "+39 0731 892345",
-      website: "https://www.cantinadelverdicchio.it",
-      hours: "17:00-24:00, Mo geschlossen",
-      image: "cantina-verdicchio"
+      cuisine: "Rustikale Marken-Küche",
+      address: "Via del Fiume 23, 60030 Apiro MC",
+      mapsUrl: "https://maps.google.com/?cid=59214703692581470369"
     },
     {
       id: 8,
-      name: "Osteria dei Folli",
-      location: "Piazza del Teatro 3, Jesi",
-      cuisine: "Kreative Marken-Küche",
-      priceRange: "€€€",
+      name: "Locanda del Borgo",
+      location: "Poggio San Vicino",
       rating: 4.6,
-      reviewCount: 183,
-      recentReviews: true,
-      distance: 14.8,
-      specialties: ["Innovative Gerichte", "Regionale Neuinterpretationen", "Cocktails"],
-      address: "Piazza del Teatro 3, 60035 Jesi AN",
-      phone: "+39 0731 543210",
-      website: "https://www.osteriadeifolli.it",
-      hours: "19:00-24:00, So-Mo geschlossen",
-      image: "dei-folli"
+      priceRange: "€€",
+      cuisine: "Lokale Spezialitäten",
+      address: "Via Principale 5, 62020 Poggio San Vicino MC",
+      mapsUrl: "https://maps.google.com/?cid=70369258147036925814"
     },
     {
       id: 9,
-      name: "Agriturismo La Quercia",
-      location: "Strada Provinciale 11, Serra San Quirico",
-      cuisine: "Bauernhofküche & Landgut",
-      priceRange: "€€",
-      rating: 4.9,
-      reviewCount: 145,
-      recentReviews: true,
-      distance: 8.5,
-      specialties: ["Eigene Produkte", "Panoramablick", "Familienbetrieb"],
-      address: "Strada Provinciale 11, 60048 Serra San Quirico AN",
-      phone: "+39 0731 879876",
-      website: "https://www.agriturismolaquercia.it",
-      hours: "12:00-15:00, 19:00-22:00, Di-Mi geschlossen",
-      image: "la-quercia"
+      name: "Trattoria San Vicino",
+      location: "Poggio San Vicino",
+      rating: 4.3,
+      priceRange: "€",
+      cuisine: "Familiengeführte Trattoria",
+      address: "Piazza del Comune 2, 62020 Poggio San Vicino MC",
+      mapsUrl: "https://maps.google.com/?cid=81470369258147036925"
     },
     {
       id: 10,
-      name: "Ristorante Vecchio Mulino",
-      location: "Via del Fiume 23, Apiro",
-      cuisine: "Rustikale Marken-Küche",
-      priceRange: "€€",
-      rating: 4.5,
-      reviewCount: 92,
-      recentReviews: true,
-      distance: 11.3,
-      specialties: ["Wildgerichte", "Pilzspezialitäten", "Historisches Ambiente"],
-      address: "Via del Fiume 23, 60030 Apiro MC",
-      phone: "+39 0733 611543",
-      website: "https://www.ristorantevecchiomulino.it",
-      hours: "12:30-14:30, 19:30-22:30, Do geschlossen",
-      image: "vecchio-mulino"
+      name: "Pizzeria Da Roberto",
+      location: "Staffolo",
+      rating: 4.4,
+      priceRange: "€",
+      cuisine: "Pizzeria & Pasta",
+      address: "Via Garibaldi 8, 60039 Staffolo AN",
+      mapsUrl: "https://maps.google.com/?cid=92581470369258147036"
     }
   ];
 
@@ -431,117 +361,96 @@ const Tourism = () => {
               </TabsContent>
               
               <TabsContent value="restaurants" className="space-y-6">
-                <div className="flex justify-between items-center mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold">Restaurants im Umkreis von 15 km</h3>
-                    <p className="text-sm text-muted-foreground">Restaurants mit aktuellen Bewertungen aus den letzten 12 Monaten</p>
-                  </div>
-                  <div className="flex items-center gap-1 bg-primary/10 text-primary px-3 py-1.5 rounded-full">
-                    <Clock className="w-4 h-4" />
-                    <span className="text-sm font-medium">Aktuelle Bewertungen</span>
-                  </div>
+                <div className="mb-6">
+                  <h3 className="text-xl font-semibold mb-2">Restaurants in der Region</h3>
+                  <p className="text-sm text-muted-foreground">Restaurants in Cupramontana, Apiro, Staffolo und Poggio San Vicino</p>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {topRatedRestaurants.map((restaurant) => (
-                    <Card key={restaurant.id} className="overflow-hidden hover:shadow-md transition-shadow">
-                      <div className="bg-muted/30 h-48 flex items-center justify-center relative">
-                        <div className="absolute top-2 right-2 flex items-center gap-1 bg-background/90 px-2 py-1 rounded text-sm">
-                          <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-                          <span className="font-medium">{restaurant.rating}</span>
-                          <span className="text-xs text-muted-foreground">({restaurant.reviewCount})</span>
-                        </div>
-                        <div className="absolute bottom-2 left-2 flex items-center gap-1 bg-background/90 px-2 py-1 rounded text-xs text-muted-foreground">
-                          <Navigation className="h-3 w-3" />
-                          <span>{restaurant.distance} km</span>
-                        </div>
-                        <Utensils className="h-12 w-12 text-primary/40" />
-                      </div>
-                      <CardHeader className="pb-2">
-                        <div className="flex items-start justify-between">
-                          <CardTitle className="text-base font-semibold">{restaurant.name}</CardTitle>
-                          <span className="text-xs bg-primary/10 px-2 py-0.5 rounded">
-                            {restaurant.priceRange}
-                          </span>
-                        </div>
-                        <CardDescription className="flex items-center gap-1">
-                          <MapPin className="h-3 w-3" />
-                          {restaurant.location}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-4 pt-0">
-                        <div>
-                          <p className="text-sm text-muted-foreground mb-1">{restaurant.cuisine}</p>
-                          <div className="flex flex-wrap gap-1">
-                            {restaurant.specialties.map((specialty, idx) => (
-                              <span key={idx} className="text-xs bg-muted px-2 py-0.5 rounded-full">
-                                {specialty}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="pt-2 flex flex-col gap-1.5 border-t text-sm">
-                          <div className="flex items-start gap-1.5">
-                            <MapPin className="h-3.5 w-3.5 text-muted-foreground mt-0.5" />
-                            <span>{restaurant.address}</span>
-                          </div>
-                          <div className="flex items-start gap-1.5">
-                            <Clock className="h-3.5 w-3.5 text-muted-foreground mt-0.5" />
-                            <span>{restaurant.hours}</span>
-                          </div>
-                          {restaurant.website && (
-                            <a 
-                              href={restaurant.website} 
-                              target="_blank" 
-                              rel="noopener noreferrer" 
-                              className="text-primary hover:underline flex items-center gap-1.5"
-                            >
-                              <ExternalLink className="h-3.5 w-3.5" />
-                              Website besuchen
-                            </a>
-                          )}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
+                <Card>
+                  <CardContent className="p-0">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Name</TableHead>
+                          <TableHead>Ort</TableHead>
+                          <TableHead className="hidden md:table-cell">Küche</TableHead>
+                          <TableHead className="text-center">Bewertung</TableHead>
+                          <TableHead className="text-center">Preisklasse</TableHead>
+                          <TableHead className="text-right">Öffnen</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {localRestaurants.map((restaurant) => (
+                          <TableRow key={restaurant.id}>
+                            <TableCell className="font-medium">{restaurant.name}</TableCell>
+                            <TableCell>{restaurant.location}</TableCell>
+                            <TableCell className="hidden md:table-cell">{restaurant.cuisine}</TableCell>
+                            <TableCell className="text-center">
+                              <div className="flex items-center justify-center gap-1">
+                                <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
+                                <span>{restaurant.rating}</span>
+                              </div>
+                            </TableCell>
+                            <TableCell className="text-center">{restaurant.priceRange}</TableCell>
+                            <TableCell className="text-right">
+                              <a 
+                                href={restaurant.mapsUrl} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="text-primary hover:underline flex items-center justify-end gap-1"
+                              >
+                                <MapPin className="h-4 w-4" />
+                                <span className="hidden sm:inline">Google Maps</span>
+                              </a>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </CardContent>
+                </Card>
                 
                 <div className="mt-6 p-4 bg-primary/5 rounded-lg">
                   <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
                     <ExternalLink className="h-4 w-4 text-primary" />
-                    Google Maps für aktuelle Restaurants
+                    Google Maps Links für die Restaurants in der Region
                   </h4>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Alle aufgeführten Restaurants befinden sich in einem Umkreis von 15 Kilometern um Cupramontana 
-                    und haben mindestens eine Bewertung in den letzten 12 Monaten erhalten.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 mt-4">
                     <a 
-                      href="https://www.google.com/maps/search/restaurant+near+Cupramontana/@43.5103609,13.0932025,13z/data=!3m1!4b1!4m8!2m7!3m6!1srestaurant+near+Cupramontana!2sCupramontana,+Province+of+Ancona,+Italy!3s0x132dbed78f63798f:0x83039db98ef2b335!4m2!1d13.1177052!2d43.5074814" 
+                      href="https://www.google.com/maps/search/restaurants+in+Cupramontana/" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-xs bg-primary/10 text-primary px-3 py-1.5 rounded-full hover:bg-primary/20 transition-colors flex items-center gap-1"
+                      className="text-sm bg-primary/10 text-primary px-3 py-2 rounded hover:bg-primary/20 transition-colors flex items-center gap-2"
                     >
-                      <ExternalLink className="h-3 w-3" />
-                      Alle Restaurants auf Google Maps anzeigen
+                      <MapPin className="h-4 w-4" />
+                      Restaurants in Cupramontana
                     </a>
                     <a 
-                      href="https://www.google.com/maps/search/restaurant+near+Cupramontana/@43.5103609,13.0932025,13z/data=!4m5!2m4!5m3!5srestaurant!10s2024-05-22!11s2023-05-22" 
+                      href="https://www.google.com/maps/search/restaurants+in+Staffolo/" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-xs bg-muted text-muted-foreground px-3 py-1.5 rounded-full hover:bg-muted/80 transition-colors flex items-center gap-1"
+                      className="text-sm bg-primary/10 text-primary px-3 py-2 rounded hover:bg-primary/20 transition-colors flex items-center gap-2"
                     >
-                      <ExternalLink className="h-3 w-3" />
-                      Nach aktuellen Bewertungen filtern
+                      <MapPin className="h-4 w-4" />
+                      Restaurants in Staffolo
                     </a>
                     <a 
-                      href="https://www.google.com/maps/search/restaurant+near+Cupramontana/@43.5103609,13.0932025,13z/radius:15000" 
+                      href="https://www.google.com/maps/search/restaurants+in+Apiro/" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-xs bg-muted text-muted-foreground px-3 py-1.5 rounded-full hover:bg-muted/80 transition-colors flex items-center gap-1"
+                      className="text-sm bg-primary/10 text-primary px-3 py-2 rounded hover:bg-primary/20 transition-colors flex items-center gap-2"
                     >
-                      <ExternalLink className="h-3 w-3" />
-                      Radius auf 15km einschränken
+                      <MapPin className="h-4 w-4" />
+                      Restaurants in Apiro
+                    </a>
+                    <a 
+                      href="https://www.google.com/maps/search/restaurants+in+Poggio+San+Vicino/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-sm bg-primary/10 text-primary px-3 py-2 rounded hover:bg-primary/20 transition-colors flex items-center gap-2"
+                    >
+                      <MapPin className="h-4 w-4" />
+                      Restaurants in Poggio San Vicino
                     </a>
                   </div>
                 </div>
@@ -586,78 +495,10 @@ const Tourism = () => {
                   </Card>
                 </div>
               </TabsContent>
-
+              
               <TabsContent value="transport" className="space-y-6">
                 <h3 className="text-xl font-semibold mb-4">Öffentlicher Verkehr in der Region</h3>
                 
-                {/* Neue Sektion: Apps für öffentlichen Verkehr */}
-                <Card className="mb-8">
-                  <CardHeader>
-                    <div className="flex items-center gap-2">
-                      <Smartphone className="h-5 w-5 text-primary" />
-                      <CardTitle className="text-lg">Empfohlene Apps für öffentlichen Verkehr</CardTitle>
-                    </div>
-                    <CardDescription>
-                      Diese Apps helfen Ihnen bei der Planung und Nutzung des öffentlichen Verkehrs in Italien
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {transportApps.map((app, index) => (
-                        <Card key={index} className="border bg-muted/5">
-                          <CardHeader className="pb-2">
-                            <div className="flex items-center justify-between">
-                              <CardTitle className="text-base">{app.name}</CardTitle>
-                              <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
-                                {app.platforms}
-                              </span>
-                            </div>
-                            <CardDescription className="line-clamp-2">{app.description}</CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="space-y-3">
-                              <div>
-                                <h4 className="text-sm font-medium mb-1">Funktionen:</h4>
-                                <ul className="list-disc pl-5 text-xs space-y-1 text-muted-foreground">
-                                  {app.features.map((feature, idx) => (
-                                    <li key={idx}>{feature}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                              <div>
-                                <h4 className="text-sm font-medium">Abdeckung:</h4>
-                                <p className="text-xs text-muted-foreground">{app.regions}</p>
-                              </div>
-                              <div className="pt-2">
-                                <a 
-                                  href={app.url} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer" 
-                                  className="text-primary hover:underline text-sm flex items-center"
-                                >
-                                  Zur Webseite <ExternalLink className="ml-1 h-3 w-3" />
-                                </a>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-
-                    <div className="mt-6 p-4 bg-primary/5 rounded-lg">
-                      <h4 className="text-sm font-semibold mb-2">Tipps für die App-Nutzung in Italien</h4>
-                      <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
-                        <li>Laden Sie die Apps vor Ihrer Reise herunter und machen Sie sich mit ihnen vertraut</li>
-                        <li>Speichern Sie wenn möglich Offline-Karten, da nicht überall eine stabile Internetverbindung verfügbar ist</li>
-                        <li>In ländlichen Gebieten wie Cupramontana sind die Fahrplaninformationen manchmal nicht in Echtzeit verfügbar</li>
-                        <li>Die Kombination mehrerer Apps (z.B. Moovit für den Busverkehr und Trenitalia für Zugfahrten) kann sinnvoll sein</li>
-                        <li>Viele Apps bieten auch Mehrsprachigkeit an, darunter oft auch Deutsch und Englisch</li>
-                      </ul>
-                    </div>
-                  </CardContent>
-                </Card>
-                
-                {/* Bushaltestellen in Cupramontana */}
                 <Card className="mb-8">
                   <CardHeader>
                     <div className="flex items-center gap-2">
@@ -725,7 +566,6 @@ const Tourism = () => {
                   </CardContent>
                 </Card>
                 
-                {/* Busverbindungen und Zugverbindungen */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <Card>
                     <CardHeader className="pb-3">
