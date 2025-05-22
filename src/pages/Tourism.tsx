@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,9 +6,57 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import SEOHelmet from '../components/SEOHelmet';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Bus, Train, Clock, MapPin } from 'lucide-react';
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 const Tourism = () => {
   const { language } = useLanguage();
+  const [openStopInfo, setOpenStopInfo] = useState<string | null>(null);
+  
+  // Toggle function for bus stop collapsibles
+  const toggleStopInfo = (stopId: string) => {
+    if (openStopInfo === stopId) {
+      setOpenStopInfo(null);
+    } else {
+      setOpenStopInfo(stopId);
+    }
+  };
+  
+  // Bus stops data
+  const busStops = [
+    {
+      id: "stop1",
+      name: "Piazza Cavour",
+      description: "Haupthaltestelle im Zentrum von Cupramontana",
+      facilities: ["Wartehäuschen", "Sitzgelegenheiten", "Fahrplaninformation"],
+      lines: ["342"],
+      nearbyAttractions: ["Rathaus", "Cafés", "Einkaufsmöglichkeiten"]
+    },
+    {
+      id: "stop2",
+      name: "Via Roma / Scuola",
+      description: "Haltestelle in der Nähe der lokalen Schulen",
+      facilities: ["Sitzgelegenheit"],
+      lines: ["342"],
+      nearbyAttractions: ["Schulen", "Kleine Geschäfte"]
+    },
+    {
+      id: "stop3",
+      name: "Ospedale",
+      description: "Haltestelle beim örtlichen Krankenhaus",
+      facilities: ["Wartehäuschen", "Sitzgelegenheiten"],
+      lines: ["342"],
+      nearbyAttractions: ["Krankenhaus", "Apotheke"]
+    },
+    {
+      id: "stop4",
+      name: "Zona Industriale",
+      description: "Haltestelle am Stadtrand im Industriegebiet",
+      facilities: ["Einfache Haltestelle"],
+      lines: ["342"],
+      nearbyAttractions: ["Industriegebiet", "Weinproduktion"]
+    }
+  ];
   
   // Beispieldaten für Events
   const events = [
@@ -270,6 +318,76 @@ const Tourism = () => {
 
               <TabsContent value="transport" className="space-y-6">
                 <h3 className="text-xl font-semibold mb-4">Öffentlicher Verkehr in der Region</h3>
+                
+                {/* Neu: Haltestellen in Cupramontana */}
+                <Card className="mb-8">
+                  <CardHeader>
+                    <div className="flex items-center gap-2">
+                      <Bus className="h-5 w-5 text-primary" />
+                      <CardTitle className="text-lg">Bushaltestellen in Cupramontana</CardTitle>
+                    </div>
+                    <CardDescription>
+                      Informationen zu den wichtigsten Bushaltestellen in Cupramontana für Ihre Planung
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {busStops.map((stop) => (
+                        <Collapsible 
+                          key={stop.id}
+                          open={openStopInfo === stop.id} 
+                          onOpenChange={() => toggleStopInfo(stop.id)}
+                          className="border rounded-md overflow-hidden"
+                        >
+                          <CollapsibleTrigger className="w-full p-4 flex items-center justify-between hover:bg-muted/50 transition-colors">
+                            <div className="flex items-center gap-3">
+                              <Bus className="h-4 w-4 text-primary" />
+                              <span className="font-medium">{stop.name}</span>
+                            </div>
+                            <div className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                              {stop.lines.join(", ")}
+                            </div>
+                          </CollapsibleTrigger>
+                          <CollapsibleContent className="p-4 border-t bg-muted/20">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <h4 className="text-sm font-semibold mb-2">Beschreibung</h4>
+                                <p className="text-sm text-muted-foreground mb-4">{stop.description}</p>
+                                
+                                <h4 className="text-sm font-semibold mb-2">Ausstattung</h4>
+                                <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground mb-4">
+                                  {stop.facilities.map((facility, idx) => (
+                                    <li key={idx}>{facility}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                              <div>
+                                <h4 className="text-sm font-semibold mb-2">In der Nähe</h4>
+                                <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
+                                  {stop.nearbyAttractions.map((attraction, idx) => (
+                                    <li key={idx}>{attraction}</li>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </CollapsibleContent>
+                        </Collapsible>
+                      ))}
+                    </div>
+
+                    <div className="mt-6 p-4 bg-primary/5 rounded-lg">
+                      <h4 className="text-sm font-semibold mb-2">Nützliches zur Busnutzung in Cupramontana</h4>
+                      <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
+                        <li>Tickets können direkt beim Busfahrer oder in ausgewählten Tabacchi-Läden erworben werden</li>
+                        <li>Eine Entwertung des Tickets ist beim Einsteigen im Bus erforderlich</li>
+                        <li>An Feiertagen verkehren die Busse nach einem reduzierten Fahrplan</li>
+                        <li>Die Buslinie 342 verbindet alle wichtigen Haltestellen in Cupramontana</li>
+                      </ul>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                {/* Bisherige Informationen zu Busverbindungen */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <Card>
                     <CardHeader className="pb-3">
