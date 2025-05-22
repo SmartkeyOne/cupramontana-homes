@@ -9,7 +9,8 @@ const Hero = () => {
   const navigate = useNavigate();
   
   const handleMapClick = () => {
-    navigate('/tourism');
+    // Navigate to the tourism page with a restaurants query parameter
+    navigate('/tourism?tab=restaurants');
     // Add a small delay to ensure the page loads before we try to scroll
     setTimeout(() => {
       const restaurantSection = document.querySelector('[value="restaurants"]');

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,10 +8,23 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { Bus, Train, Clock, MapPin, ExternalLink, Smartphone, Star, Utensils, Navigation } from 'lucide-react';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { useLocation } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const Tourism = () => {
   const { language } = useLanguage();
   const [openStopInfo, setOpenStopInfo] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState("attractions");
+  const location = useLocation();
+  
+  // Handle tab selection from URL parameter
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const tab = params.get('tab');
+    if (tab && ["attractions", "restaurants", "beaches", "transport"].includes(tab)) {
+      setActiveTab(tab);
+    }
+  }, [location]);
   
   // Toggle function for bus stop collapsibles
   const toggleStopInfo = (stopId: string) => {
@@ -158,6 +171,9 @@ const Tourism = () => {
       regions: "Landesweit (besser in größeren Städten)"
     }
   ];
+
+  // Google Maps URL for restaurants in Cupramontana area
+  const restaurantMapUrl = "https://www.google.ch/maps/search/Restaurants/@43.4498466,13.1021109,4483m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoASAFQAw%3D%3D";
 
   // Corrected and verified restaurants data with proper Google Maps URLs
   const localRestaurants = [
@@ -312,7 +328,7 @@ const Tourism = () => {
               </Card>
             </div>
             
-            <Tabs defaultValue="attractions" className="mb-16">
+            <Tabs defaultValue={activeTab} value={activeTab} onValueChange={setActiveTab} className="mb-16">
               <TabsList className="mb-6">
                 <TabsTrigger value="attractions">Sehenswürdigkeiten</TabsTrigger>
                 <TabsTrigger value="restaurants">Restaurants</TabsTrigger>
@@ -363,7 +379,19 @@ const Tourism = () => {
               <TabsContent value="restaurants" className="space-y-6">
                 <div className="mb-6">
                   <h3 className="text-xl font-semibold mb-2">Restaurants in der Region</h3>
-                  <p className="text-sm text-muted-foreground mb-2">Verifizierte Restaurants in Cupramontana, Apiro, Staffolo und Poggio San Vicino</p>
+                  <p className="text-sm text-muted-foreground mb-4">Verifizierte Restaurants in Cupramontana, Apiro, Staffolo und Poggio San Vicino</p>
+                  
+                  <a 
+                    href={restaurantMapUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-block mb-6"
+                  >
+                    <Button variant="default" className="flex items-center gap-2">
+                      <Map className="h-5 w-5" />
+                      Alle Restaurants auf Google Maps anzeigen
+                    </Button>
+                  </a>
                 </div>
                 
                 <Card>
