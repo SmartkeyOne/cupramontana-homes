@@ -1,149 +1,38 @@
 
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { ExternalLink, RefreshCw, AlertTriangle } from 'lucide-react';
+import { RefreshCw, AlertTriangle } from 'lucide-react';
 import { Button } from './ui/button';
 import { Skeleton } from './ui/skeleton';
 import { Alert, AlertDescription } from './ui/alert';
-
-interface NewsItem {
-  title: string;
-  link: string;
-  source: string;
-  publishedAt: string;
-}
+import { fetchRSSNews } from '../utils/newsUtils';
+import { NewsItem as NewsItemType } from '../types/newsTypes';
+import NewsItem from './news/NewsItem';
 
 const NewsWidget = () => {
-  const [news, setNews] = useState<NewsItem[]>([]);
+  const [news, setNews] = useState<NewsItemType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
-  // Function to parse RSS feeds and extract news items
-  const fetchRSSNews = async () => {
+  const loadNews = async () => {
     setLoading(true);
     setError(null);
     
-    try {
-      // We'll use a proxy service to fetch and parse RSS feeds to avoid CORS issues
-      const proxyUrl = 'https://api.allorigins.win/raw?url=';
-      
-      // List of RSS feeds to try - focusing on Marche region tourism news
-      const rssSources = [
-        // Marche regional news sources with tourism focus
-        'https://www.ansa.it/marche/notizie/marche_rss.xml',
-        'https://www.ilrestodelcarlino.it/feed/rss-cronaca-regionale-ancona',
-        'https://www.viverecupramontana.it/rss',
-        'https://www.turismo.marche.it/rss'
-      ];
-      
-      let allNews: NewsItem[] = [];
-      
-      // Try each feed until we get some news
-      for (const rssUrl of rssSources) {
-        try {
-          const response = await fetch(`${proxyUrl}${encodeURIComponent(rssUrl)}`);
-          
-          if (!response.ok) {
-            console.log(`Failed to fetch ${rssUrl}: ${response.status}`);
-            continue;
-          }
-          
-          const data = await response.text();
-          const parser = new DOMParser();
-          const xml = parser.parseFromString(data, "text/xml");
-          const items = xml.querySelectorAll("item");
-          
-          // Convert RSS items to our NewsItem format
-          const feedItems: NewsItem[] = Array.from(items).slice(0, 10).map((item) => {
-            const title = item.querySelector("title")?.textContent || "";
-            const link = item.querySelector("link")?.textContent || "";
-            const pubDate = item.querySelector("pubDate")?.textContent || "";
-            const sourceName = rssUrl.includes('ansa') ? 'ANSA Marche' : 
-                               rssUrl.includes('carlino') ? 'Il Resto del Carlino' : 
-                               rssUrl.includes('vivere') ? 'Vivere Cupramontana' :
-                               rssUrl.includes('turismo.marche') ? 'Turismo Marche' : 'News';
-            
-            return {
-              title,
-              link,
-              source: sourceName,
-              publishedAt: new Date(pubDate).toLocaleDateString(),
-            };
-          });
-          
-          // Filter for news mentioning Marche region tourism topics
-          const relevantNews = feedItems.filter(item => {
-            const lowercaseTitle = item.title.toLowerCase();
-            return lowercaseTitle.includes('cupramontana') || 
-                   lowercaseTitle.includes('marche') || 
-                   lowercaseTitle.includes('turismo') || 
-                   lowercaseTitle.includes('tourism') ||
-                   lowercaseTitle.includes('verdicchio') || 
-                   lowercaseTitle.includes('conero') ||
-                   lowercaseTitle.includes('spiaggia') || // beach
-                   lowercaseTitle.includes('riviera') ||
-                   lowercaseTitle.includes('evento') || // event
-                   lowercaseTitle.includes('festival');
-          });
-          
-          allNews = [...allNews, ...relevantNews];
-          
-          // If we have at least 5 news items, we can stop
-          if (allNews.length >= 5) break;
-        } catch (err) {
-          console.error(`Error fetching from ${rssUrl}:`, err);
-          // Continue to the next feed
-        }
-      }
-      
-      // If we have news items, update the state
-      if (allNews.length > 0) {
-        setNews(allNews.slice(0, 5)); // Limit to 5 items
-        setLastUpdated(new Date());
-      } else {
-        // If no RSS feeds had relevant news, create fallback news about Marche tourism
-        const fallbackNews: NewsItem[] = [
-          {
-            title: "Explore the beautiful beaches of Marche region",
-            link: "/tourism?tab=beaches",
-            source: "Cupramontana.homes",
-            publishedAt: new Date().toLocaleDateString(),
-          },
-          {
-            title: "Discover the wine heritage of Verdicchio in Marche",
-            link: "/tourism?tab=wine",
-            source: "Cupramontana.homes",
-            publishedAt: new Date().toLocaleDateString(),
-          },
-          {
-            title: "Top cultural attractions in the Marche region",
-            link: "/tourism?tab=attractions",
-            source: "Cupramontana.homes",
-            publishedAt: new Date().toLocaleDateString(),
-          },
-          {
-            title: "Upcoming events and festivals in Marche",
-            link: "/tourism?tab=events",
-            source: "Cupramontana.homes",
-            publishedAt: new Date().toLocaleDateString(),
-          }
-        ];
-        setNews(fallbackNews);
-        setLastUpdated(new Date());
-      }
-    } catch (err) {
-      console.error('Error fetching news:', err);
-      setError('Failed to load news. Please try again later.');
-    } finally {
-      setLoading(false);
+    const { news: newsItems, error: newsError } = await fetchRSSNews();
+    
+    if (newsError) {
+      setError(newsError);
+    } else {
+      setNews(newsItems);
+      setLastUpdated(new Date());
     }
+    
+    setLoading(false);
   };
 
   // Fetch news on component mount
   useEffect(() => {
-    fetchRSSNews();
-    
     // Check if we should fetch fresh news
     const lastFetchDate = localStorage.getItem('cupramontanaNewsLastFetch');
     
@@ -153,8 +42,11 @@ const NewsWidget = () => {
       
       // If it's a new day, fetch fresh news
       if (currentDate.toDateString() !== lastDate.toDateString()) {
-        fetchRSSNews();
+        loadNews();
       }
+    } else {
+      // First time loading
+      loadNews();
     }
     
     // Store today's date as the last fetch date
@@ -162,7 +54,7 @@ const NewsWidget = () => {
   }, []);
 
   const handleRefresh = () => {
-    fetchRSSNews();
+    loadNews();
   };
 
   return (
@@ -201,22 +93,7 @@ const NewsWidget = () => {
         ) : (
           <div className="space-y-4">
             {news.map((item, index) => (
-              <div key={index} className="pb-3 border-b last:border-0">
-                <a 
-                  href={item.link} 
-                  target="_blank"
-                  rel="noopener noreferrer" 
-                  className="hover:text-primary flex items-start gap-2 group"
-                >
-                  <ExternalLink className="h-4 w-4 mt-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                  <div>
-                    <h3 className="font-medium">{item.title}</h3>
-                    <p className="text-xs text-muted-foreground">
-                      {item.source} • {item.publishedAt}
-                    </p>
-                  </div>
-                </a>
-              </div>
+              <NewsItem key={index} item={item} />
             ))}
           </div>
         )}
