@@ -17,7 +17,7 @@ const BeachesTab: React.FC = () => {
                 <CarouselItem>
                   <div className="h-56 md:h-72 rounded-md overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1596133366669-bc2bc3e548b3?q=80&w=1000" 
+                      src="https://images.unsplash.com/photo-1591805859566-88bad48c2c6c?q=80&w=1000" 
                       alt="Riviera del Conero Beach" 
                       className="w-full h-full object-cover"
                     />
@@ -26,8 +26,8 @@ const BeachesTab: React.FC = () => {
                 <CarouselItem>
                   <div className="h-56 md:h-72 rounded-md overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000" 
-                      alt="Beautiful Beach" 
+                      src="https://images.unsplash.com/photo-1535122511228-d615a49a79e8?q=80&w=1000" 
+                      alt="Due Sorelle Beach" 
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -35,8 +35,8 @@ const BeachesTab: React.FC = () => {
                 <CarouselItem>
                   <div className="h-56 md:h-72 rounded-md overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1000" 
-                      alt="Beach View" 
+                      src="https://images.unsplash.com/photo-1548077654-d61446faef88?q=80&w=1000" 
+                      alt="Conero Cliffs" 
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -69,7 +69,7 @@ const BeachesTab: React.FC = () => {
                 <CarouselItem>
                   <div className="h-56 md:h-72 rounded-md overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1520942702018-0862200e6873?q=80&w=1000" 
+                      src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=1000" 
                       alt="Senigallia Beach" 
                       className="w-full h-full object-cover"
                     />
@@ -78,8 +78,17 @@ const BeachesTab: React.FC = () => {
                 <CarouselItem>
                   <div className="h-56 md:h-72 rounded-md overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1536759808958-cdc58fa9beba?q=80&w=1000" 
-                      alt="Sandy Beach" 
+                      src="https://images.unsplash.com/photo-1549861208-9ae633b578b4?q=80&w=1000" 
+                      alt="Velvet Beach" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="h-56 md:h-72 rounded-md overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?q=80&w=1000" 
+                      alt="Calm Sea" 
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -98,6 +107,48 @@ const BeachesTab: React.FC = () => {
               <li>Gut ausgestattete Einrichtungen und Services</li>
               <li>Viele Restaurants und Cafés direkt am Strand</li>
               <li>Ausgezeichnete Wasserqualität (Blaue Flagge)</li>
+            </ul>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader>
+            <CardTitle>Porto San Giorgio</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Carousel className="mb-6">
+              <CarouselContent>
+                <CarouselItem>
+                  <div className="h-56 md:h-72 rounded-md overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1531386450850-d8610d2f8f96?q=80&w=1000" 
+                      alt="Porto San Giorgio Beach" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </CarouselItem>
+                <CarouselItem>
+                  <div className="h-56 md:h-72 rounded-md overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1588085436647-99a7e4f4b829?q=80&w=1000" 
+                      alt="Marina View" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+              <CarouselPrevious className="left-2 md:left-4" />
+              <CarouselNext className="right-2 md:right-4" />
+            </Carousel>
+            
+            <CardDescription className="mb-4">
+              Einer der schönsten Strände im südlichen Teil der Marken mit ausgezeichneter Infrastruktur und klarem Wasser.
+            </CardDescription>
+            <ul className="list-disc pl-5 space-y-2 text-sm">
+              <li>Feiner Sandstrand mit flach abfallendem Wasser</li>
+              <li>Malerischer Hafen mit Restaurants und Cafés</li>
+              <li>Familienfreundliche Strandbäder</li>
+              <li>Wassersportmöglichkeiten</li>
             </ul>
           </CardContent>
         </Card>
