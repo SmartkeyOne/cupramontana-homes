@@ -1,18 +1,11 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage, SupportedLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  const { language, setLanguage, t } = useLanguage();
-  
-  const languages = [
-    { code: "de" as SupportedLanguage, label: t('language.de') },
-    { code: "it" as SupportedLanguage, label: t('language.it') },
-    { code: "en" as SupportedLanguage, label: t('language.en') },
-    { code: "nl" as SupportedLanguage, label: t('language.nl') }
-  ];
+  const { language, setLanguage, t, languages } = useLanguage();
   
   return (
     <footer className="bg-muted py-10 border-t">

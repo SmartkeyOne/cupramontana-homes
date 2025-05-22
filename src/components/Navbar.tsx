@@ -1,23 +1,15 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, Globe } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useLanguage, SupportedLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage, t, languages } = useLanguage();
 
-  // Sprachoptionen
-  const languages = [
-    { code: "de" as SupportedLanguage, label: t('language.de') },
-    { code: "it" as SupportedLanguage, label: t('language.it') },
-    { code: "en" as SupportedLanguage, label: t('language.en') },
-    { code: "nl" as SupportedLanguage, label: t('language.nl') }
-  ];
-
-  // Navigationsmenüpunkte
+  // Navigation menu items
   const navItems = [
     { label: t('nav.home'), href: "/" },
     { label: t('nav.realEstate'), href: "/real-estate" },
@@ -25,7 +17,7 @@ const Navbar = () => {
     { label: t('nav.jobs'), href: "/jobs" }
   ];
 
-  const changeLanguage = (langCode: SupportedLanguage) => {
+  const changeLanguage = (langCode: typeof language) => {
     setLanguage(langCode);
     setIsOpen(false);
   };
@@ -45,7 +37,7 @@ const Navbar = () => {
             </Link>
           ))}
           
-          {/* Sprachauswahl Desktop */}
+          {/* Language selection desktop */}
           <div className="relative group">
             <Button variant="ghost" size="sm" className="gap-1">
               <Globe className="h-4 w-4" />
@@ -75,7 +67,7 @@ const Navbar = () => {
           onClick={() => setIsOpen(!isOpen)}
         >
           <Menu className="h-5 w-5" />
-          <span className="sr-only">Menü öffnen</span>
+          <span className="sr-only">Open menu</span>
         </Button>
 
         {/* Mobile Navigation Menu */}
@@ -93,7 +85,7 @@ const Navbar = () => {
                 </Link>
               ))}
               
-              {/* Sprachauswahl Mobile */}
+              {/* Language selection mobile */}
               <div className="border-t pt-4">
                 <p className="text-xs text-muted-foreground mb-2">{t('language.change')}</p>
                 <div className="grid grid-cols-2 gap-2">

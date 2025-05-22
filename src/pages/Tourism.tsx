@@ -16,7 +16,7 @@ import EventsSection from '../components/tourism/EventsSection';
 import WineTab from '../components/tourism/WineTab';
 
 const Tourism = () => {
-  const { language } = useLanguage();
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState("attractions");
   const location = useLocation();
   
@@ -29,7 +29,7 @@ const Tourism = () => {
     }
   }, [location]);
   
-  // Beispieldaten für Events
+  // Example data for events
   const events = [
     {
       id: 1,
@@ -57,40 +57,28 @@ const Tourism = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHelmet 
-        title={language === 'de' ? "Tourismus in Cupramontana" : 
-              (language === 'it' ? "Turismo a Cupramontana" : 
-              (language === 'nl' ? "Toerisme in Cupramontana" : "Tourism in Cupramontana"))}
-        description={language === 'de' ? "Entdecken Sie die Schönheit Cupramentanas und der Region Marken - Sehenswürdigkeiten, Restaurants, Strände und öffentliche Verkehrsmittel." : 
-                    (language === 'it' ? "Scopri la bellezza di Cupramontana e della regione Marche - attrazioni, ristoranti, spiagge e trasporto pubblico." : 
-                    (language === 'nl' ? "Ontdek de schoonheid van Cupramontana en de Marche-regio - bezienswaardigheden, restaurants, stranden en openbaar vervoer." : 
-                    "Discover the beauty of Cupramontana and the Marche region - attractions, restaurants, beaches and public transport."))}
-        keywords={language === 'de' ? "Cupramontana, Marken, Tourismus, Sehenswürdigkeiten, Restaurants, Strände, öffentliche Verkehrsmittel, Verdicchio Wein" : 
-                (language === 'it' ? "Cupramontana, Marche, turismo, attrazioni, ristoranti, spiagge, trasporto pubblico, vino Verdicchio" : 
-                (language === 'nl' ? "Cupramontana, Marche, toerisme, bezienswaardigheden, restaurants, stranden, openbaar vervoer, Verdicchio wijn" : 
-                "Cupramontana, Marche, tourism, attractions, restaurants, beaches, public transport, Verdicchio wine"))}
+        title={t('tourism.seo.title')}
+        description={t('tourism.seo.description')}
+        keywords={t('tourism.seo.keywords')}
+        canonicalUrl="https://cupramontana.homes/tourism"
       />
       <Navbar />
       <main className="flex-grow">
         <section className="section pt-16 md:pt-24">
           <div className="container">
-            <h1 className="text-3xl md:text-4xl font-bold mb-6">Tourismus in Cupramontana</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-6">{t('tourism.title')}</h1>
             <p className="text-lg text-muted-foreground mb-12 max-w-3xl">
-              Entdecken Sie die Schönheit Cupramentanas und der Region Marken - von historischen Städten 
-              über wunderschöne Strände bis hin zu kulinarischen Erlebnissen und dem weltberühmten Verdicchio Wein.
+              {t('tourism.subtitle')}
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
               <div>
-                <h2 className="text-2xl font-bold mb-4">Die Region Marken</h2>
+                <h2 className="text-2xl font-bold mb-4">{t('tourism.region.title')}</h2>
                 <p className="mb-4">
-                  Die Region Marken (Le Marche) ist eine der versteckten Perlen Italiens, oft überschattet 
-                  von ihren berühmteren Nachbarn wie der Toskana. Hier finden Sie eine Vielfalt aus spektakulären 
-                  Landschaften, von den Apenninen bis zur Adriaküste.
+                  {t('tourism.region.description1')}
                 </p>
                 <p>
-                  Cupramontana ist bekannt für seinen Verdicchio-Wein und liegt im Herzen der Weinregion. 
-                  Von hier aus können Sie bequem andere historische Städte wie Jesi, Ancona und die 
-                  berühmte Conero-Riviera erkunden.
+                  {t('tourism.region.description2')}
                 </p>
               </div>
               
@@ -103,11 +91,11 @@ const Tourism = () => {
             
             <Tabs defaultValue={activeTab} value={activeTab} onValueChange={setActiveTab} className="mb-16">
               <TabsList className="mb-6">
-                <TabsTrigger value="attractions">Sehenswürdigkeiten</TabsTrigger>
-                <TabsTrigger value="wine">Verdicchio Wein</TabsTrigger>
-                <TabsTrigger value="restaurants">Essen und Schlafen</TabsTrigger>
-                <TabsTrigger value="beaches">Strände</TabsTrigger>
-                <TabsTrigger value="transport">Öffentlicher Verkehr</TabsTrigger>
+                <TabsTrigger value="attractions">{t('tourism.tabs.attractions')}</TabsTrigger>
+                <TabsTrigger value="wine">{t('tourism.tabs.wine')}</TabsTrigger>
+                <TabsTrigger value="restaurants">{t('tourism.tabs.restaurants')}</TabsTrigger>
+                <TabsTrigger value="beaches">{t('tourism.tabs.beaches')}</TabsTrigger>
+                <TabsTrigger value="transport">{t('tourism.tabs.transport')}</TabsTrigger>
               </TabsList>
               
               <TabsContent value="attractions">
