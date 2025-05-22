@@ -11,17 +11,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import NetIncomeResult from './NetIncomeResult';
+import { 
+  calculateDeductions, 
+  defaultTaxRates,
+  formatCurrency,
+  DeductionsType,
+  TaxRatesType
+} from '@/utils/incomeCalculator';
 
 const NetIncomeCalculator = () => {
   const [grossSalary, setGrossSalary] = useState<string>('2000');
   const [netSalary, setNetSalary] = useState<number | null>(null);
-  const [deductions, setDeductions] = useState<{
-    incomeTax: number;
-    socialSecurity: number;
-    regional: number;
-    municipal: number;
-    pension: number;
-  }>({
+  const [deductions, setDeductions] = useState<DeductionsType>({
     incomeTax: 0,
     socialSecurity: 0,
     regional: 0,
@@ -29,14 +31,8 @@ const NetIncomeCalculator = () => {
     pension: 0
   });
   
-  // Default tax rates for Italy
-  const taxRates = {
-    incomeTax: 20, // 20% Einkommensteuer
-    socialSecurity: 10, // 10% Sozialversicherung
-    regional: 1.5, // 1.5% Regionalsteuer
-    municipal: 0.8, // 0.8% Gemeindesteuer
-    pension: 1, // 1% Rentenbeitrag
-  };
+  // Tax rates from utility
+  const taxRates: TaxRatesType = defaultTaxRates;
   
   // Calculate net salary whenever gross salary changes
   useEffect(() => {
@@ -45,34 +41,15 @@ const NetIncomeCalculator = () => {
   
   const calculateNetSalary = () => {
     const gross = parseFloat(grossSalary) || 0;
+    const { deductions: calculatedDeductions, netSalary: calculatedNetSalary } = calculateDeductions(gross, taxRates);
     
-    const incomeTax = gross * taxRates.incomeTax / 100;
-    const socialSecurity = gross * taxRates.socialSecurity / 100;
-    const regional = gross * taxRates.regional / 100;
-    const municipal = gross * taxRates.municipal / 100;
-    const pension = gross * taxRates.pension / 100;
-    
-    const totalDeductions = incomeTax + socialSecurity + regional + municipal + pension;
-    const net = gross - totalDeductions;
-    
-    setDeductions({
-      incomeTax,
-      socialSecurity,
-      regional,
-      municipal,
-      pension
-    });
-    
-    setNetSalary(net);
+    setDeductions(calculatedDeductions);
+    setNetSalary(calculatedNetSalary);
   };
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     calculateNetSalary();
-  };
-  
-  const formatCurrency = (value: number): string => {
-    return value.toFixed(2).replace('.', ',') + ' €';
   };
   
   return (
@@ -103,40 +80,13 @@ const NetIncomeCalculator = () => {
             Berechnen
           </Button>
           
-          {netSalary !== null && (
-            <div className="mt-4 p-4 bg-muted rounded-md">
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span>Bruttogehalt:</span>
-                  <span className="font-medium">{formatCurrency(parseFloat(grossSalary) || 0)}</span>
-                </div>
-                <div className="flex justify-between text-red-500">
-                  <span>Einkommensteuer ({taxRates.incomeTax}%):</span>
-                  <span>- {formatCurrency(deductions.incomeTax)}</span>
-                </div>
-                <div className="flex justify-between text-red-500">
-                  <span>Sozialversicherung ({taxRates.socialSecurity}%):</span>
-                  <span>- {formatCurrency(deductions.socialSecurity)}</span>
-                </div>
-                <div className="flex justify-between text-red-500">
-                  <span>Regionalsteuer ({taxRates.regional}%):</span>
-                  <span>- {formatCurrency(deductions.regional)}</span>
-                </div>
-                <div className="flex justify-between text-red-500">
-                  <span>Gemeindesteuer ({taxRates.municipal}%):</span>
-                  <span>- {formatCurrency(deductions.municipal)}</span>
-                </div>
-                <div className="flex justify-between text-red-500">
-                  <span>Rentenbeitrag ({taxRates.pension}%):</span>
-                  <span>- {formatCurrency(deductions.pension)}</span>
-                </div>
-                <div className="border-t border-border mt-3 pt-3 font-semibold flex justify-between">
-                  <span>Nettogehalt:</span>
-                  <span>{formatCurrency(netSalary)}</span>
-                </div>
-              </div>
-            </div>
-          )}
+          <NetIncomeResult
+            netSalary={netSalary}
+            grossSalary={grossSalary}
+            deductions={deductions}
+            taxRates={taxRates}
+            formatCurrency={formatCurrency}
+          />
         </form>
         <p className="text-xs text-muted-foreground mt-4">
           Hinweis: Diese Berechnung basiert auf Standardsätzen für obligatorische Abzüge in Italien (Stand 2024). Individuelle Umstände können zu Abweichungen führen.
