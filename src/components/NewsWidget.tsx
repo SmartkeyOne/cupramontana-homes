@@ -28,12 +28,13 @@ const NewsWidget = () => {
       // We'll use a proxy service to fetch and parse RSS feeds to avoid CORS issues
       const proxyUrl = 'https://api.allorigins.win/raw?url=';
       
-      // List of RSS feeds to try - focusing on Italian news that might mention Cupramontana
+      // List of RSS feeds to try - focusing on Marche region tourism news
       const rssSources = [
-        // Italian news sources that might cover Cupramontana
+        // Marche regional news sources with tourism focus
         'https://www.ansa.it/marche/notizie/marche_rss.xml',
         'https://www.ilrestodelcarlino.it/feed/rss-cronaca-regionale-ancona',
-        'https://www.viverecupramontana.it/rss'
+        'https://www.viverecupramontana.it/rss',
+        'https://www.turismo.marche.it/rss'
       ];
       
       let allNews: NewsItem[] = [];
@@ -60,7 +61,8 @@ const NewsWidget = () => {
             const pubDate = item.querySelector("pubDate")?.textContent || "";
             const sourceName = rssUrl.includes('ansa') ? 'ANSA Marche' : 
                                rssUrl.includes('carlino') ? 'Il Resto del Carlino' : 
-                               rssUrl.includes('vivere') ? 'Vivere Cupramontana' : 'News';
+                               rssUrl.includes('vivere') ? 'Vivere Cupramontana' :
+                               rssUrl.includes('turismo.marche') ? 'Turismo Marche' : 'News';
             
             return {
               title,
@@ -70,14 +72,20 @@ const NewsWidget = () => {
             };
           });
           
-          // Filter for news mentioning Cupramontana
-          const relevantNews = feedItems.filter(item => 
-            item.title.toLowerCase().includes('cupramontana') || 
-            // Include some regional news even if not specifically about Cupramontana
-            (allNews.length < 2 && 
-              (item.title.toLowerCase().includes('verdicchio') || 
-              item.title.toLowerCase().includes('marche')))
-          );
+          // Filter for news mentioning Marche region tourism topics
+          const relevantNews = feedItems.filter(item => {
+            const lowercaseTitle = item.title.toLowerCase();
+            return lowercaseTitle.includes('cupramontana') || 
+                   lowercaseTitle.includes('marche') || 
+                   lowercaseTitle.includes('turismo') || 
+                   lowercaseTitle.includes('tourism') ||
+                   lowercaseTitle.includes('verdicchio') || 
+                   lowercaseTitle.includes('conero') ||
+                   lowercaseTitle.includes('spiaggia') || // beach
+                   lowercaseTitle.includes('riviera') ||
+                   lowercaseTitle.includes('evento') || // event
+                   lowercaseTitle.includes('festival');
+          });
           
           allNews = [...allNews, ...relevantNews];
           
@@ -94,23 +102,29 @@ const NewsWidget = () => {
         setNews(allNews.slice(0, 5)); // Limit to 5 items
         setLastUpdated(new Date());
       } else {
-        // If no RSS feeds had relevant news, create fallback news
+        // If no RSS feeds had relevant news, create fallback news about Marche tourism
         const fallbackNews: NewsItem[] = [
           {
-            title: "Explore Cupramontana's latest events",
-            link: "/tourism?tab=events",
+            title: "Explore the beautiful beaches of Marche region",
+            link: "/tourism?tab=beaches",
             source: "Cupramontana.homes",
             publishedAt: new Date().toLocaleDateString(),
           },
           {
-            title: "Discover the wine heritage of Verdicchio",
+            title: "Discover the wine heritage of Verdicchio in Marche",
             link: "/tourism?tab=wine",
             source: "Cupramontana.homes",
             publishedAt: new Date().toLocaleDateString(),
           },
           {
-            title: "Find real estate opportunities in Cupramontana",
-            link: "/real-estate",
+            title: "Top cultural attractions in the Marche region",
+            link: "/tourism?tab=attractions",
+            source: "Cupramontana.homes",
+            publishedAt: new Date().toLocaleDateString(),
+          },
+          {
+            title: "Upcoming events and festivals in Marche",
+            link: "/tourism?tab=events",
             source: "Cupramontana.homes",
             publishedAt: new Date().toLocaleDateString(),
           }
@@ -156,9 +170,9 @@ const NewsWidget = () => {
       <CardHeader>
         <div className="flex justify-between items-center">
           <div>
-            <CardTitle>Latest News from Cupramontana</CardTitle>
+            <CardTitle>Latest News from the Marche Region</CardTitle>
             <CardDescription>
-              Stay updated with what's happening in Cupramontana
+              Stay updated with tourism highlights and events in the Marche region
             </CardDescription>
           </div>
           <Button variant="ghost" size="sm" onClick={handleRefresh} className="flex gap-2 items-center">
@@ -183,7 +197,7 @@ const NewsWidget = () => {
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         ) : news.length === 0 ? (
-          <p className="text-muted-foreground">No recent news found about Cupramontana.</p>
+          <p className="text-muted-foreground">No recent news found about the Marche region.</p>
         ) : (
           <div className="space-y-4">
             {news.map((item, index) => (
