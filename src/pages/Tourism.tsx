@@ -159,7 +159,7 @@ const Tourism = () => {
     }
   ];
 
-  // Korrigierte und verifizierte Restaurants data für Cupramontana, Apiro, Staffolo, und Poggio San Vicino
+  // Corrected and verified restaurants data with proper Google Maps URLs
   const localRestaurants = [
     {
       id: 1,
@@ -397,6 +397,7 @@ const Tourism = () => {
                                 href={restaurant.mapsUrl} 
                                 target="_blank" 
                                 rel="noopener noreferrer"
+                                aria-label={`Google Maps: ${restaurant.name}`}
                                 className="text-primary hover:underline flex items-center justify-end gap-1"
                               >
                                 <MapPin className="h-4 w-4" />
