@@ -393,18 +393,9 @@ const Tourism = () => {
                 <div className="mt-6 p-4 bg-primary/5 rounded-lg">
                   <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
                     <ExternalLink className="h-4 w-4 text-primary" />
-                    Restaurants in der Region auf Google Maps
+                    Weitere Restaurants in der Umgebung von Cupramontana
                   </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 mt-4">
-                    <a 
-                      href="https://www.google.com/maps/search/restaurants+in+Cupramontana,+Italy" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-sm bg-primary/10 text-primary px-3 py-2 rounded hover:bg-primary/20 transition-colors flex items-center gap-2"
-                    >
-                      <Utensils className="h-4 w-4" />
-                      Restaurants in Cupramontana
-                    </a>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-4">
                     <a 
                       href="https://www.google.com/maps/search/restaurants+in+Staffolo,+Italy" 
                       target="_blank" 
