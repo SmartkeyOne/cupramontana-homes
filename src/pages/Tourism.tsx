@@ -175,107 +175,77 @@ const Tourism = () => {
   // Google Maps URL for restaurants in Cupramontana area
   const restaurantMapUrl = "https://www.google.ch/maps/search/Restaurants/@43.4498466,13.1021109,4483m/data=!3m2!1e3!4b1?entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoASAFQAw%3D%3D";
 
-  // Corrected and verified restaurants data with proper Google Maps URLs
+  // Updated verified restaurants data from Google Maps
   const localRestaurants = [
     {
       id: 1,
-      name: "Ristorante Sant'Ubaldo da Mario",
+      name: "Ristorante Bacchus",
       location: "Cupramontana",
-      rating: 4.5,
+      rating: 4.3,
       priceRange: "€€",
-      cuisine: "Traditionelle Marken-Küche",
-      address: "Via Colmorino, 60034 Cupramontana AN",
-      mapsUrl: "https://maps.app.goo.gl/vSBV1jbVWfdHNUf77"
-    },
-    {
-      id: 2,
-      name: "Osteria Santa Caterina",
-      location: "Cupramontana",
-      rating: 4.6,
-      priceRange: "€€",
-      cuisine: "Authentische italienische Küche",
-      address: "Via Pianello, 18, 60034 Cupramontana AN",
-      mapsUrl: "https://maps.app.goo.gl/Jsma2SriamNSEUEV6"
-    },
-    {
-      id: 3,
-      name: "Bacchus Caffetteria Ristoro",
-      location: "Cupramontana",
-      rating: 4.4,
-      priceRange: "€",
-      cuisine: "Bar & Café mit Speisen",
-      address: "Corso Leopardi, 4, 60034 Cupramontana AN",
+      cuisine: "Italienische Küche",
+      address: "Corso Giacomo Leopardi, 2, 60034 Cupramontana AN, Italien",
       mapsUrl: "https://maps.app.goo.gl/ysUZo8PXGw23ty1q7"
     },
     {
-      id: 4,
-      name: "La Cantina di San Michele",
+      id: 2,
+      name: "Villa di Donna",
       location: "Staffolo",
-      rating: 4.8,
+      rating: 4.4,
+      priceRange: "€€",
+      cuisine: "Lokale Spezialitäten",
+      address: "Via S. Francesco, 146, 60039 Staffolo AN, Italien",
+      mapsUrl: "https://maps.app.goo.gl/ew1uSnndNyZQandD8"
+    },
+    {
+      id: 3,
+      name: "Il Gladiatore",
+      location: "Cupramontana",
+      rating: 4.3,
+      priceRange: "€€",
+      cuisine: "Pizzeria",
+      address: "Via Giuseppe Verdi, 10, 60034 Cupramontana AN, Italien",
+      mapsUrl: "https://maps.app.goo.gl/UTx4GW5hdSwpFvAZ9"
+    },
+    {
+      id: 4,
+      name: "Ristorante Da Bruno",
+      location: "Staffolo",
+      rating: 4.5,
       priceRange: "€€",
       cuisine: "Traditionelle Küche & Weinbar",
-      address: "Contrada San Michele, 87, 60039 Staffolo AN",
-      mapsUrl: "https://maps.app.goo.gl/t3bHG46X9z8M1VRu9"
+      address: "Via Roma, 66, 60039 Staffolo AN, Italien",
+      mapsUrl: "https://maps.app.goo.gl/bE6avhLdioW4D28G8"
     },
     {
       id: 5,
-      name: "Pizzeria Margherita",
-      location: "Staffolo",
-      rating: 4.3,
-      priceRange: "€",
-      cuisine: "Pizza & Italienische Küche",
-      address: "Via Roma, 77, 60039 Staffolo AN",
-      mapsUrl: "https://maps.app.goo.gl/VkU6idVduMpj9hmJ6"
+      name: "Ristorante La Giara",
+      location: "Apiro",
+      rating: 4.4,
+      priceRange: "€€",
+      cuisine: "Regionale Küche",
+      address: "Via Trieste, 9, 62021 Apiro MC, Italien",
+      mapsUrl: "https://maps.app.goo.gl/H7qDqxoXau4gf71h6"
     },
     {
       id: 6,
-      name: "Ristorante La Cantinetta",
-      location: "Apiro",
-      rating: 4.7,
-      priceRange: "€€",
-      cuisine: "Regionale Spezialitäten",
-      address: "Via Giacomo Leopardi, 15, 62021 Apiro MC",
-      mapsUrl: "https://maps.app.goo.gl/PhxKT9kGz7QE1DXg9"
-    },
-    {
-      id: 7,
-      name: "Ristorante Pizzeria La Nocicchia",
+      name: "La Nocicchia",
       location: "Apiro",
       rating: 4.6,
       priceRange: "€€",
-      cuisine: "Pizza & Italienische Spezialitäten",
-      address: "Via San Salvatore, 62021 Apiro MC",
+      cuisine: "Pizza & Italienische Küche",
+      address: "Contrada San Salvatore, 5/B, 62021 Apiro MC, Italien",
       mapsUrl: "https://maps.app.goo.gl/kdTX2yQEQFeiW5kS7"
     },
     {
-      id: 8,
-      name: "Trattoria del Borgo",
-      location: "Poggio San Vicino",
+      id: 7,
+      name: "Osteria del Castello",
+      location: "Serra San Quirico",
       rating: 4.5,
       priceRange: "€€",
-      cuisine: "Hausgemachte Pasta & Lokale Spezialitäten",
-      address: "Via Roma, 12, 62022 Poggio San Vicino MC",
-      mapsUrl: "https://maps.app.goo.gl/S6ddsKGTZwcErzMu7"
-    },
-    {
-      id: 9,
-      name: "Bar Ristorante Da Mara",
-      location: "Cupramontana",
-      rating: 4.2,
-      priceRange: "€",
-      cuisine: "Bar mit traditioneller Küche",
-      address: "Via Staffolo, 7, 60034 Cupramontana AN",
-      mapsUrl: "https://maps.app.goo.gl/cQx9jdGy97BRYn9f7"
-    },
-    {
-      id: 10,
-      name: "Cucina Contadina",
-      location: "Staffolo",
-      rating: 4.5,
-      priceRange: "€€",
-      cuisine: "Hausmannskost & Agriturismo",
-      address: "Contrada Ponte Musone, 60039 Staffolo AN",
-      mapsUrl: "https://maps.app.goo.gl/sC8xGwNhESJrteQi6"
+      cuisine: "Lokale Spezialitäten & Hausgemachte Pasta",
+      address: "Via Marcellini, 4, 60048 Serra San Quirico AN, Italien",
+      mapsUrl: "https://maps.app.goo.gl/hhJ3dBDEMDd5xMTg8"
     }
   ];
 
