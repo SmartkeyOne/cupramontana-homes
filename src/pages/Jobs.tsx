@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -513,7 +512,7 @@ const Jobs = () => {
               </Accordion>
             </div>
             
-            <h2 className="text-2xl font-bold mb-6">{t('jobs.listings.title')}</h2>
+            <h2 className="text-2xl font-bold mb-6">Jobbörsen</h2>
             <div className="space-y-6 mb-16">
               <div className="bg-muted p-6 rounded-lg">
                 <h3 className="text-xl font-medium mb-2">{t('jobs.coming.title')}</h3>
