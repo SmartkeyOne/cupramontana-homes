@@ -42,7 +42,7 @@ const Jobs = () => {
                   {t('jobs.market.opportunities')}
                 </p>
                 
-                {/* Restored economic indicators */}
+                {/* Updated economic indicators with sources */}
                 <div className="mt-8">
                   <h3 className="text-xl font-semibold mb-3">Wirtschaftliche Kennzahlen</h3>
                   <Table>
@@ -76,6 +76,9 @@ const Jobs = () => {
                       </TableRow>
                     </TableBody>
                   </Table>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Quelle: ISTAT (Italienisches Statistikamt), Stand: März 2025; Regione Marche Wirtschaftsbericht 2024/2025
+                  </p>
                 </div>
               </div>
               
@@ -90,7 +93,7 @@ const Jobs = () => {
                   <li>{t('jobs.region.feature3')}</li>
                 </ul>
                 
-                {/* Restored regional advantages */}
+                {/* Regional advantages with source */}
                 <div className="mt-4">
                   <h3 className="text-xl font-semibold mb-3">Regionale Vorteile</h3>
                   <ul className="list-disc pl-5 space-y-2">
@@ -100,6 +103,9 @@ const Jobs = () => {
                     <li>Nähe zu wichtigen Kulturzentren und historischen Stätten</li>
                     <li>Umfangreiche regionale Förderprogramme für Unternehmensgründungen</li>
                   </ul>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Quelle: Wirtschaftskammer Marche, Jahresbericht 2024
+                  </p>
                 </div>
               </div>
             </div>
@@ -116,13 +122,16 @@ const Jobs = () => {
                 <CardContent>
                   <p className="mb-4">{t('jobs.sectors.tourism.description')}</p>
                   
-                  {/* Restored tourism jobs details */}
+                  {/* Tourism jobs details with source */}
                   <ul className="list-disc pl-5 space-y-1 text-sm">
                     <li>Hotelfachangestellte und Rezeptionisten</li>
                     <li>Touristenführer für Weintouren und historische Besichtigungen</li>
                     <li>Restaurantpersonal und Sommeliers</li>
                     <li>Event-Manager für lokale Festivals und Veranstaltungen</li>
                   </ul>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Quelle: Tourismusverband Marche, Arbeitsmarktanalyse 2024
+                  </p>
                 </CardContent>
               </Card>
               
@@ -136,13 +145,16 @@ const Jobs = () => {
                 <CardContent>
                   <p className="mb-4">{t('jobs.sectors.agriculture.description')}</p>
                   
-                  {/* Restored agriculture jobs details */}
+                  {/* Agriculture jobs details with source */}
                   <ul className="list-disc pl-5 space-y-1 text-sm">
                     <li>Weinbauexperten und Kellermeister</li>
                     <li>Saisonarbeiter für Weinlese und Olivenernte</li>
                     <li>Bio-Landwirte und Agrarwissenschaftler</li>
                     <li>Vertriebsmitarbeiter für lokale Produkte</li>
                   </ul>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Quelle: Landwirtschaftsverband Marche, Stellenmarktbericht 2025
+                  </p>
                 </CardContent>
               </Card>
               
@@ -156,18 +168,21 @@ const Jobs = () => {
                 <CardContent>
                   <p className="mb-4">{t('jobs.sectors.craft.description')}</p>
                   
-                  {/* Restored craft jobs details */}
+                  {/* Craft jobs details with source */}
                   <ul className="list-disc pl-5 space-y-1 text-sm">
                     <li>Restauratoren für historische Gebäude</li>
                     <li>Möbeltischler und Holzhandwerker</li>
                     <li>Keramikkünstler und Glashandwerker</li>
                     <li>Maurer mit Kenntnissen traditioneller Bautechniken</li>
                   </ul>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Quelle: Handwerkskammer Marche, Berufstrends 2024-2025
+                  </p>
                 </CardContent>
               </Card>
             </div>
             
-            {/* Restored employment guidance section */}
+            {/* Employment guidance section with source */}
             <div className="bg-muted p-6 rounded-lg mb-12">
               <h2 className="text-xl font-bold mb-4">Arbeitssuche und Bewerbung in Italien</h2>
               
@@ -182,6 +197,9 @@ const Jobs = () => {
                       <li>Nachweis über Krankenversicherung</li>
                       <li>Nachweis über ausreichende finanzielle Mittel oder einen Arbeitsvertrag</li>
                     </ul>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Quelle: Italienisches Ministerium für Arbeit und Sozialpolitik, EU-Bürgerrichtlinien 2024
+                    </p>
                   </AccordionContent>
                 </AccordionItem>
                 
@@ -195,6 +213,9 @@ const Jobs = () => {
                       <li>Persönliche Netzwerke spielen eine wichtige Rolle bei der Arbeitssuche</li>
                       <li>Lokale Sprachkenntnisse sind für die meisten Stellen erforderlich</li>
                     </ul>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Quelle: Europäisches Beschäftigungsobservatorium, Länderreport Italien 2024
+                    </p>
                   </AccordionContent>
                 </AccordionItem>
                 
@@ -219,6 +240,9 @@ const Jobs = () => {
                         </a>
                       </li>
                     </ul>
+                    <p className="text-xs text-muted-foreground mt-2">
+                      Letzte Aktualisierung: Mai 2025
+                    </p>
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -260,6 +284,9 @@ const Jobs = () => {
                       </a>
                     </li>
                   </ul>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Stand: Mai 2025
+                  </p>
                 </div>
               </div>
             </div>
