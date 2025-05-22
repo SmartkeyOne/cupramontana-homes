@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,49 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@
 import { ExternalLink } from 'lucide-react';
 
 const RealEstate = () => {
+  const [loanAmount, setLoanAmount] = useState<string>("200000");
+  const [interestRate, setInterestRate] = useState<string>("3.2");
+  const [loanTerm, setLoanTerm] = useState<string>("25");
+  const [monthlyPayment, setMonthlyPayment] = useState<number | null>(null);
+  const [totalInterest, setTotalInterest] = useState<number | null>(null);
+  const [totalPayment, setTotalPayment] = useState<number | null>(null);
+
+  // Berechnet die monatliche Rate, Gesamtzinsen und Gesamtrückzahlung
+  const calculateMortgage = () => {
+    const principal = parseFloat(loanAmount) || 0;
+    const interest = (parseFloat(interestRate) || 0) / 100 / 12;
+    const payments = (parseFloat(loanTerm) || 0) * 12;
+    
+    if (principal > 0 && interest > 0 && payments > 0) {
+      // Formel für monatliche Rate: P * r * (1+r)^n / ((1+r)^n - 1)
+      const monthly = (principal * interest * Math.pow(1 + interest, payments)) / (Math.pow(1 + interest, payments) - 1);
+      
+      setMonthlyPayment(monthly);
+      setTotalInterest((monthly * payments) - principal);
+      setTotalPayment(monthly * payments);
+    } else {
+      setMonthlyPayment(0);
+      setTotalInterest(0);
+      setTotalPayment(0);
+    }
+  };
+
+  // Führt Berechnung aus, wenn sich die Eingabewerte ändern
+  React.useEffect(() => {
+    calculateMortgage();
+  }, [loanAmount, interestRate, loanTerm]);
+
+  // Formatiert Zahlen als Euro-Beträge
+  const formatCurrency = (value: number | null): string => {
+    if (value === null) return "€ --";
+    return new Intl.NumberFormat('de-DE', { 
+      style: 'currency', 
+      currency: 'EUR',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(value);
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -194,7 +237,6 @@ const RealEstate = () => {
                   <CardContent className="pt-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div>
-                        {/* Hier würde der eigentliche Rechner implementiert werden */}
                         <p className="text-muted-foreground mb-4">
                           Unser Hypothekenrechner hilft Ihnen, Ihre monatlichen Raten zu berechnen.
                         </p>
@@ -205,20 +247,37 @@ const RealEstate = () => {
                         <div className="space-y-4">
                           <div>
                             <label className="block text-sm font-medium mb-1">Darlehensbetrag (€)</label>
-                            <input type="number" className="w-full p-2 border rounded" placeholder="z.B. 200000" />
+                            <input 
+                              type="number" 
+                              className="w-full p-2 border rounded" 
+                              placeholder="z.B. 200000" 
+                              value={loanAmount}
+                              onChange={(e) => setLoanAmount(e.target.value)}
+                            />
                           </div>
                           
                           <div>
                             <label className="block text-sm font-medium mb-1">Zinssatz (%)</label>
-                            <input type="number" className="w-full p-2 border rounded" placeholder="z.B. 3.2" step="0.1" />
+                            <input 
+                              type="number" 
+                              className="w-full p-2 border rounded" 
+                              placeholder="z.B. 3.2" 
+                              step="0.1" 
+                              value={interestRate}
+                              onChange={(e) => setInterestRate(e.target.value)}
+                            />
                           </div>
                           
                           <div>
                             <label className="block text-sm font-medium mb-1">Laufzeit (Jahre)</label>
-                            <input type="number" className="w-full p-2 border rounded" placeholder="z.B. 25" />
+                            <input 
+                              type="number" 
+                              className="w-full p-2 border rounded" 
+                              placeholder="z.B. 25" 
+                              value={loanTerm}
+                              onChange={(e) => setLoanTerm(e.target.value)}
+                            />
                           </div>
-                          
-                          <Button className="w-full">Berechnen</Button>
                         </div>
                       </div>
                       
@@ -227,17 +286,17 @@ const RealEstate = () => {
                         <div className="space-y-4">
                           <div>
                             <p className="text-sm text-muted-foreground">Monatliche Rate</p>
-                            <p className="text-2xl font-bold">€ --</p>
+                            <p className="text-2xl font-bold">{formatCurrency(monthlyPayment)}</p>
                           </div>
                           
                           <div>
                             <p className="text-sm text-muted-foreground">Gesamtzinsen</p>
-                            <p className="text-lg font-semibold">€ --</p>
+                            <p className="text-lg font-semibold">{formatCurrency(totalInterest)}</p>
                           </div>
                           
                           <div>
                             <p className="text-sm text-muted-foreground">Gesamtrückzahlung</p>
-                            <p className="text-lg font-semibold">€ --</p>
+                            <p className="text-lg font-semibold">{formatCurrency(totalPayment)}</p>
                           </div>
                         </div>
                       </div>
