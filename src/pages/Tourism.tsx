@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import SEOHelmet from '../components/SEOHelmet';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Bus, Train, Clock, MapPin, ExternalLink, Smartphone, Star, Utensils, Navigation } from 'lucide-react';
+import { Bus, Train, Clock, MapPin, ExternalLink, Smartphone, Star, Utensils, Navigation, Map as MapIcon } from 'lucide-react';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@/components/ui/collapsible';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { useLocation } from 'react-router-dom';
@@ -388,7 +388,7 @@ const Tourism = () => {
                     className="inline-block mb-6"
                   >
                     <Button variant="default" className="flex items-center gap-2">
-                      <Map className="h-5 w-5" />
+                      <MapIcon className="h-5 w-5" />
                       Alle Restaurants auf Google Maps anzeigen
                     </Button>
                   </a>
