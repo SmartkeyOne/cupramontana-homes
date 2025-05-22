@@ -92,17 +92,78 @@ const translations: Translations = {
     en: 'Change language',
     nl: 'Taal wijzigen',
   },
+  // Jobs page
+  'jobs.seo.title': {
+    de: 'Stellenangebote in Cupramontana',
+    it: 'Offerte di lavoro a Cupramontana',
+    en: 'Job opportunities in Cupramontana',
+    nl: 'Vacatures in Cupramontana',
+  },
+  'jobs.seo.description': {
+    de: 'Aktuelle Stellenangebote und Karrieremöglichkeiten in Cupramontana und der Region Marken, Italien.',
+    it: 'Offerte di lavoro attuali e opportunità di carriera a Cupramontana e nella regione Marche, Italia.',
+    en: 'Current job listings and career opportunities in Cupramontana and the Marche region, Italy.',
+    nl: 'Actuele vacatures en carrièremogelijkheden in Cupramontana en de regio Marche, Italië.',
+  },
+  'jobs.seo.keywords': {
+    de: 'Jobs Cupramontana, Stellenangebote Italien, Karriere Marken, Arbeiten in Italien',
+    it: 'Lavoro Cupramontana, Offerte di lavoro Italia, Carriera Marche, Lavorare in Italia',
+    en: 'Jobs Cupramontana, Job opportunities Italy, Career Marche, Working in Italy',
+    nl: 'Banen Cupramontana, Vacatures Italië, Carrière Marche, Werken in Italië',
+  },
+  'jobs.title': {
+    de: 'Stellenangebote in Cupramontana',
+    it: 'Offerte di lavoro a Cupramontana',
+    en: 'Job opportunities in Cupramontana',
+    nl: 'Vacatures in Cupramontana',
+  },
+  'jobs.subtitle': {
+    de: 'Entdecken Sie aktuelle Karrieremöglichkeiten und Stellenangebote in Cupramontana und der umliegenden Region Marken.',
+    it: 'Scopri opportunità di carriera e offerte di lavoro attuali a Cupramontana e nella regione Marche circostante.',
+    en: 'Discover current career opportunities and job offers in Cupramontana and the surrounding Marche region.',
+    nl: 'Ontdek actuele carrièremogelijkheden en vacatures in Cupramontana en de omringende regio Marche.',
+  },
+  'jobs.market.title': {
+    de: 'Arbeitsmarkt in den Marken',
+    it: 'Mercato del lavoro nelle Marche',
+    en: 'Job market in Marche',
+    nl: 'Arbeidsmarkt in Marche',
+  },
+  'jobs.market.description': {
+    de: 'Die Region Marken bietet vielfältige Beschäftigungsmöglichkeiten in verschiedenen Branchen, insbesondere in Tourismus, Landwirtschaft und Weinbau, sowie im handwerklichen Sektor.',
+    it: 'La regione Marche offre diverse opportunità di lavoro in vari settori, in particolare nel turismo, nell\'agricoltura e nella vinificazione, nonché nel settore artigianale.',
+    en: 'The Marche region offers diverse employment opportunities in various industries, particularly in tourism, agriculture and viticulture, as well as in the craft sector.',
+    nl: 'De regio Marche biedt diverse werkgelegenheidsmogelijkheden in verschillende sectoren, met name in toerisme, landbouw en wijnbouw, evenals in de ambachtelijke sector.',
+  },
+  'jobs.coming.title': {
+    de: 'Demnächst verfügbar',
+    it: 'Presto disponibile',
+    en: 'Coming soon',
+    nl: 'Binnenkort beschikbaar',
+  },
+  'jobs.coming.description': {
+    de: 'Stellenangebote für Cupramontana werden in Kürze hier erscheinen. Schauen Sie bald wieder vorbei!',
+    it: 'Le offerte di lavoro per Cupramontana appariranno qui a breve. Torna presto a controllare!',
+    en: 'Job listings for Cupramontana will appear here soon. Check back soon!',
+    nl: 'Vacatures voor Cupramontana verschijnen hier binnenkort. Kom snel terug!',
+  },
 };
 
 // Provider component
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [language, setLanguageState] = useState<SupportedLanguage>('de');
 
-  // Set initial language based on browser language on mount
+  // On first load, check localStorage for saved preference
   useEffect(() => {
-    const browserLang = navigator.language.split('-')[0] as SupportedLanguage;
-    if (['de', 'it', 'en', 'nl'].includes(browserLang)) {
-      setLanguageState(browserLang);
+    const savedLang = localStorage.getItem('preferredLanguage') as SupportedLanguage;
+    if (savedLang && ['de', 'it', 'en', 'nl'].includes(savedLang)) {
+      setLanguageState(savedLang);
+    } else {
+      // Fallback to browser language if no saved preference
+      const browserLang = navigator.language.split('-')[0] as SupportedLanguage;
+      if (['de', 'it', 'en', 'nl'].includes(browserLang)) {
+        setLanguageState(browserLang);
+      }
     }
   }, []);
 
