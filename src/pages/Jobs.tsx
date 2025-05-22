@@ -515,11 +515,6 @@ const Jobs = () => {
             <h2 className="text-2xl font-bold mb-6">Jobbörsen</h2>
             <div className="space-y-6 mb-16">
               <div className="bg-muted p-6 rounded-lg">
-                <h3 className="text-xl font-medium mb-2">{t('jobs.coming.title')}</h3>
-                <p className="mb-4">
-                  {t('jobs.coming.description')}
-                </p>
-                
                 <div className="mt-6">
                   <h3 className="font-medium mb-2">{t('jobs.resources.title')}</h3>
                   <ul className="space-y-3">
@@ -569,14 +564,6 @@ const Jobs = () => {
                   </p>
                 </div>
               </div>
-            </div>
-            
-            <div className="bg-primary/10 p-8 rounded-lg mb-10">
-              <h2 className="text-2xl font-bold mb-4">{t('jobs.contact.title')}</h2>
-              <p className="mb-6">{t('jobs.contact.description')}</p>
-              <Button>
-                {t('jobs.contact.button')}
-              </Button>
             </div>
           </div>
         </section>
