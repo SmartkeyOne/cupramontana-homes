@@ -94,43 +94,87 @@ export const calculateDeductions = (
   return { deductions, netSalary, appliedRates };
 };
 
-// Einkommensübersicht mit Beispielen für verschiedene Gehaltsklassen
+// Detaillierte Einkommensübersicht mit präzisen Steuerbandbreiten
 export const incomeRangeExamples = [
   {
-    range: "1.000 € (Niedrig)",
+    range: "bis 1.000 €",
     grossSalary: 1000,
-    incomeTaxRate: calculateIncomeTaxRate(1000),
-    socialSecurityRate: calculateSocialSecurityRate(1000),
-    regionalRate: calculateRegionalRate(1000),
-    municipalRate: calculateMunicipalRate(1000),
-    pensionRate: calculatePensionRate(1000),
+    incomeTaxRate: 15,
+    socialSecurityRate: 9,
+    regionalRate: 1.2,
+    municipalRate: 0.7,
+    pensionRate: 0.8,
+    bandWidth: "0 € - 1.000 €"
   },
   {
-    range: "2.000 € (Mittel)",
-    grossSalary: 2000,
-    incomeTaxRate: calculateIncomeTaxRate(2000),
-    socialSecurityRate: calculateSocialSecurityRate(2000),
-    regionalRate: calculateRegionalRate(2000),
-    municipalRate: calculateMunicipalRate(2000),
-    pensionRate: calculatePensionRate(2000),
+    range: "1.001 € - 1.500 €",
+    grossSalary: 1001,
+    incomeTaxRate: 20,
+    socialSecurityRate: 9,
+    regionalRate: 1.2,
+    municipalRate: 0.7,
+    pensionRate: 0.8,
+    bandWidth: "1.001 € - 1.500 €"
   },
   {
-    range: "3.500 € (Gehoben)",
-    grossSalary: 3500,
-    incomeTaxRate: calculateIncomeTaxRate(3500),
-    socialSecurityRate: calculateSocialSecurityRate(3500),
-    regionalRate: calculateRegionalRate(3500),
-    municipalRate: calculateMunicipalRate(3500),
-    pensionRate: calculatePensionRate(3500),
+    range: "1.501 € - 2.000 €",
+    grossSalary: 1501,
+    incomeTaxRate: 20,
+    socialSecurityRate: 10,
+    regionalRate: 1.2,
+    municipalRate: 0.7,
+    pensionRate: 0.8,
+    bandWidth: "1.501 € - 2.000 €"
   },
   {
-    range: "5.000 € (Hoch)",
-    grossSalary: 5000,
-    incomeTaxRate: calculateIncomeTaxRate(5000),
-    socialSecurityRate: calculateSocialSecurityRate(5000),
-    regionalRate: calculateRegionalRate(5000),
-    municipalRate: calculateMunicipalRate(5000),
-    pensionRate: calculatePensionRate(5000),
+    range: "2.001 € - 2.500 €",
+    grossSalary: 2001,
+    incomeTaxRate: 25,
+    socialSecurityRate: 10,
+    regionalRate: 1.5,
+    municipalRate: 0.7,
+    pensionRate: 1.0,
+    bandWidth: "2.001 € - 2.500 €"
+  },
+  {
+    range: "2.501 € - 3.000 €",
+    grossSalary: 2501,
+    incomeTaxRate: 25,
+    socialSecurityRate: 10,
+    regionalRate: 1.5,
+    municipalRate: 0.8,
+    pensionRate: 1.0,
+    bandWidth: "2.501 € - 3.000 €"
+  },
+  {
+    range: "3.001 € - 3.500 €",
+    grossSalary: 3001,
+    incomeTaxRate: 30,
+    socialSecurityRate: 11,
+    regionalRate: 1.5,
+    municipalRate: 0.8,
+    pensionRate: 1.0,
+    bandWidth: "3.001 € - 3.500 €"
+  },
+  {
+    range: "3.501 € - 4.000 €",
+    grossSalary: 3501,
+    incomeTaxRate: 30,
+    socialSecurityRate: 11,
+    regionalRate: 1.8,
+    municipalRate: 0.8,
+    pensionRate: 1.0,
+    bandWidth: "3.501 € - 4.000 €"
+  },
+  {
+    range: "über 4.000 €",
+    grossSalary: 4001,
+    incomeTaxRate: 35,
+    socialSecurityRate: 11,
+    regionalRate: 1.8,
+    municipalRate: 0.8,
+    pensionRate: 1.0,
+    bandWidth: "ab 4.001 €"
   }
 ];
 

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SectorCard from './SectorCard';
 import { Briefcase, User, UserPlus } from 'lucide-react';
@@ -94,9 +93,9 @@ const SectorOverview = () => {
         <h3 className="text-xl font-bold mb-4">Monatliches Nettogehalt nach Abzügen</h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold mb-3">Übersicht der monatlichen Einkommensklassen und Abzüge</h4>
+            <h4 className="font-semibold mb-3">Übersicht der monatlichen Einkommensklassen und Steuersätze</h4>
             <div className="bg-card p-4 rounded-md shadow-sm">
-              <p className="mb-3">Steuersätze und Abzüge variieren je nach monatlichem Bruttogehalt:</p>
+              <p className="mb-3">Steuersätze und Abzüge variieren je nach monatlichem Bruttogehalt - beachten Sie die Sprünge bei den Grenzen:</p>
               
               <div className="w-full">
                 <ScrollArea className="h-auto max-h-[350px]">
@@ -104,7 +103,7 @@ const SectorOverview = () => {
                     <table className="w-full text-sm">
                       <thead className="bg-muted">
                         <tr>
-                          <th className="p-2 text-left">Monatliches Gehalt</th>
+                          <th className="p-2 text-left">Gehaltsbereich</th>
                           <th className="p-2 text-right">Einkommensteuer</th>
                           <th className="p-2 text-right">Sozialvers.</th>
                           <th className="p-2 text-right">Regionalst.</th>
@@ -113,19 +112,16 @@ const SectorOverview = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {incomeRangeExamples.map((example, index) => {
-                          const { deductions } = calculateDeductions(example.grossSalary);
-                          return (
-                            <tr key={index} className={index % 2 === 0 ? 'bg-background' : 'bg-muted/30'}>
-                              <td className="p-2 font-medium">{example.range}</td>
-                              <td className="p-2 text-right">{example.incomeTaxRate}%</td>
-                              <td className="p-2 text-right">{example.socialSecurityRate}%</td>
-                              <td className="p-2 text-right">{example.regionalRate}%</td>
-                              <td className="p-2 text-right">{example.municipalRate}%</td>
-                              <td className="p-2 text-right">{example.pensionRate}%</td>
-                            </tr>
-                          );
-                        })}
+                        {incomeRangeExamples.map((example, index) => (
+                          <tr key={index} className={index % 2 === 0 ? 'bg-background' : 'bg-muted/30'}>
+                            <td className="p-2 font-medium">{example.bandWidth}</td>
+                            <td className="p-2 text-right">{example.incomeTaxRate}%</td>
+                            <td className="p-2 text-right">{example.socialSecurityRate}%</td>
+                            <td className="p-2 text-right">{example.regionalRate}%</td>
+                            <td className="p-2 text-right">{example.municipalRate}%</td>
+                            <td className="p-2 text-right">{example.pensionRate}%</td>
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </div>

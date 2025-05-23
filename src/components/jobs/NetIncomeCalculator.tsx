@@ -70,6 +70,10 @@ const NetIncomeCalculator = () => {
               placeholder="2000"
               className="text-lg"
             />
+            <p className="text-xs text-muted-foreground">
+              Hinweis: Bei Gehaltsänderungen springen die Steuersätze an bestimmten Schwellen. 
+              Z.B. 15% Einkommensteuer bis 1.000€, 20% zwischen 1.001€ und 2.000€.
+            </p>
           </div>
           
           <NetIncomeResult
