@@ -104,7 +104,7 @@ export const incomeRangeExamples = [
     regionalRate: 1.2,
     municipalRate: 0.7,
     pensionRate: 0.8,
-    bandWidth: "0 € - 1.000 €"
+    bandWidth: "0 - 1.000 €"
   },
   {
     range: "1.001 € - 1.500 €",
@@ -114,7 +114,7 @@ export const incomeRangeExamples = [
     regionalRate: 1.2,
     municipalRate: 0.7,
     pensionRate: 0.8,
-    bandWidth: "1.001 € - 1.500 €"
+    bandWidth: "1.001 - 1.500 €"
   },
   {
     range: "1.501 € - 2.000 €",
@@ -124,7 +124,7 @@ export const incomeRangeExamples = [
     regionalRate: 1.2,
     municipalRate: 0.7,
     pensionRate: 0.8,
-    bandWidth: "1.501 € - 2.000 €"
+    bandWidth: "1.501 - 2.000 €"
   },
   {
     range: "2.001 € - 2.500 €",
@@ -134,7 +134,7 @@ export const incomeRangeExamples = [
     regionalRate: 1.5,
     municipalRate: 0.7,
     pensionRate: 1.0,
-    bandWidth: "2.001 € - 2.500 €"
+    bandWidth: "2.001 - 2.500 €"
   },
   {
     range: "2.501 € - 3.000 €",
@@ -144,7 +144,7 @@ export const incomeRangeExamples = [
     regionalRate: 1.5,
     municipalRate: 0.8,
     pensionRate: 1.0,
-    bandWidth: "2.501 € - 3.000 €"
+    bandWidth: "2.501 - 3.000 €"
   },
   {
     range: "3.001 € - 3.500 €",
@@ -154,7 +154,7 @@ export const incomeRangeExamples = [
     regionalRate: 1.5,
     municipalRate: 0.8,
     pensionRate: 1.0,
-    bandWidth: "3.001 € - 3.500 €"
+    bandWidth: "3.001 - 3.500 €"
   },
   {
     range: "3.501 € - 4.000 €",
@@ -164,7 +164,7 @@ export const incomeRangeExamples = [
     regionalRate: 1.8,
     municipalRate: 0.8,
     pensionRate: 1.0,
-    bandWidth: "3.501 € - 4.000 €"
+    bandWidth: "3.501 - 4.000 €"
   },
   {
     range: "über 4.000 €",

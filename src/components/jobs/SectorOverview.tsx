@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SectorCard from './SectorCard';
 import { Briefcase, User, UserPlus } from 'lucide-react';
@@ -19,8 +20,8 @@ const SectorOverview = () => {
   ];
   
   const tourismSalaries = [
-    { position: 'Hotelfachangestellte', salary: '1,400-1,700' },
-    { position: 'Restaurantleiter', salary: '1,800-2,300' },
+    { position: 'Hotelfachangestellte', salary: '1.400-1.700' },
+    { position: 'Restaurantleiter', salary: '1.800-2.300' },
     { position: 'Touristenführer', salary: 'Variable' }
   ];
   
@@ -34,9 +35,9 @@ const SectorOverview = () => {
   ];
   
   const agricultureSalaries = [
-    { position: 'Kellermeister', salary: '1,800-2,500' },
-    { position: 'Landwirtschaftlicher Saisonarbeiter', salary: '1,200-1,500' },
-    { position: 'Agrarwissenschaftler', salary: '1,900-2,700' }
+    { position: 'Kellermeister', salary: '1.800-2.500' },
+    { position: 'Landwirtschaftlicher Saisonarbeiter', salary: '1.200-1.500' },
+    { position: 'Agrarwissenschaftler', salary: '1.900-2.700' }
   ];
   
   const craftJobs = [
@@ -49,8 +50,8 @@ const SectorOverview = () => {
   ];
   
   const craftSalaries = [
-    { position: 'Restaurator', salary: '1,700-2,400' },
-    { position: 'Spezialisierter Handwerker', salary: '1,500-2,200' },
+    { position: 'Restaurator', salary: '1.700-2.400' },
+    { position: 'Spezialisierter Handwerker', salary: '1.500-2.200' },
     { position: 'Kunsthandwerker', salary: 'Variable' }
   ];
   
