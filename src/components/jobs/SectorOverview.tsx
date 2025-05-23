@@ -1,3 +1,4 @@
+
 import React from 'react';
 import SectorCard from './SectorCard';
 import { Briefcase, User, UserPlus } from 'lucide-react';
@@ -90,12 +91,12 @@ const SectorOverview = () => {
       </div>
       
       <div className="bg-muted p-6 rounded-lg mb-16">
-        <h3 className="text-xl font-bold mb-4">Nettogehalt nach Abzügen</h3>
+        <h3 className="text-xl font-bold mb-4">Monatliches Nettogehalt nach Abzügen</h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div>
-            <h4 className="font-semibold mb-3">Übersicht der Einkommensklassen und Abzüge</h4>
+            <h4 className="font-semibold mb-3">Übersicht der monatlichen Einkommensklassen und Abzüge</h4>
             <div className="bg-card p-4 rounded-md shadow-sm">
-              <p className="mb-3">Steuersätze und Abzüge variieren je nach Bruttogehalt:</p>
+              <p className="mb-3">Steuersätze und Abzüge variieren je nach monatlichem Bruttogehalt:</p>
               
               <div className="w-full">
                 <ScrollArea className="h-auto max-h-[350px]">
@@ -103,7 +104,7 @@ const SectorOverview = () => {
                     <table className="w-full text-sm">
                       <thead className="bg-muted">
                         <tr>
-                          <th className="p-2 text-left">Gehaltsklasse</th>
+                          <th className="p-2 text-left">Monatliches Gehalt</th>
                           <th className="p-2 text-right">Einkommensteuer</th>
                           <th className="p-2 text-right">Sozialvers.</th>
                           <th className="p-2 text-right">Regionalst.</th>
@@ -132,7 +133,7 @@ const SectorOverview = () => {
               </div>
               
               <p className="text-xs text-muted-foreground mt-4">
-                Die Steuersätze sind Schätzwerte für Italien und können je nach Region und individueller Situation variieren.
+                Die Steuersätze sind Schätzwerte für monatliche Gehälter in Italien und können je nach Region und individueller Situation variieren.
                 Für eine genaue Berechnung empfehlen wir die Konsultation eines Steuerberaters.
               </p>
             </div>

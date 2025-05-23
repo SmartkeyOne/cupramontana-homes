@@ -54,13 +54,13 @@ const NetIncomeCalculator = () => {
       <CardHeader className="pb-3">
         <CardTitle>Nettogehalt-Rechner</CardTitle>
         <CardDescription>
-          Geben Sie Ihr Bruttogehalt ein und sehen Sie das geschätzte Nettogehalt
+          Geben Sie Ihr monatliches Bruttogehalt ein und sehen Sie das geschätzte monatliche Nettogehalt
         </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
           <div className="grid gap-2">
-            <Label htmlFor="grossSalary">Bruttogehalt (€)</Label>
+            <Label htmlFor="grossSalary">Monatliches Bruttogehalt (€)</Label>
             <Input
               id="grossSalary"
               type="number"
@@ -81,7 +81,8 @@ const NetIncomeCalculator = () => {
           />
         </div>
         <p className="text-xs text-muted-foreground mt-4">
-          Hinweis: Diese Berechnung basiert auf Standardsätzen für obligatorische Abzüge in Italien (Stand 2024). Die Steuersätze variieren je nach Bruttogehalt. Individuelle Umstände können zu Abweichungen führen.
+          Hinweis: Diese Berechnung basiert auf Standardsätzen für obligatorische Abzüge in Italien (Stand 2024). 
+          Die Steuersätze variieren je nach monatlichem Bruttogehalt. Individuelle Umstände können zu Abweichungen führen.
         </p>
       </CardContent>
     </Card>
