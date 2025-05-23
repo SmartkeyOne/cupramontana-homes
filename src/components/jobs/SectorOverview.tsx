@@ -133,6 +133,22 @@ const SectorOverview = () => {
                 Die Steuersätze sind Schätzwerte für monatliche Gehälter in Italien und können je nach Region und individueller Situation variieren.
                 Für eine genaue Berechnung empfehlen wir die Konsultation eines Steuerberaters.
               </p>
+              
+              <div className="bg-background/80 p-4 rounded-md mt-4 border border-muted">
+                <h5 className="font-medium mb-2">Wie werden diese Steuern abgezogen?</h5>
+                <p className="text-sm">
+                  In Italien werden Steuern und Sozialabgaben in der Regel automatisch vom monatlichen Bruttogehalt abgezogen. Dies geschieht durch den Arbeitgeber 
+                  im Rahmen eines Lohnsteuerabzugsverfahrens (ähnlich der deutschen Lohnsteuer). 
+                </p>
+                <p className="text-sm mt-2">
+                  Sie müssen normalerweise <strong>keine</strong> monatlichen Steuererklärungen (wie das Formular F24) einreichen. 
+                  Das F24-Formular wird hauptsächlich für andere steuerliche Zwecke verwendet, nicht für die reguläre monatliche Einkommensteuer.
+                </p>
+                <p className="text-sm mt-2">
+                  Am Ende des Steuerjahres kann jedoch eine jährliche Steuererklärung (Modello 730 oder Modello Redditi) erforderlich sein, 
+                  bei der zu viel oder zu wenig gezahlte Steuern ausgeglichen werden. 
+                </p>
+              </div>
             </div>
           </div>
           
