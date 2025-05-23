@@ -1,4 +1,3 @@
-
 import React from 'react';
 import SectorCard from './SectorCard';
 import { Briefcase, User, UserPlus } from 'lucide-react';
@@ -141,8 +140,7 @@ const SectorOverview = () => {
                   im Rahmen eines Lohnsteuerabzugsverfahrens (ähnlich der deutschen Lohnsteuer). 
                 </p>
                 <p className="text-sm mt-2">
-                  Sie müssen normalerweise <strong>keine</strong> monatlichen Steuererklärungen (wie das Formular F24) einreichen. 
-                  Das F24-Formular wird hauptsächlich für andere steuerliche Zwecke verwendet, nicht für die reguläre monatliche Einkommensteuer.
+                  Sie müssen normalerweise <strong>keine</strong> monatlichen Steuererklärungen einreichen. 
                 </p>
                 <p className="text-sm mt-2">
                   Am Ende des Steuerjahres kann jedoch eine jährliche Steuererklärung (Modello 730 oder Modello Redditi) erforderlich sein, 
