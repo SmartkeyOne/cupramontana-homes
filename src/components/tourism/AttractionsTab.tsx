@@ -2,37 +2,40 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { MapPin, Landmark, Castle, Church, Camera, Trees } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const AttractionsTab: React.FC = () => {
+  const { t } = useLanguage();
+  
   const attractions = [
     {
-      title: "Historisches Zentrum",
-      description: "Erkunden Sie die mittelalterlichen Gassen und Plätze von Cupramontana mit seiner charmanten Architektur und historischen Gebäuden. Der zentrale Platz Piazza Cavour ist umgeben von alten Palästen und ist das Herzstück der Stadt.",
+      title: t('tourism.attractions.historical.title'),
+      description: t('tourism.attractions.historical.description'),
       icon: <Landmark className="h-8 w-8 text-primary" />
     },
     {
-      title: "Museo del Vino",
-      description: "Das Internationale Weinmuseum beherbergt eine umfangreiche Sammlung zur Geschichte des Weinbaus und präsentiert alte Werkzeuge, Dokumente und Gegenstände, die die jahrhundertelange Tradition des Verdicchio-Weins dokumentieren.",
+      title: t('tourism.attractions.museum.title'),
+      description: t('tourism.attractions.museum.description'),
       icon: <Wine className="h-8 w-8 text-primary" />
     },
     {
-      title: "Conero Nationalpark",
-      description: "Nur eine kurze Fahrt entfernt bietet der Monte Conero spektakuläre Ausblicke auf die Adriaküste und wunderschöne Wanderwege durch mediterrane Vegetation mit beeindruckenden Kalksteinklippen.",
+      title: t('tourism.attractions.conero.title'),
+      description: t('tourism.attractions.conero.description'),
       icon: <Trees className="h-8 w-8 text-primary" />
     },
     {
-      title: "Chiesa di San Lorenzo",
-      description: "Diese beeindruckende Kirche aus dem 18. Jahrhundert beherbergt wichtige Kunstwerke, darunter ein wertvolles Altarbild von Ercole Ramazzani aus dem 16. Jahrhundert und prächtige Stuckarbeiten.",
+      title: t('tourism.attractions.church.title'),
+      description: t('tourism.attractions.church.description'),
       icon: <Church className="h-8 w-8 text-primary" />
     },
     {
-      title: "Mittelalterliche Burgen",
-      description: "Die umliegenden Ortschaften beherbergen zahlreiche mittelalterliche Burgen und Festungen, die Teil des historischen 'Castelli di Jesi' Netzwerks sind, das zum Schutz der Region diente.",
+      title: t('tourism.attractions.castles.title'),
+      description: t('tourism.attractions.castles.description'),
       icon: <Castle className="h-8 w-8 text-primary" />
     },
     {
-      title: "Frasassi-Höhlen",
-      description: "Etwa 30 km entfernt befinden sich die spektakulären Frasassi-Höhlen, eines der beeindruckendsten Höhlensysteme Europas mit gigantischen unterirdischen Kammern und atemberaubenden Stalagmiten und Stalaktiten.",
+      title: t('tourism.attractions.frasassi.title'),
+      description: t('tourism.attractions.frasassi.description'),
       icon: <MapPin className="h-8 w-8 text-primary" />
     }
   ];
@@ -40,15 +43,12 @@ const AttractionsTab: React.FC = () => {
   return (
     <div className="space-y-6">
       <div className="mb-8 prose max-w-none">
-        <h2 className="text-2xl font-bold mb-4">Entdecken Sie Cupramontana und Umgebung</h2>
+        <h2 className="text-2xl font-bold mb-4">{t('tourism.attractions.title')}</h2>
         <p className="mb-4">
-          Cupramontana liegt im Herzen der Marken und ist der ideale Ausgangspunkt, um diese wunderschöne Region zu erkunden. 
-          Die Stadt selbst bietet einen authentischen Einblick in das italienische Landleben, umgeben von sanften Hügeln, 
-          Weinbergen und Olivenhainen.
+          {t('tourism.attractions.description1')}
         </p>
         <p>
-          Neben den unten aufgeführten Attraktionen bietet die Region zahlreiche pittoreske Dörfer, historische Städte 
-          und eine reiche kulturelle Landschaft, die es zu entdecken gilt.
+          {t('tourism.attractions.description2')}
         </p>
       </div>
 
@@ -79,7 +79,7 @@ const AttractionsTab: React.FC = () => {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Karte von Cupramontana"
+          title={t('tourism.attractions.map.title')}
         ></iframe>
       </div>
     </div>
