@@ -3,9 +3,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../ui/button';
 import { Map, Wine } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const NavigationButtons = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   
   const handleWineClick = () => {
     // Navigate to the tourism page with the wine tab parameter
@@ -48,14 +50,14 @@ const NavigationButtons = () => {
         variant="default" 
         className="gap-2"
       >
-        <Wine className="h-5 w-5" /> Verdicchio Weinregion erkunden
+        <Wine className="h-5 w-5" /> {t('hero.wineButton')}
       </Button>
       <Button 
         onClick={handleMapClick} 
         variant="outline" 
         className="gap-2 hover:bg-primary hover:text-white transition-all"
       >
-        <Map className="h-5 w-5" /> Restaurants entdecken
+        <Map className="h-5 w-5" /> {t('hero.restaurantsButton')}
       </Button>
     </div>
   );

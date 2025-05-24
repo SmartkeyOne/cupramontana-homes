@@ -3,30 +3,32 @@ import React from 'react';
 import { Home, Compass, Briefcase } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from 'react-router-dom';
-
-const features = [
-  {
-    icon: <Home className="h-8 w-8 text-primary" />,
-    title: "Immobilien",
-    description: "Umfassender Leitfaden zum Immobilienkauf in Cupramontana.",
-    route: "/real-estate"
-  },
-  {
-    icon: <Compass className="h-8 w-8 text-primary" />,
-    title: "Tourismus",
-    description: "Entdecken Sie die Schönheit der Marken.",
-    route: "/tourism"
-  },
-  {
-    icon: <Briefcase className="h-8 w-8 text-primary" />,
-    title: "Arbeit",
-    description: "Aktuelle Stellenangebote in der Region.",
-    route: "/jobs"
-  }
-];
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Features = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      icon: <Home className="h-8 w-8 text-primary" />,
+      title: t('features.realEstate.title'),
+      description: t('features.realEstate.description'),
+      route: "/real-estate"
+    },
+    {
+      icon: <Compass className="h-8 w-8 text-primary" />,
+      title: t('features.tourism.title'),
+      description: t('features.tourism.description'),
+      route: "/tourism"
+    },
+    {
+      icon: <Briefcase className="h-8 w-8 text-primary" />,
+      title: t('features.jobs.title'),
+      description: t('features.jobs.description'),
+      route: "/jobs"
+    }
+  ];
 
   const handleCardClick = (route: string) => {
     navigate(route);

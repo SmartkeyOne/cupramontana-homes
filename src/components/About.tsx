@@ -1,22 +1,25 @@
 
 import React from 'react';
 import { Card, CardContent } from "@/components/ui/card";
+import { useLanguage } from '../contexts/LanguageContext';
 
 const About = () => {
+  const { t } = useLanguage();
+  
   return (
     <section id="about" className="section">
       <div className="container">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold mb-6">Über uns</h2>
+            <h2 className="text-3xl font-bold mb-6">{t('about.title')}</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              Wir sind ein Team von erfahrenen Webdesignern und Entwicklern, die sich auf die Erstellung von hochwertigen Websites spezialisiert haben.
+              {t('about.description1')}
             </p>
             <p className="text-muted-foreground mb-6">
-              Seit über 10 Jahren arbeiten wir mit Unternehmen jeder Größe zusammen, um ihre Online-Präsenz zu verbessern und ihre digitale Strategie zu stärken.
+              {t('about.description2')}
             </p>
             <p className="text-muted-foreground">
-              Unser Ziel ist es, Websites zu erstellen, die nicht nur ästhetisch ansprechend sind, sondern auch funktional und benutzerfreundlich.
+              {t('about.description3')}
             </p>
           </div>
           
