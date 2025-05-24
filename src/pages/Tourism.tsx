@@ -16,9 +16,11 @@ import EventsSection from '../components/tourism/EventsSection';
 import WineTab from '../components/tourism/WineTab';
 
 const Tourism = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [activeTab, setActiveTab] = useState("attractions");
   const location = useLocation();
+  
+  console.log(`Tourism page rendering with language: ${language}`);
   
   // Handle tab selection from URL parameter
   useEffect(() => {
@@ -29,28 +31,28 @@ const Tourism = () => {
     }
   }, [location]);
   
-  // Example data for events
+  // Example data for events - should be translated
   const events = [
     {
       id: 1,
-      name: "Sagra dell'Uva",
-      date: "Oktober 2025",
-      location: "Piazza Cavour, Cupramontana",
-      description: "Das wichtigste Weinfest der Region mit lokalen Weinen und Gastronomie."
+      name: t('tourism.events.sagra.name') || "Sagra dell'Uva",
+      date: t('tourism.events.sagra.date') || "Oktober 2025",
+      location: t('tourism.events.sagra.location') || "Piazza Cavour, Cupramontana",
+      description: t('tourism.events.sagra.description') || "Das wichtigste Weinfest der Region mit lokalen Weinen und Gastronomie."
     },
     {
       id: 2,
-      name: "Festa dell'Olio Nuovo",
-      date: "November 2025",
-      location: "Stadtgebiet, Cupramontana",
-      description: "Feier des neuen Olivenöls mit Verkostungen und kulturellen Veranstaltungen."
+      name: t('tourism.events.festa.name') || "Festa dell'Olio Nuovo",
+      date: t('tourism.events.festa.date') || "November 2025",
+      location: t('tourism.events.festa.location') || "Stadtgebiet, Cupramontana",
+      description: t('tourism.events.festa.description') || "Feier des neuen Olivenöls mit Verkostungen und kulturellen Veranstaltungen."
     },
     {
       id: 3,
-      name: "Concerto d'Estate",
-      date: "Juli 2025",
-      location: "Teatro Comunale, Cupramontana",
-      description: "Sommerkonzert mit klassischer Musik und lokalen Künstlern."
+      name: t('tourism.events.concerto.name') || "Concerto d'Estate",
+      date: t('tourism.events.concerto.date') || "Juli 2025",
+      location: t('tourism.events.concerto.location') || "Teatro Comunale, Cupramontana",
+      description: t('tourism.events.concerto.description') || "Sommerkonzert mit klassischer Musik und lokalen Künstlern."
     }
   ];
 
@@ -84,7 +86,7 @@ const Tourism = () => {
               
               <div className="overflow-hidden border-none bg-primary/10 h-64 rounded">
                 <div className="bg-primary/60 h-full rounded flex items-center justify-center text-white text-lg font-medium">
-                  Panorama von Cupramontana
+                  {t('tourism.region.panorama') || 'Panorama von Cupramontana'}
                 </div>
               </div>
             </div>

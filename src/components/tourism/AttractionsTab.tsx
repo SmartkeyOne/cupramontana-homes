@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { MapPin, Landmark, Castle, Church, Camera, Trees } from 'lucide-react';
+import { MapPin, Landmark, Castle, Church, Camera, Trees, GlassWater } from 'lucide-react';
 import { useLanguage } from '../../contexts/LanguageContext';
 
 const AttractionsTab: React.FC = () => {
@@ -16,7 +16,7 @@ const AttractionsTab: React.FC = () => {
     {
       title: t('tourism.attractions.museum.title'),
       description: t('tourism.attractions.museum.description'),
-      icon: <Wine className="h-8 w-8 text-primary" />
+      icon: <GlassWater className="h-8 w-8 text-primary" />
     },
     {
       title: t('tourism.attractions.conero.title'),
@@ -85,28 +85,5 @@ const AttractionsTab: React.FC = () => {
     </div>
   );
 };
-
-// Add Wine icon component (since we're using it but it's not imported from Lucide)
-function Wine(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <path d="M8 22h8"></path>
-      <path d="M12 11v11"></path>
-      <path d="M17 3l1 7c0 3-2 5-6 5s-6-2-6-5l1-7h10z"></path>
-      <path d="M6 3h12"></path>
-    </svg>
-  );
-}
 
 export default AttractionsTab;

@@ -33,6 +33,9 @@ export const useTranslations = () => {
       const browserLang = navigator.language.split('-')[0] as SupportedLanguage;
       if (['de', 'it', 'en', 'nl'].includes(browserLang)) {
         setLanguageState(browserLang);
+      } else {
+        // Default fallback is German
+        setLanguageState('de');
       }
     }
   }, []);
@@ -41,6 +44,7 @@ export const useTranslations = () => {
   const setLanguage = (lang: SupportedLanguage) => {
     setLanguageState(lang);
     localStorage.setItem('preferredLanguage', lang);
+    console.log(`Language changed to: ${lang}`);
   };
 
   // Translation function
@@ -49,7 +53,9 @@ export const useTranslations = () => {
       console.warn(`Translation key not found: ${key}`);
       return key;
     }
-    return translations[key][language] || translations[key]['en'] || key;
+    const translation = translations[key][language] || translations[key]['de'] || key;
+    console.log(`Translation for ${key} in ${language}: ${translation}`);
+    return translation;
   };
 
   return {

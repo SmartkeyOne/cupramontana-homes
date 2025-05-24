@@ -10,6 +10,8 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { language, setLanguage, t } = useTranslations();
   
+  console.log(`LanguageProvider rendering with language: ${language}`);
+  
   // Language options for UI components
   const languages = [
     { code: 'de' as SupportedLanguage, label: t('language.de') },
