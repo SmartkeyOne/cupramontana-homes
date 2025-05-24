@@ -16,32 +16,39 @@ const Index = () => {
     "@type": "WebSite",
     "name": "Cupramontana.homes",
     "url": "https://cupramontana.homes",
-    "description": "Ihr umfassender Ratgeber für Immobilienkauf, Tourismus und Leben in der malerischen Region Marken.",
+    "description": t('hero.subtitle'),
     "potentialAction": {
       "@type": "SearchAction",
       "target": "https://cupramontana.homes/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
+
+  // Get localized SEO content
+  const getLocalizedTitle = () => {
+    switch (language) {
+      case 'de': return "Startseite";
+      case 'it': return "Pagina Iniziale";
+      case 'nl': return "Startpagina";
+      default: return "Home";
+    }
+  };
+
+  const getLocalizedKeywords = () => {
+    switch (language) {
+      case 'de': return "Cupramontana, Marken, Italien, Immobilien, Tourismus, Jobs, Verdicchio, Weinregion";
+      case 'it': return "Cupramontana, Marche, Italia, immobili, turismo, lavoro, Verdicchio, regione vinicola";
+      case 'nl': return "Cupramontana, Marche, Italië, vastgoed, toerisme, banen, Verdicchio, wijnstreek";
+      default: return "Cupramontana, Marche, Italy, real estate, tourism, jobs, Verdicchio, wine region";
+    }
+  };
   
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHelmet 
-        title={language === 'de' ? "Startseite" : (language === 'it' ? "Pagina Iniziale" : (language === 'nl' ? "Startpagina" : "Home"))}
-        description={language === 'de' 
-          ? "Ihr umfassender Ratgeber für Immobilienkauf, Tourismus und Leben in der malerischen Region Marken."
-          : (language === 'it' 
-              ? "La tua guida completa all'acquisto di immobili, al turismo e alla vita nella pittoresca regione delle Marche." 
-              : (language === 'nl'
-                  ? "Uw uitgebreide gids voor het kopen van onroerend goed, toerisme en leven in de schilderachtige regio Marche."
-                  : "Your comprehensive guide to real estate purchases, tourism, and living in the picturesque Marche region."))}
-        keywords={language === 'de'
-          ? "Cupramontana, Marken, Italien, Immobilien, Tourismus, Jobs, Verdicchio, Weinregion"
-          : (language === 'it'
-              ? "Cupramontana, Marche, Italia, immobili, turismo, lavoro, Verdicchio, regione vinicola"
-              : (language === 'nl'
-                  ? "Cupramontana, Marche, Italië, vastgoed, toerisme, banen, Verdicchio, wijnstreek"
-                  : "Cupramontana, Marche, Italy, real estate, tourism, jobs, Verdicchio, wine region"))}
+        title={getLocalizedTitle()}
+        description={t('hero.subtitle')}
+        keywords={getLocalizedKeywords()}
         canonicalUrl="https://cupramontana.homes"
       />
       <Helmet>

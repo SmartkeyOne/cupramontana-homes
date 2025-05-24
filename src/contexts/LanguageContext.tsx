@@ -3,7 +3,7 @@ import React, { createContext, useContext, ReactNode } from 'react';
 import { useTranslations } from '../hooks/useTranslations';
 import { LanguageContextType, SupportedLanguage } from '../types/languageTypes';
 
-// Create the context
+// Create the context with undefined as default
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 // Provider component
@@ -18,8 +18,15 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     { code: 'nl' as SupportedLanguage, label: t('language.nl') }
   ];
 
+  const contextValue: LanguageContextType = {
+    language,
+    setLanguage,
+    t,
+    languages
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t, languages }}>
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   );
