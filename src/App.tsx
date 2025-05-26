@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import ChatbotWidget from "./components/ChatbotWidget";
 import Index from "./pages/Index";
 import RealEstate from "./pages/RealEstate";
 import Tourism from "./pages/Tourism";
@@ -30,6 +31,7 @@ const App = () => (
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <ChatbotWidget />
           </BrowserRouter>
         </LanguageProvider>
       </HelmetProvider>
