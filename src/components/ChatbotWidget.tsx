@@ -1,6 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -16,7 +17,6 @@ const ChatbotWidget = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [apiKey, setApiKey] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { language } = useLanguage();
 
@@ -50,13 +50,6 @@ const ChatbotWidget = () => {
     scrollToBottom();
   }, [messages]);
 
-  useEffect(() => {
-    const savedApiKey = localStorage.getItem('openai-api-key');
-    if (savedApiKey) {
-      setApiKey(savedApiKey);
-    }
-  }, []);
-
   const toggleChatbot = () => {
     setIsOpen(!isOpen);
     if (!isOpen && messages.length === 0) {
@@ -72,7 +65,7 @@ const ChatbotWidget = () => {
   };
 
   const sendMessage = async () => {
-    if (!inputValue.trim() || !apiKey) return;
+    if (!inputValue.trim()) return;
 
     const userMessage: Message = { role: 'user', content: inputValue };
     const updatedMessages = [...messages, userMessage];
@@ -81,28 +74,21 @@ const ChatbotWidget = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'gpt-4o-mini',
-          messages: [
-            { role: 'system', content: getSystemPrompt() },
-            ...updatedMessages
-          ],
-          max_tokens: 500,
-          temperature: 0.7,
-        }),
+      const { data, error } = await supabase.functions.invoke('chat-openai', {
+        body: {
+          messages: updatedMessages,
+          systemPrompt: getSystemPrompt()
+        }
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to get response from OpenAI');
+      if (error) {
+        throw new Error(error.message);
       }
 
-      const data = await response.json();
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
       const assistantMessage: Message = {
         role: 'assistant',
         content: data.choices[0].message.content
@@ -110,7 +96,7 @@ const ChatbotWidget = () => {
 
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
-      console.error('Error calling OpenAI:', error);
+      console.error('Error calling chat function:', error);
       const errorMessage: Message = {
         role: 'assistant',
         content: language === 'de' ? 'Entschuldigung, es gab einen Fehler. Bitte versuchen Sie es erneut.' :
@@ -129,10 +115,6 @@ const ChatbotWidget = () => {
       e.preventDefault();
       sendMessage();
     }
-  };
-
-  const saveApiKey = () => {
-    localStorage.setItem('openai-api-key', apiKey);
   };
 
   return (
@@ -167,100 +149,75 @@ const ChatbotWidget = () => {
               </Button>
             </div>
 
-            {!apiKey ? (
-              <div className="p-4 flex flex-col gap-3">
-                <p className="text-sm text-gray-600">
-                  {language === 'de' ? 'Bitte geben Sie Ihren OpenAI API-Schlüssel ein:' :
-                   language === 'it' ? 'Inserisci la tua chiave API OpenAI:' :
-                   language === 'nl' ? 'Voer je OpenAI API-sleutel in:' :
-                   'Please enter your OpenAI API key:'}
-                </p>
-                <Input
-                  type="password"
-                  placeholder="sk-..."
-                  value={apiKey}
-                  onChange={(e) => setApiKey(e.target.value)}
-                />
-                <Button onClick={saveApiKey} disabled={!apiKey.trim()}>
-                  {language === 'de' ? 'Speichern' :
-                   language === 'it' ? 'Salva' :
-                   language === 'nl' ? 'Opslaan' :
-                   'Save'}
-                </Button>
-              </div>
-            ) : (
-              <>
-                {/* Messages */}
-                <div className="flex-1 overflow-y-auto p-4 space-y-3">
-                  {messages.map((message, index) => (
-                    <div
-                      key={index}
-                      className={`flex gap-2 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                    >
-                      {message.role === 'assistant' && (
-                        <div className="w-6 h-6 rounded-full bg-black flex items-center justify-center">
-                          <Bot className="h-3 w-3 text-white" />
-                        </div>
-                      )}
-                      <div
-                        className={`max-w-[80%] p-2 rounded-lg text-sm ${
-                          message.role === 'user'
-                            ? 'bg-black text-white'
-                            : 'bg-gray-100 text-gray-900'
-                        }`}
-                      >
-                        {message.content}
-                      </div>
-                      {message.role === 'user' && (
-                        <div className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center">
-                          <User className="h-3 w-3 text-gray-600" />
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                  {isLoading && (
-                    <div className="flex gap-2 justify-start">
-                      <div className="w-6 h-6 rounded-full bg-black flex items-center justify-center">
-                        <Bot className="h-3 w-3 text-white" />
-                      </div>
-                      <div className="bg-gray-100 p-2 rounded-lg text-sm">
-                        <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                        </div>
-                      </div>
+            {/* Messages */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`flex gap-2 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  {message.role === 'assistant' && (
+                    <div className="w-6 h-6 rounded-full bg-black flex items-center justify-center">
+                      <Bot className="h-3 w-3 text-white" />
                     </div>
                   )}
-                  <div ref={messagesEndRef} />
+                  <div
+                    className={`max-w-[80%] p-2 rounded-lg text-sm ${
+                      message.role === 'user'
+                        ? 'bg-black text-white'
+                        : 'bg-gray-100 text-gray-900'
+                    }`}
+                  >
+                    {message.content}
+                  </div>
+                  {message.role === 'user' && (
+                    <div className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center">
+                      <User className="h-3 w-3 text-gray-600" />
+                    </div>
+                  )}
                 </div>
-
-                {/* Input */}
-                <div className="p-3 border-t">
-                  <div className="flex gap-2">
-                    <Input
-                      value={inputValue}
-                      onChange={(e) => setInputValue(e.target.value)}
-                      onKeyPress={handleKeyPress}
-                      placeholder={
-                        language === 'de' ? 'Nachricht eingeben...' :
-                        language === 'it' ? 'Scrivi un messaggio...' :
-                        language === 'nl' ? 'Typ een bericht...' :
-                        'Type a message...'
-                      }
-                      disabled={isLoading}
-                    />
-                    <Button
-                      onClick={sendMessage}
-                      disabled={!inputValue.trim() || isLoading}
-                      size="sm"
-                    >
-                      <Send className="h-4 w-4" />
-                    </Button>
+              ))}
+              {isLoading && (
+                <div className="flex gap-2 justify-start">
+                  <div className="w-6 h-6 rounded-full bg-black flex items-center justify-center">
+                    <Bot className="h-3 w-3 text-white" />
+                  </div>
+                  <div className="bg-gray-100 p-2 rounded-lg text-sm">
+                    <div className="flex space-x-1">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                    </div>
                   </div>
                 </div>
-              </>
-            )}
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input */}
+            <div className="p-3 border-t">
+              <div className="flex gap-2">
+                <Input
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder={
+                    language === 'de' ? 'Nachricht eingeben...' :
+                    language === 'it' ? 'Scrivi un messaggio...' :
+                    language === 'nl' ? 'Typ een bericht...' :
+                    'Type a message...'
+                  }
+                  disabled={isLoading}
+                />
+                <Button
+                  onClick={sendMessage}
+                  disabled={!inputValue.trim() || isLoading}
+                  size="sm"
+                >
+                  <Send className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
           </Card>
         </div>
       )}
