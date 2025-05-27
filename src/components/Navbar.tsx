@@ -14,7 +14,8 @@ const Navbar = () => {
     { label: t('nav.home'), href: "/" },
     { label: t('nav.realEstate'), href: "/real-estate" },
     { label: t('nav.tourism'), href: "/tourism" },
-    { label: t('nav.jobs'), href: "/jobs" }
+    { label: t('nav.jobs'), href: "/jobs" },
+    { label: t('nav.sportelloDigitale'), href: "/sportello-digitale" }
   ];
 
   const changeLanguage = (langCode: typeof language) => {

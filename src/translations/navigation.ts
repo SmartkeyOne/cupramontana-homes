@@ -26,4 +26,10 @@ export const navigationTranslations: Translations = {
     en: 'Jobs',
     nl: 'Banen',
   },
+  'nav.sportelloDigitale': {
+    de: 'Digitaler Schalter',
+    it: 'Sportello Digitale',
+    en: 'Digital Counter',
+    nl: 'Digitaal Loket',
+  },
 };
