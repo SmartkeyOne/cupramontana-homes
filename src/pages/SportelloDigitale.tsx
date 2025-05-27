@@ -6,7 +6,7 @@ import SEOHelmet from '../components/SEOHelmet';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExternalLink, FileText, Users, Globe, Bot, Clock, Database, Rocket } from "lucide-react";
+import { ExternalLink, FileText, Users, Globe } from "lucide-react";
 
 const SportelloDigitale = () => {
   const { t } = useLanguage();
@@ -29,21 +29,6 @@ const SportelloDigitale = () => {
       description: "Servizi demografici online",
       icon: Globe,
       url: "https://www.anagrafenazionale.interno.it/",
-    }
-  ];
-
-  const aiFeatures = [
-    {
-      title: "24/7 verfügbarer Chatbot für Bürgeranfragen",
-      icon: Clock,
-    },
-    {
-      title: "Integration vorhandener Informationen in eine Masterdatenbank",
-      icon: Database,
-    },
-    {
-      title: "Pilotphase mit minimalem Aufwand für Gemeinden",
-      icon: Rocket,
     }
   ];
 
@@ -88,7 +73,7 @@ const SportelloDigitale = () => {
                 ))}
               </div>
 
-              <div className="bg-muted p-6 rounded-lg mb-12">
+              <div className="bg-muted p-6 rounded-lg">
                 <h2 className="text-2xl font-semibold mb-4">Informazioni Utili</h2>
                 <div className="space-y-4 text-muted-foreground">
                   <p>
@@ -103,41 +88,6 @@ const SportelloDigitale = () => {
                     <strong>ANPR (Anagrafe Nazionale della Popolazione Residente)</strong> permette di 
                     richiedere certificati anagrafici online in modo semplice e veloce.
                   </p>
-                </div>
-              </div>
-
-              {/* New AI Citizen Assistant Section */}
-              <div className="border-t pt-12">
-                <div className="text-center mb-8">
-                  <div className="flex items-center justify-center gap-3 mb-4">
-                    <Bot className="h-10 w-10 text-primary" />
-                    <h2 className="text-3xl font-bold">AI-gestützter Bürgerassistent</h2>
-                  </div>
-                  <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                    Unser AI-gestützter Bürgerassistent hilft Gemeinden, häufige Anfragen automatisiert, 
-                    sicher und rund um die Uhr zu beantworten.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                  {aiFeatures.map((feature, index) => (
-                    <Card key={index} className="text-center">
-                      <CardHeader>
-                        <div className="flex items-center justify-center mb-2">
-                          <feature.icon className="h-8 w-8 text-primary" />
-                        </div>
-                        <CardTitle className="text-lg">{feature.title}</CardTitle>
-                      </CardHeader>
-                    </Card>
-                  ))}
-                </div>
-
-                <div className="text-center">
-                  <Button asChild size="lg" className="text-lg px-8 py-3">
-                    <a href="/kontakt">
-                      Jetzt Pilotregion werden
-                    </a>
-                  </Button>
                 </div>
               </div>
             </div>
