@@ -2,13 +2,16 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SEOHelmet from '../components/SEOHelmet';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Visione = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHelmet 
-        title="Visione Strategica - Verdicchio Territorio"
-        description="Una visione strategica per promuovere qualità, cultura e identità vitivinicola nelle Marche"
+        title={t('visione.title')}
+        description={t('visione.subtitle')}
         keywords="Verdicchio, Marche, vino, strategia, territorio"
       />
       <Navbar />
@@ -24,15 +27,15 @@ const Visione = () => {
           }}
         >
           <div className="bg-black bg-opacity-60 p-8 rounded max-w-4xl mx-auto">
-            <h1 className="text-4xl font-bold mb-6">Visione Strategica</h1>
+            <h1 className="text-4xl font-bold mb-6">{t('visione.title')}</h1>
             <p className="text-lg mb-4">
-              Il Verdicchio non è solo un vino: è espressione del nostro paesaggio, della nostra cultura, della nostra identità marchigiana.
+              {t('visione.hero.description1')}
             </p>
             <p className="text-lg mb-4">
-              La nostra visione mira a trasformare il territorio del Verdicchio in un modello di eccellenza vitivinicola, dove tradizione e innovazione si incontrano per creare valore economico, sociale e culturale.
+              {t('visione.hero.description2')}
             </p>
             <p className="text-lg">
-              Attraverso un approccio integrato che coinvolge produttori, istituzioni e comunità locali, puntiamo a elevare la qualità del prodotto e a rafforzare l'identità territoriale delle Marche nel panorama vitivinicolo nazionale e internazionale.
+              {t('visione.hero.description3')}
             </p>
           </div>
         </section>
@@ -40,23 +43,23 @@ const Visione = () => {
         {/* Additional Content */}
         <section className="p-10 bg-white">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-green-800">I Nostri Obiettivi</h2>
+            <h2 className="text-3xl font-bold mb-6 text-green-800">{t('visione.objectives.title')}</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">Qualità del Prodotto</h3>
-                <p>Elevare gli standard qualitativi attraverso ricerca, innovazione tecnologica e rispetto per le tradizioni.</p>
+                <h3 className="text-xl font-semibold mb-3">{t('visione.quality.title')}</h3>
+                <p>{t('visione.quality.description')}</p>
               </div>
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">Sostenibilità</h3>
-                <p>Promuovere pratiche viticole sostenibili che rispettino l'ambiente e preservino il territorio per le future generazioni.</p>
+                <h3 className="text-xl font-semibold mb-3">{t('visione.sustainability.title')}</h3>
+                <p>{t('visione.sustainability.description')}</p>
               </div>
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">Valorizzazione Territoriale</h3>
-                <p>Sviluppare l'enoturismo e le attività collegate per creare un ecosistema economico virtuoso.</p>
+                <h3 className="text-xl font-semibold mb-3">{t('visione.territorial.title')}</h3>
+                <p>{t('visione.territorial.description')}</p>
               </div>
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-xl font-semibold mb-3">Identità Culturale</h3>
-                <p>Rafforzare il legame tra vino, territorio e comunità locale attraverso iniziative culturali e formative.</p>
+                <h3 className="text-xl font-semibold mb-3">{t('visione.cultural.title')}</h3>
+                <p>{t('visione.cultural.description')}</p>
               </div>
             </div>
           </div>

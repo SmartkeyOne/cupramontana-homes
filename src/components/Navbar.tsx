@@ -21,9 +21,9 @@ const Navbar = () => {
 
   // Verdicchio dropdown items
   const verdicchioItems = [
-    { label: "Visione", href: "/visione" },
-    { label: "Azioni", href: "/azioni" },
-    { label: "Investimenti", href: "/investimenti" }
+    { label: t('verdicchio.nav.visione'), href: "/visione" },
+    { label: t('verdicchio.nav.azioni'), href: "/azioni" },
+    { label: t('verdicchio.nav.investimenti'), href: "/investimenti" }
   ];
 
   const changeLanguage = (langCode: typeof language) => {
@@ -55,7 +55,7 @@ const Navbar = () => {
               onMouseEnter={() => setIsVerdicchioOpen(true)}
               onMouseLeave={() => setIsVerdicchioOpen(false)}
             >
-              Verdicchio
+              {t('verdicchio.title')}
               <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
             </Button>
             <div 
@@ -135,7 +135,7 @@ const Navbar = () => {
               
               {/* Verdicchio section mobile */}
               <div className="border-t border-border pt-4 mt-4">
-                <p className="text-xs text-muted-foreground mb-3 font-semibold uppercase tracking-wide">Verdicchio</p>
+                <p className="text-xs text-muted-foreground mb-3 font-semibold uppercase tracking-wide">{t('verdicchio.title')}</p>
                 <div className="space-y-1 bg-muted/30 rounded-lg p-2">
                   {verdicchioItems.map((item) => (
                     <Link

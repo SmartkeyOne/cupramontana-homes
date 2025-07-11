@@ -2,13 +2,16 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SEOHelmet from '../components/SEOHelmet';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Azioni = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHelmet 
-        title="Azioni Concrete - Verdicchio Territorio"
-        description="Azioni concrete per la valorizzazione del territorio del Verdicchio"
+        title={t('azioni.title')}
+        description={t('azioni.subtitle')}
         keywords="Verdicchio, azioni, zonazione, formazione, marketing, enoturismo"
       />
       <Navbar />
@@ -24,9 +27,9 @@ const Azioni = () => {
           }}
         >
           <div className="bg-black bg-opacity-60 p-8 rounded max-w-4xl mx-auto">
-            <h1 className="text-4xl font-bold mb-6">Azioni Concrete</h1>
+            <h1 className="text-4xl font-bold mb-6">{t('azioni.title')}</h1>
             <p className="text-lg mb-4">
-              Un piano d'azione strutturato per trasformare la visione in risultati tangibili e misurabili.
+              {t('azioni.hero.description')}
             </p>
           </div>
         </section>
@@ -36,8 +39,8 @@ const Azioni = () => {
           <div className="max-w-4xl mx-auto">
             <div className="space-y-8">
               <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-600">
-                <h3 className="text-2xl font-bold mb-4 text-green-800">Zonazione Agronomica</h3>
-                <p className="mb-4">Mappatura dettagliata dei micro-terroir per identificare le zone più vocate alla produzione di Verdicchio di eccellenza.</p>
+                <h3 className="text-2xl font-bold mb-4 text-green-800">{t('azioni.zonazione.title')}</h3>
+                <p className="mb-4">{t('azioni.zonazione.description')}</p>
                 <ul className="list-disc list-inside space-y-2 text-gray-700">
                   <li>Analisi pedoclimatiche approfondite</li>
                   <li>Studio delle caratteristiche del suolo</li>
@@ -47,8 +50,8 @@ const Azioni = () => {
               </div>
 
               <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
-                <h3 className="text-2xl font-bold mb-4 text-blue-800">Formazione e Cura del Vigneto</h3>
-                <p className="mb-4">Programmi formativi e consulenze specializzate per elevare le competenze tecniche dei viticoltori.</p>
+                <h3 className="text-2xl font-bold mb-4 text-blue-800">{t('azioni.formazione.title')}</h3>
+                <p className="mb-4">{t('azioni.formazione.description')}</p>
                 <ul className="list-disc list-inside space-y-2 text-gray-700">
                   <li>Corsi di potatura e gestione del vigneto</li>
                   <li>Tecniche di vinificazione innovative</li>
@@ -58,8 +61,8 @@ const Azioni = () => {
               </div>
 
               <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-600">
-                <h3 className="text-2xl font-bold mb-4 text-purple-800">Marketing Territoriale</h3>
-                <p className="mb-4">Strategie di comunicazione per raccontare l'autenticità e l'unicità del territorio del Verdicchio.</p>
+                <h3 className="text-2xl font-bold mb-4 text-purple-800">{t('azioni.marketing.title')}</h3>
+                <p className="mb-4">{t('azioni.marketing.description')}</p>
                 <ul className="list-disc list-inside space-y-2 text-gray-700">
                   <li>Storytelling autentico del territorio</li>
                   <li>Campagne digitali mirate</li>
@@ -69,8 +72,8 @@ const Azioni = () => {
               </div>
 
               <div className="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-600">
-                <h3 className="text-2xl font-bold mb-4 text-orange-800">Enoturismo</h3>
-                <p className="mb-4">Sviluppo di percorsi turistici integrati che valorizzino il patrimonio vitivinicolo e culturale.</p>
+                <h3 className="text-2xl font-bold mb-4 text-orange-800">{t('azioni.enoturismo.title')}</h3>
+                <p className="mb-4">{t('azioni.enoturismo.description')}</p>
                 <ul className="list-disc list-inside space-y-2 text-gray-700">
                   <li>Sentieri del vino tra i vigneti</li>
                   <li>Eventi enogastronomici stagionali</li>

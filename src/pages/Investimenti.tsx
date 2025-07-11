@@ -2,13 +2,16 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SEOHelmet from '../components/SEOHelmet';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Investimenti = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHelmet 
-        title="Investimenti Attivi - Verdicchio Territorio"
-        description="Investimenti e finanziamenti per la valorizzazione del territorio del Verdicchio"
+        title={t('investimenti.title')}
+        description={t('investimenti.subtitle')}
         keywords="Verdicchio, investimenti, finanziamenti, DOCG, PSR, bandi"
       />
       <Navbar />
@@ -24,12 +27,12 @@ const Investimenti = () => {
           }}
         >
           <div className="bg-black bg-opacity-60 p-8 rounded max-w-4xl mx-auto">
-            <h1 className="text-4xl font-bold mb-6">Investimenti Attivi</h1>
+            <h1 className="text-4xl font-bold mb-6">{t('investimenti.title')}</h1>
             <p className="text-lg mb-4">
-              Risorse concrete e strategiche per lo sviluppo del territorio del Verdicchio.
+              {t('investimenti.hero.description1')}
             </p>
             <p className="text-lg">
-              Un impegno economico significativo che testimonia la fiducia nel potenziale di crescita del nostro territorio.
+              {t('investimenti.hero.description2')}
             </p>
           </div>
         </section>

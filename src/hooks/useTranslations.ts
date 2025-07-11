@@ -8,6 +8,7 @@ import { commonTranslations } from '../translations/common';
 import { jobsTranslations } from '../translations/jobs';
 import { realEstateTranslations } from '../translations/realEstate';
 import { tourismTranslations } from '../translations/tourism';
+import { verdicchioTranslations } from '../translations/verdicchio';
 
 // Merge all translations
 const translations: Translations = {
@@ -16,7 +17,8 @@ const translations: Translations = {
   ...commonTranslations,
   ...jobsTranslations,
   ...realEstateTranslations,
-  ...tourismTranslations
+  ...tourismTranslations,
+  ...verdicchioTranslations
 };
 
 export const useTranslations = () => {

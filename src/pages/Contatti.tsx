@@ -8,8 +8,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Contatti = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,8 +36,8 @@ const Contatti = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <SEOHelmet 
-        title="Contatti - Verdicchio Territorio"
-        description="Contattaci per informazioni, collaborazioni o per aderire al progetto di valorizzazione del Verdicchio"
+        title={t('contatti.title')}
+        description={t('contatti.subtitle')}
         keywords="Verdicchio, contatti, collaborazioni, informazioni"
       />
       <Navbar />
@@ -44,10 +46,9 @@ const Contatti = () => {
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-green-800 to-green-600 text-white p-20">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-6">Contattaci</h1>
+            <h1 className="text-4xl font-bold mb-6">{t('contatti.title')}</h1>
             <p className="text-lg">
-              Per informazioni, collaborazioni o per aderire al progetto di valorizzazione del Verdicchio, 
-              compila il modulo qui sotto oppure scrivici all'indirizzo e-mail ufficiale del Comune.
+              {t('contatti.subtitle')}
             </p>
           </div>
         </section>
@@ -59,12 +60,12 @@ const Contatti = () => {
               {/* Contact Form */}
               <Card className="h-fit">
                 <CardHeader>
-                  <CardTitle className="text-2xl text-green-800">Invia un Messaggio</CardTitle>
+                  <CardTitle className="text-2xl text-green-800">{t('contatti.form.title')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                      <Label htmlFor="name" className="text-sm font-semibold">Nome *</Label>
+                      <Label htmlFor="name" className="text-sm font-semibold">{t('contatti.form.name')} *</Label>
                       <Input
                         id="name"
                         name="name"
@@ -73,12 +74,12 @@ const Contatti = () => {
                         onChange={handleChange}
                         required
                         className="mt-1"
-                        placeholder="Il tuo nome completo"
+                        placeholder={t('contatti.form.name')}
                       />
                     </div>
                     
                     <div>
-                      <Label htmlFor="email" className="text-sm font-semibold">Email *</Label>
+                      <Label htmlFor="email" className="text-sm font-semibold">{t('contatti.form.email')} *</Label>
                       <Input
                         id="email"
                         name="email"
@@ -87,12 +88,12 @@ const Contatti = () => {
                         onChange={handleChange}
                         required
                         className="mt-1"
-                        placeholder="la.tua.email@esempio.com"
+                        placeholder={t('contatti.form.email')}
                       />
                     </div>
                     
                     <div>
-                      <Label htmlFor="message" className="text-sm font-semibold">Messaggio *</Label>
+                      <Label htmlFor="message" className="text-sm font-semibold">{t('contatti.form.message')} *</Label>
                       <Textarea
                         id="message"
                         name="message"
@@ -100,7 +101,7 @@ const Contatti = () => {
                         onChange={handleChange}
                         required
                         className="mt-1 h-32"
-                        placeholder="Scrivi qui il tuo messaggio..."
+                        placeholder={t('contatti.form.message')}
                       />
                     </div>
                     
@@ -108,7 +109,7 @@ const Contatti = () => {
                       type="submit" 
                       className="w-full bg-green-800 hover:bg-green-700 text-white"
                     >
-                      Invia Messaggio
+                      {t('contatti.form.send')}
                     </Button>
                   </form>
                 </CardContent>
@@ -118,7 +119,7 @@ const Contatti = () => {
               <div className="space-y-8">
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-2xl text-green-800">Informazioni di Contatto</CardTitle>
+                    <CardTitle className="text-2xl text-green-800">{t('contatti.info.title')}</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-6">
                     <div className="flex items-start space-x-4">
