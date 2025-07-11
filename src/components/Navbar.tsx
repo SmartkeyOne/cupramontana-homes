@@ -52,29 +52,29 @@ const Navbar = () => {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="gap-1 text-sm font-medium text-muted-foreground hover:text-foreground"
+              className="gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               onMouseEnter={() => setIsVerdicchioOpen(true)}
               onMouseLeave={() => setIsVerdicchioOpen(false)}
             >
               Verdicchio
-              <ChevronDown className="h-4 w-4" />
+              <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
             </Button>
             <div 
-              className={`absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-background border border-border z-50 ${
-                isVerdicchioOpen ? 'visible opacity-100' : 'invisible opacity-0'
-              } transition-all duration-200`}
+              className={`absolute right-0 mt-2 w-48 rounded-lg shadow-lg bg-card border border-border z-50 overflow-hidden ${
+                isVerdicchioOpen ? 'visible opacity-100 translate-y-0' : 'invisible opacity-0 -translate-y-2'
+              } transition-all duration-200 ease-out`}
               onMouseEnter={() => setIsVerdicchioOpen(true)}
               onMouseLeave={() => setIsVerdicchioOpen(false)}
             >
-              <div className="py-1">
-                {verdicchioItems.map((item) => (
+              <div className="py-2">
+                {verdicchioItems.map((item, index) => (
                   <Link
                     key={item.href}
                     to={item.href}
-                    className="block px-4 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
+                    className="block px-4 py-3 text-sm text-card-foreground hover:bg-accent hover:text-accent-foreground transition-colors border-b border-border/50 last:border-b-0"
                     onClick={() => setIsVerdicchioOpen(false)}
                   >
-                    {item.label}
+                    <span className="font-medium">{item.label}</span>
                   </Link>
                 ))}
               </div>
@@ -83,17 +83,22 @@ const Navbar = () => {
           
           {/* Language selection desktop */}
           <div className="relative group">
-            <Button variant="ghost" size="sm" className="gap-1">
+            <Button variant="ghost" size="sm" className="gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
               <Globe className="h-4 w-4" />
               <span className="uppercase">{language}</span>
+              <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
             </Button>
-            <div className="absolute right-0 mt-2 w-36 rounded-md shadow-lg bg-background border border-border invisible group-hover:visible z-50">
-              <div className="py-1">
+            <div className="absolute right-0 mt-2 w-40 rounded-lg shadow-lg bg-card border border-border invisible group-hover:visible z-50 overflow-hidden transition-all duration-200">
+              <div className="py-2">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
                     onClick={() => changeLanguage(lang.code)}
-                    className={`block w-full text-left px-4 py-2 text-sm ${language === lang.code ? 'text-primary font-medium' : 'text-muted-foreground'} hover:bg-muted`}
+                    className={`block w-full text-left px-4 py-3 text-sm transition-colors border-b border-border/50 last:border-b-0 ${
+                      language === lang.code 
+                        ? 'text-primary font-semibold bg-accent/50' 
+                        : 'text-card-foreground hover:bg-accent hover:text-accent-foreground'
+                    }`}
                   >
                     {lang.label}
                   </button>
@@ -130,14 +135,14 @@ const Navbar = () => {
               ))}
               
               {/* Verdicchio section mobile */}
-              <div className="border-t pt-4">
-                <p className="text-xs text-muted-foreground mb-2 font-semibold">Verdicchio</p>
-                <div className="space-y-2">
+              <div className="border-t border-border pt-4 mt-4">
+                <p className="text-xs text-muted-foreground mb-3 font-semibold uppercase tracking-wide">Verdicchio</p>
+                <div className="space-y-1 bg-muted/30 rounded-lg p-2">
                   {verdicchioItems.map((item) => (
                     <Link
                       key={item.href}
                       to={item.href}
-                      className="block text-sm font-medium text-muted-foreground hover:text-foreground pl-2"
+                      className="block text-sm font-medium text-card-foreground hover:text-primary hover:bg-accent/50 px-3 py-2 rounded-md transition-colors"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.label}
@@ -147,15 +152,17 @@ const Navbar = () => {
               </div>
               
               {/* Language selection mobile */}
-              <div className="border-t pt-4">
-                <p className="text-xs text-muted-foreground mb-2">{t('language.change')}</p>
+              <div className="border-t border-border pt-4 mt-4">
+                <p className="text-xs text-muted-foreground mb-3 font-semibold uppercase tracking-wide">{t('language.change')}</p>
                 <div className="grid grid-cols-2 gap-2">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
                       onClick={() => changeLanguage(lang.code)}
-                      className={`text-sm py-1 px-2 rounded-md ${
-                        language === lang.code ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground'
+                      className={`text-sm py-3 px-3 rounded-lg border transition-colors ${
+                        language === lang.code 
+                          ? 'bg-primary text-primary-foreground border-primary font-semibold' 
+                          : 'bg-card text-card-foreground border-border hover:bg-accent hover:text-accent-foreground'
                       }`}
                     >
                       {lang.label}
