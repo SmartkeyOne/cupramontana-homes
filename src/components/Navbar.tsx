@@ -12,6 +12,10 @@ const Navbar = () => {
   // Navigation menu items
   const navItems = [
     { label: t('nav.home'), href: "/" },
+    { label: "Visione", href: "/visione" },
+    { label: "Azioni", href: "/azioni" },
+    { label: "Investimenti", href: "/investimenti" },
+    { label: "Contatti", href: "/contatti" },
     { label: t('nav.realEstate'), href: "/real-estate" },
     { label: t('nav.tourism'), href: "/tourism" },
     { label: t('nav.jobs'), href: "/jobs" },
