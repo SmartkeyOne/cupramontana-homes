@@ -23,8 +23,7 @@ const Navbar = () => {
   const verdicchioItems = [
     { label: "Visione", href: "/visione" },
     { label: "Azioni", href: "/azioni" },
-    { label: "Investimenti", href: "/investimenti" },
-    { label: "Contatti", href: "/contatti" }
+    { label: "Investimenti", href: "/investimenti" }
   ];
 
   const changeLanguage = (langCode: typeof language) => {
