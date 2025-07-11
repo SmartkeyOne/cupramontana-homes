@@ -8,10 +8,6 @@ import { HelmetProvider } from "react-helmet-async";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import ChatbotWidget from "./components/ChatbotWidget";
 import Index from "./pages/Index";
-import Visione from "./pages/Visione";
-import Azioni from "./pages/Azioni";
-import Investimenti from "./pages/Investimenti";
-import Contatti from "./pages/Contatti";
 import RealEstate from "./pages/RealEstate";
 import Tourism from "./pages/Tourism";
 import Jobs from "./pages/Jobs";
@@ -30,10 +26,6 @@ const App = () => (
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
-              <Route path="/visione" element={<Visione />} />
-              <Route path="/azioni" element={<Azioni />} />
-              <Route path="/investimenti" element={<Investimenti />} />
-              <Route path="/contatti" element={<Contatti />} />
               <Route path="/real-estate" element={<RealEstate />} />
               <Route path="/tourism" element={<Tourism />} />
               <Route path="/jobs" element={<Jobs />} />
